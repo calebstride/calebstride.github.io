@@ -1,0 +1,88 @@
+#dynamicContent h1 {
+    text-align: center;
+    background-color: #444;
+    margin: 0;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: #fafafa;
+}
+
+#pageText {
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+#siteGreeting {
+    text-align: center;
+    padding-top: 40vh;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.docMenuLink {
+    display: block;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.docMenuLink:hover {
+    color: #d2d2d2;
+}
+
+#docMenuArea {
+    padding-left: 10%;
+    margin-top: 35px;
+}
+
+img {
+    margin: auto;
+    display: block;
+}
+
+.headerRowH3 {
+    padding-left: 30px;
+}
+    
+.headerRowH4 {
+    padding-left: 60px;
+}
+    
+.headerRowH5 {
+    padding-left: 90px;
+}
+    
+
+h4, h5 {
+    margin-bottom: 0px;
+}
+
+h2 + p, h3 + p, h4 + p, h5 + p {
+    margin-top: 5px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    font-size: 160%;
+}
+
+h3 {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-size: 125%;
+}
+
+h4 {
+    margin-top: 5px;
+    font-size: 110%;
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (min-width: 600px) {
+
+
+}
