@@ -51,7 +51,7 @@ body {
   
 /* Create the caret/arrow with a unicode, and style it */
 .dropDownButton .dropDownIcon::before {
-    content: "\25B6";
+    content: "\279C";
     color: black;
     display: inline-block;
     margin-right: 6px;
