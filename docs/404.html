@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 0">
+<head>
+    <title>404</title>
+</head>
+<script>
+    const colours = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'indigo', 'violet', 'cornsilk', 'darkcyan',
+        'dodgerblue', 'indianred', 'mistyrose', 'springgreen'];
+
+    function beautify() {
+        const title = document.getElementById('textNotFound');
+
+        const letters = title.children;
+        for (let i = 0; i < letters.length; i++) {
+            const randomInd = Math.floor(Math.random() * (colours.length + 1));
+            letters[i].style.color = colours[randomInd];
+        }
+    }
+
+    window.setInterval(beautify, 1500);
+
+</script>
+<style>
+    #textNotFound {
+        position: fixed;
+        font-size: 36vh;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+        background: linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 1) 0%,
+                rgba(255, 154, 0, 1) 10%,
+                rgba(208, 222, 33, 1) 20%,
+                rgba(79, 220, 74, 1) 30%,
+                rgba(63, 218, 216, 1) 40%,
+                rgba(47, 201, 226, 1) 50%,
+                rgba(28, 127, 238, 1) 60%,
+                rgba(95, 21, 242, 1) 70%,
+                rgba(186, 12, 248, 1) 80%,
+                rgba(251, 7, 217, 1) 90%,
+                rgba(255, 0, 0, 1) 100%
+        );
+        word-break: normal;
+        margin: 0;
+        text-shadow: 3px 3px 3px black;
+    }
+
+    .notFoundLetter {
+        display: inline-block;
+
+    }
+</style>
+
+<h1 id="textNotFound">
+    <span class="notFoundLetter" style="color: red;">4</span><span class="notFoundLetter" style="color:orange;">0</span><span
+        class="notFoundLetter" style="color:green;">4</span><span
+        class="notFoundLetter">&nbsp;</span><span class="notFoundLetter"
+                                                  style="color: cyan;">N</span><span
+        class="notFoundLetter" style="color: blue">O</span><span class="notFoundLetter"
+                                                                 style="color:indigo;">T</span><span
+        class="notFoundLetter">&nbsp;</span><span class="notFoundLetter" style="color:violet;">F</span><span
+        class="notFoundLetter" style="color: red;">O</span><span class="notFoundLetter"
+                                                                 style="color:orange;">U</span><span
+        class="notFoundLetter" style="color:green;">N</span><span
+        class="notFoundLetter" style="color: cyan;">D</span>
+</h1>
+
+
+</html>
