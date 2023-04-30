@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Website Generator | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">  
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/pages.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="/siteMap.js"></script>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript" src="/scripts/PageSummary.js"></script>
+    <script type="text/javascript">
+    
+        window.onload = function() {
+            ContentTools.createMainNavBar();
+            PageSummary.createNavMenuForPage();
+        };
+
+    </script>
+
+    <noscript>Sorry, this page may not work properly unless javascript is enabled. </noscript>
+    
+</head>
+
+<body>
+
+    <div id="pageContainer">
+
+        <div id="pageContent">
+            <div id="dynamicContent">
+                <h1 id="pageTitle">Website Generator</h1>
+                <div id="pageText"><p>This project was created to generate the website you&#39;re looking at now. It&#39;s main purpose was convert markdown files into a website that could be viewed and explored. Admittedly I could have used many different web templates or website technologies to create this website. But I wanted to make the website small and quick to load. I&#39;ve tried to keep the javascript used down to a minimum and only use it where it is needed.</p>
+<div id="docMenuArea"> </div>
+
+<h2 id="summary">Summary</h2>
+<p>The tool works in a similar way to <a href="https://jekyllrb.com/">jekll</a>. It takes your markdown files and converts them into static html pages. The reason for this was to allow for documentation to be written easier, rather than writing it directly to html.</p>
+<p>You can use javascript, css and other files along with the produced html files.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>The code is pretty simple. It takes your markdown files and uses a markdown parser to generate html content, it then adds this to templates files which then form the final html page. These files, along with all the other webpage content, get moved into a new directory that makes up your functioning website.</p>
+<p><img src="/images/webGenerator/siteGenFlow.png" alt="Flow diagram of website generation"></p>
+<p>Each markdown page can have config defined within it to change the header, template along with other small details.</p>
+<p>After the pages are generated you can then move the contents of the output directory into a web host of your choice.</p>
+<h3 id="site-navigation--layout">Site Navigation / Layout</h3>
+<p>There are some other things that are done during the website generation that can help with the website development. For example a site map is generated. This is a Json object that contains the file structure of your web pages. This is the same as the file structure of your markdown files so you can use it to create a navigation menu in your website. </p>
+<p>This works by creating a tree structure when going through the markdown files. There were some things I had to do to make this work as expected. For example, as the files are read in an order that might differ from the order you want pages to appear in the website, I allowed a number suffix in the file names so an order could be enforced. This suffix is removed in the html pages.</p>
+<p>One thing I might change about this is having the navigation menu generated within the tool rather than generating it every time a page is visited. This would allow for slightly quicker load times when browsing multiple pages.</p>
+<h3 id="blog-pages">Blog pages</h3>
+<p>This is something that was made a lot harder by the fact that I&#39;m not using any kind of backend and it had to be done in the frontend.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>I thought this was a fun little project although I did spend a lot of time tweaky things in it. I added another page HHEEEEEEEEEEEEEERE about the actual website. </p>
+</div>
+            </div>
+        </div>
+
+        <div id="pageRightHand">
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+
+
+</body>
+</html>

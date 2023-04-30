@@ -1,0 +1,161 @@
+/* Create page size and make sure it fits the whole screen */
+html, body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #444;
+    background-color: #fafafa;
+}
+
+body {
+    min-height: 100%;
+}
+
+#sideBar {
+    background-color: #d2d2d2;
+}
+
+#sideBar ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+#sideBar #mainNavBar > li > div:hover, .dropDownContent div:hover {
+    background-color: #444;
+    color: #fafafa;
+}
+
+#sideBar a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px 8px 6px 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+#sideBar .dropDownContent{
+    padding-left: 16px;
+}
+
+.selected {
+    background-color: #444;
+    color: #fafafa;
+}
+
+.hiddenFeature {
+    display: none;
+}
+  
+/* Create the caret/arrow with a unicode, and style it */
+.dropDownButton .dropDownIcon::before {
+    content: "\279C";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+    margin-left: 6px;
+}
+
+.dropDownIcon::before {
+    content: "\2022";
+    display: inline-block;
+    margin-right: 6px;
+    margin-left: 10px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.dropDownButton.selectedDD .dropDownIcon::before {
+    transform: rotate(90deg);
+}
+
+#sideBar .dropDownIcon {
+    display: inline-block;
+    width: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    #closeContainer {
+        right: 0;
+        position: absolute;
+        padding-right: 10px;
+        font-size: 50px;
+        color: #444;
+        display: inline-block;
+        line-height: 25px;
+    }
+    
+    #b_menu {
+        padding-right: 10px;
+        padding-left: 100%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        display: block;
+        float: right;
+        z-index: 101;
+    }
+      
+    .b_men {
+        width: 35px;
+        height: 5px;
+        background-color: #444;
+        margin: 6px 0;
+    }
+
+    #burgerHug {
+        background-color: #d2d2d2;
+        overflow: auto;
+    }
+
+    #sideBar {
+        width: 60%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        padding-top: 20px;
+        border-left: 2px solid black;
+        border-bottom: 2px solid black;
+    }
+
+    #sideBarPush, .hiddenFeatureMob {
+        display: none;
+    }
+
+    #pageContent {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 600px) {
+
+    #pageContainer {
+        display: flex;
+        min-height: 100%;
+    }
+
+    #sideBar {
+        flex: 1;
+        max-width: 25%;
+        min-width: 250px;
+    }
+
+    #pageContent {
+        flex: 5;
+    }
+
+    #pageRightHand {
+        flex: 1;
+        background-color: #d2d2d2;
+    }
+
+
+    .hiddenFeatureBig {
+        display: none;
+    }
+
+    #mainNavBar {
+        padding-left: 10px;
+    }
+}

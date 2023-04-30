@@ -1,0 +1,5 @@
+pageContent: # This stores some default value to be overridden in templates
+    title: Page Title # The page title to appear in tabs and nav bar
+    header: Page Header # The h1 title of the page
+    content: ~ # The main content of the page
+    layout: template.html # The default template to use
