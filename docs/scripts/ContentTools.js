@@ -69,7 +69,6 @@ class ContentTools {
     // Create the web page nav bar that's used on each page
     static createMainNavBar() {
         const placeArea = document.getElementById("pageContainer");
-        document.body.insertBefore(this.createBurgerMenu(), document.body.firstChild);
 
         let menu = document.createElement("nav");
         menu.id = "sideBar";
@@ -176,26 +175,6 @@ class ContentTools {
         closeButton.onclick = function(){ContentTools.hideOrShow('sideBar', true);};
         closeButton.innerHTML = "&times;";
         return closeButton;
-    }
-
-    // Creates the burger menu when used on mobile
-    static createBurgerMenu() {
-        let burgerMenu = document.createElement("div");
-        burgerMenu.id = "burgerHug";
-
-        let burgerLineHolder = document.createElement("div");
-        burgerLineHolder.id = "b_menu";
-        burgerLineHolder.className = "hiddenFeatureBig";
-        burgerLineHolder.onclick = function(){ContentTools.hideOrShow('sideBar', true);};
-
-        for (let i = 0; i < 3; i++) {
-            let burgerLine = document.createElement("div");
-            burgerLine.className = "b_men";
-            burgerLineHolder.appendChild(burgerLine);
-        }
-
-        burgerMenu.appendChild(burgerLineHolder);
-        return burgerMenu;
     }
 
 }
