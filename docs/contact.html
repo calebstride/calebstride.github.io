@@ -8,19 +8,16 @@
     <link href="/styles/main.css" rel="stylesheet" type="text/css">
     <link href="/styles/pages.css" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript" src="/siteMap.js"></script>
-    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
-    <script type="text/javascript">
-    
-        window.onload = function() {
-            ContentTools.createMainNavBar();
-        };
-
-    </script>
-
     <noscript>Sorry, this page may not work properly unless javascript is enabled. </noscript>
     
-</head>
+
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            ContentTools.findAndSetSelectedFromStorage();
+        };
+    </script>
+    </head>
 
 <body>
 
@@ -33,6 +30,8 @@
     </div>
 
     <div id="pageContainer">
+
+        <nav id="sideBar" class="hiddenFeatureMob"><div id="closeContainer" class="hiddenFeatureBig" onclick="ContentTools.hideOrShow('sideBar', true);">×</div><ul id="mainNavBar"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Home') == 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('About') == 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="dropDownButton" id="ProjectsDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'ProjectsDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Projects') == 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="dropDownContent hiddenFeature" id="ProjectsDropDown"><li><div class="dropDownButton" id="Manage CabbageDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'Manage CabbageDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="dropDownContent hiddenFeature" id="Manage CabbageDropDown"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Designing') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') == 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Blog') == 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div></li><li class="selected"><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Contact') == 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
 
         <div id="pageContent">
             <div id="dynamicContent">
