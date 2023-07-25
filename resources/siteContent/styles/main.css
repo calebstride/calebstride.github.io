@@ -5,8 +5,8 @@ html, body {
     padding: 0px;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    color: #444;
-    background-color: #fafafa;
+    color: #a2a2a2;
+    background-color: #1c1c1c;
 }
 
 body {
@@ -14,7 +14,8 @@ body {
 }
 
 #sideBar {
-    background-color: #d2d2d2;
+    background-color: #1c1c1c;
+    border-right: 1px black solid;
 }
 
 #sideBar ul {
@@ -23,7 +24,6 @@ body {
 }
 
 #sideBar #mainNavBar > li > div:hover, .dropDownContent div:hover {
-    background-color: #444;
     color: #fafafa;
 }
 
@@ -31,7 +31,7 @@ body {
     display: inline-block;
     text-decoration: none;
     color: inherit;
-    padding: 8px 8px 6px 10px;
+    padding: 12px 8px 6px 10px;
     user-select: none;
     cursor: pointer;
 }
@@ -41,8 +41,8 @@ body {
 }
 
 .selected {
-    background-color: #444;
     color: #fafafa;
+    text-decoration: underline;
 }
 
 .hiddenFeature {
@@ -52,18 +52,16 @@ body {
 /* Create the caret/arrow with a unicode, and style it */
 .dropDownButton .dropDownIcon::before {
     content: "\279C";
-    color: black;
+    color: #a2a2a2;
     display: inline-block;
     margin-right: 6px;
     margin-left: 6px;
 }
 
-.dropDownIcon::before {
-    content: "\2022";
-    display: inline-block;
-    margin-right: 6px;
-    margin-left: 10px;
+.dropDownButton.selected .dropDownIcon::before {
+    color: #fafafa;
 }
+
 
 /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
 .dropDownButton.selectedDD .dropDownIcon::before {
@@ -82,9 +80,10 @@ body {
         position: absolute;
         padding-right: 10px;
         font-size: 50px;
-        color: #444;
+        color: #a2a2a2;
         display: inline-block;
         line-height: 25px;
+        cursor: pointer;
     }
     
     #b_menu {
@@ -100,13 +99,14 @@ body {
     .b_men {
         width: 35px;
         height: 5px;
-        background-color: #444;
+        background-color: #a2a2a2;
         margin: 6px 0;
     }
 
     #burgerHug {
-        background-color: #d2d2d2;
+        background-color: #a2a2a2;
         overflow: auto;
+        border-bottom: 1px black solid;
     }
 
     #sideBar {
@@ -117,6 +117,10 @@ body {
         padding-top: 20px;
         border-left: 2px solid black;
         border-bottom: 2px solid black;
+    }
+
+    #mainNavBar {
+        padding-left: 0;
     }
 
     #sideBarPush, .hiddenFeatureMob {
@@ -147,7 +151,7 @@ body {
 
     #pageRightHand {
         flex: 1;
-        background-color: #d2d2d2;
+        background-color: #1c1c1c;
     }
 
 
@@ -157,5 +161,6 @@ body {
 
     #mainNavBar {
         padding-left: 10px;
+        padding-top: 2%
     }
 }
