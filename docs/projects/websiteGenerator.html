@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Website Generator | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">  
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/pages.css" rel="stylesheet" type="text/css">
+
+    <noscript>Sorry, this page may not work properly unless javascript is enabled. </noscript>
+    
+
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            ContentTools.findAndSetSelectedFromStorage();
+        };
+    </script>
+    </head>
+
+<body>
+
+    <div id="burgerHug">
+        <div id="b_menu" class="hiddenFeatureBig" onclick="ContentTools.hideOrShow('sideBar', true);">
+            <div class="b_men"></div>
+            <div class="b_men"></div>
+            <div class="b_men"></div>
+        </div>
+    </div>
+
+    <div id="pageContainer">
+
+        <nav id="sideBar" class="hiddenFeatureMob"><div id="closeContainer" class="hiddenFeatureBig" onclick="ContentTools.hideOrShow('sideBar', true);">×</div><ul id="mainNavBar"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Home') == 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('About') == 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="dropDownButton" id="ProjectsDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'ProjectsDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Projects') == 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="dropDownContent hiddenFeature" id="ProjectsDropDown"><li><div class="dropDownButton" id="Manage CabbageDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'Manage CabbageDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="dropDownContent hiddenFeature" id="Manage CabbageDropDown"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Designing') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Page Title') == 'true'){event.stopPropagation();}" href="/projects/manageCabbage/troubles.html">Page Title</a></div></li></ul></li><li class="selected"><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') == 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="dropDownButton" id="BlogDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'BlogDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Blog') == 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="dropDownContent hiddenFeature" id="BlogDropDown"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Connecting via OpenID from react') == 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">Connecting via OpenID from react</a></div></li></ul></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Contact') == 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+
+        <div id="pageContent">
+            <div id="dynamicContent">
+                <h1 id="pageTitle">Website Generator</h1>
+                <div id="pageText"><p>This project was created to generate the website you're looking at now. It's main 
+purpose was convert markdown files into a collection of static html files. 
+Admittedly I could have used many different web templates or website technologies to 
+create this website. But I wanted to make the website small and quick to load. I've 
+tried to keep the javascript used down to a minimum and only use it where it is needed.</p>
+<div id="docMenuArea"> <div><a href="#summary" class="headerRowH2 docMenuLink"> 
+            Summary </a><a href="#how-it-works" class="headerRowH2 docMenuLink"> 
+            How it works </a><a href="#site-navigation--layout" class="headerRowH3 docMenuLink"> 
+            Site Navigation / Layout </a><a href="#html-generation" class="headerRowH3 docMenuLink"> 
+            Html Generation </a><a href="#blog-pages" class="headerRowH3 docMenuLink"> 
+            Blog pages </a><a href="#thoughts" class="headerRowH2 docMenuLink"> 
+            Thoughts </a></div></div>
+
+<h2 id="summary">Summary</h2>
+<p>The tool works in a similar way to <a href="https://jekyllrb.com/">jekll</a>. It takes 
+your markdown files and converts them into static html pages. The reason for 
+this was to allow for documentation to be written easier, rather than writing 
+it directly to html.</p>
+<p>You can use javascript, css and other files along with the produced html files.</p>
+<p><a href="https://github.com/CalebStride/personal-site">View the source code on GitHub.</a></p>
+<h2 id="how-it-works">How it works</h2>
+<p>The code is pretty simple. It takes your markdown files and uses a Markdown 
+parser to generate html content, it then adds this to templates files which then
+form the final html page. These files, along with all the other webpage content, 
+get moved into a new directory that makes up your functioning website.</p>
+<p><img src="/images/webGenerator/siteGenFlow.png" alt="Flow diagram of website generation"></p>
+<p>Each markdown page can have config defined within it to change the header, title
+and template.</p>
+<p>After the pages are generated you can then move the contents of the output 
+directory into a web host of your choice.</p>
+<h3 id="site-navigation--layout">Site Navigation / Layout</h3>
+<p>There are some other things that are done during the website generation that 
+can help with the website development. For example a site map is generated. This 
+is a Json object that contains the file structure of your web pages. This is the 
+same as the file structure of your markdown files, so you can use it to create a 
+navigation menu in your website. </p>
+<p>This works by creating a tree structure when going through the markdown files. 
+There were some things I had to do to make this work as expected. For example, 
+as the files are read in an order that might differ from the order you want pages 
+to appear in the website, I allowed a number suffix in the file names so an order 
+could be enforced. This suffix is removed in the html pages.</p>
+<h3 id="html-generation">Html Generation</h3>
+<p>One thing I changed during development was to move the generation of the navigation
+menu and content menus to the markdown conversion stage, rather than having it 
+generated in the ui.</p>
+<p>As you don't have access to the DOM when you're running javascript in node you
+can't just create html like you would in a browser. I used the 
+<a href="https://github.com/cheeriojs/cheerio">cheerio</a> dependency, so I could do this 
+within node. The example below show's an example of using cheerio, where I'm 
+creating a button that will run some function if clicked. Then appending that 
+button to a node in my document.</p>
+<pre><code class="language-javascript">// Load the file as a cheerio object
+const $ = cheerio.load(existingHtmlString);
+// Get a node of interest using jQuery esc selector
+const $selectedNode = $('#idSelector');
+// Create a new button 
+let $genericButton = $(`&lt;button onclick="runGenericFunction();"&gt;Press Me!&lt;/button&gt;`);
+// Append the button to the node you selected earlier
+$selectedNode.append($genericButton);
+// Then return the whole document as a html string for saving
+const newHtmlString = $.html();
+</code></pre>
+<p>Most of the logic is pretty similar to using jQuery. It then leaves me with
+working html that I can save and serve as static files.</p>
+<p>The main reason I moved this to the file generation was to reduce the amount of 
+time the page took to render.
+Even though this time would be negligible it had to be run every time a page was
+visited. Instead, it now loads once when first loading the page but can be cached
+for subsequent requests.</p>
+<h3 id="blog-pages">Blog pages</h3>
+<p>This part of the site is still under development. I was thinking about a search
+functionality which could be helpful if someone had a lot of blog posts. But 
+currently this would just contain a list of subpages.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>I thought this was a fun little project. I definitely learnt a bit about node
+as I hadn't previously used it. I didn't write any tests for this as I'm not 
+sure on how testing frameworks work within node so that's something to look in to.</p>
+<p>You can see the website that I generated using this tool
+<a href="https://calebstride.com/index.html">here</a> and the 
+<a href="https://github.com/CalebStride/CalebStride.github.io">resources</a> of that site.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="pageRightHand">
+
+        </div>
+
+    </div>
+
+</body></html>

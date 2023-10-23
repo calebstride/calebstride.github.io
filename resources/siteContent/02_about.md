@@ -2,7 +2,7 @@
 title: About
 header: About Me
 ---
-Hi, I'm Caleb Stride, a Computer Science graduate from Cardiff University.
+Hi, I'm Caleb Stride, a Sofware Developer from the UK.
 
 This website is where I upload and talk about projects I'm working on, or just ideas that could become something later. 
 

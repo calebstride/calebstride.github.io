@@ -1,8 +1,8 @@
 /* Create page size and make sure it fits the whole screen */
 html, body {
     width: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     color: #a2a2a2;
@@ -87,10 +87,7 @@ body {
     }
     
     #b_menu {
-        padding-right: 10px;
-        padding-left: 100%;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding: 8px 10px 8px 100%;
         display: block;
         float: right;
         z-index: 101;
