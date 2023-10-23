@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 0">
+<html lang="en">
 <head>
     <title>404</title>
 </head>
 <script>
-    const colours = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'indigo', 'violet', 'cornsilk', 'darkcyan',
-        'dodgerblue', 'indianred', 'mistyrose', 'springgreen'];
-
     function beautify() {
-        const title = document.getElementById('textNotFound');
-
-        const letters = title.children;
+        const letters = document.getElementsByClassName('notFoundLetter');
         for (let i = 0; i < letters.length; i++) {
-            const randomInd = Math.floor(Math.random() * (colours.length + 1));
-            letters[i].style.color = colours[randomInd];
+            letters[i].style.color = randomColour();
         }
     }
 
-    window.setInterval(beautify, 1500);
+    function randomColour() {
+        const h = Math.floor(Math.random() * 360);
+        const s = 100;
+        const l = 50;
+        return 'hsl(' + h + ', ' + s + '%, ' + l + '%' + ')'
+    }
+
+    function adjustSpeed(value) {
+        let speed = 1500 - value;
+        window.clearInterval(intervalId);
+        intervalId = window.setInterval(beautify, speed);
+    }
+
+    let intervalId = window.setInterval(beautify, 1500);
 
 </script>
 <style>
-    #textNotFound {
-        position: fixed;
-        font-size: 36vh;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        top: 0;
-        left: 0;
-        font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    html {
         background: linear-gradient(
                 90deg,
                 rgba(255, 0, 0, 1) 0%,
@@ -44,30 +43,76 @@
                 rgba(251, 7, 217, 1) 90%,
                 rgba(255, 0, 0, 1) 100%
         );
+        height: fit-content;
+    }
+
+    body, html {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    #textNotFound {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+        height: fit-content;
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive;
         word-break: normal;
         margin: 0;
         text-shadow: 3px 3px 3px black;
     }
 
+    .word {
+        font-size: 16vw;
+    }
+
     .notFoundLetter {
         display: inline-block;
-
     }
+
+    #slider-id {
+        position: fixed;
+    }
+
+    #slider-wrap {
+        width: 100%;
+    }
+
+    #slider-wrap label, #slider-wrap input {
+        display: block;
+    }
+
 </style>
 
-<h1 id="textNotFound">
-    <span class="notFoundLetter" style="color: red;">4</span><span class="notFoundLetter" style="color:orange;">0</span><span
-        class="notFoundLetter" style="color:green;">4</span><span
-        class="notFoundLetter">&nbsp;</span><span class="notFoundLetter"
-                                                  style="color: cyan;">N</span><span
-        class="notFoundLetter" style="color: blue">O</span><span class="notFoundLetter"
-                                                                 style="color:indigo;">T</span><span
-        class="notFoundLetter">&nbsp;</span><span class="notFoundLetter" style="color:violet;">F</span><span
-        class="notFoundLetter" style="color: red;">O</span><span class="notFoundLetter"
-                                                                 style="color:orange;">U</span><span
-        class="notFoundLetter" style="color:green;">N</span><span
-        class="notFoundLetter" style="color: cyan;">D</span>
-</h1>
+<div id="textNotFound">
+    <div id="word-404" class="word">
+        <span class="notFoundLetter" style="color: red;">4</span><span
+            class="notFoundLetter" style="color: orange;">0</span><span
+            class="notFoundLetter" style="color: green;">4</span>
+    </div>
 
+    <div id="word-not" class="word">
+    <span class="notFoundLetter" style="color: cyan;">N</span><span
+            class="notFoundLetter" style="color: blue">O</span><span
+            class="notFoundLetter" style="color: indigo;">T</span>
+    </div>
+
+    <div id="word-found" class="word">
+    <span class="notFoundLetter" style="color: violet;">F</span><span
+            class="notFoundLetter" style="color: red;">O</span><span
+            class="notFoundLetter" style="color: orange;">U</span><span
+            class="notFoundLetter" style="color: green;">N</span><span
+            class="notFoundLetter" style="color: cyan;">D</span>
+    </div>
+
+</div>
+
+<div id="slider-wrap">
+    <label for="slider-id">Speed: </label>
+    <input type="range" min="1" max="1500" value="2" id="slider-id" oninput="adjustSpeed(this.value)">
+</div>
 
 </html>

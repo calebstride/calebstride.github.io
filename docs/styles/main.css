@@ -3,7 +3,8 @@
     --background-color: #1c1c1c;
     --background-color-light: #cecece;
     --background-color-dark: black;
-    --base-text-highlight-colour: #fafafa;
+    --base-text-highlight-colour: #e8e8e8;
+    --blue-highlight: #00bfbf;
 }
 
 /* Create page size and make sure it fits the whole screen */
@@ -197,7 +198,6 @@ html, body {
     display: block;
     padding-bottom: 5px;
     text-decoration: none;
-    color: inherit;
 }
 
 #docMenuArea {
@@ -251,7 +251,12 @@ h4 {
     font-size: 110%;
 }
 
-a:link, a:visited {
+p a {
+    color: var(--blue-highlight);
+    text-decoration: none;
+}
+
+a {
     color: var(--base-text-highlight-colour);
     text-decoration: none;
 }
