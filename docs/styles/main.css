@@ -11,19 +11,15 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
     color: var(--base-text-colour);
     background-color: var(--background-color);
-}
-
-body {
-    min-height: 100%;
+    overflow: hidden;
 }
 
 #sideBar {
     background-color: var(--background-color);
-    border-right: 1px var(--background-color-dark) solid;
 }
 
 #sideBar ul {
@@ -31,14 +27,10 @@ body {
     margin: 0;
 }
 
-#sideBar #mainNavBar > li > div:hover, .dropDownContent div:hover {
-    color: var(--base-text-highlight-colour);
-}
 
 #sideBar a {
     display: inline-block;
-    text-decoration: none;
-    color: inherit;
+    color: var(--base-text-highlight-colour);
     padding: 12px 8px 6px 10px;
     user-select: none;
     cursor: pointer;
@@ -48,19 +40,18 @@ body {
     padding-left: 16px;
 }
 
-.selected {
-    color: var(--base-text-highlight-colour);
+.selected > div > a {
     text-decoration: underline;
 }
 
 .hiddenFeature {
     display: none;
 }
-  
+
 /* Create the caret/arrow with a unicode, and style it */
 .dropDownButton .dropDownIcon::before {
     content: "\279C";
-    color: var(--base-text-colour);
+    color: var(--base-text-highlight-colour);
     display: inline-block;
     margin-right: 6px;
     margin-left: 6px;
@@ -83,24 +74,29 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+
+    body {
+        overflow: auto;
+    }
+
     #closeContainer {
-        right: 0;
-        position: absolute;
-        padding-right: 10px;
-        font-size: 50px;
+        right: 10px;
+        bottom: 20px;
+        position: fixed;
+        font-size: 65px;
         color: var(--base-text-colour);
         display: inline-block;
         line-height: 25px;
         cursor: pointer;
     }
-    
+
     #b_menu {
         padding: 8px 10px 8px 100%;
         display: block;
         float: right;
         z-index: 101;
     }
-      
+
     .b_men {
         width: 35px;
         height: 5px;
@@ -109,23 +105,28 @@ body {
     }
 
     #burgerHug {
-        background-color: var(--base-text-colour);
-        overflow: auto;
-        border-bottom: 1px var(--background-color-dark) solid;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        height: 8%;
+        background: var(--background-color);
+        border-top: 3px solid var(--background-color-dark);
     }
 
     #sideBar {
-        width: 60%;
+        width: 100%;
         position: fixed;
         right: 0;
-        top: 0;
-        padding-top: 20px;
-        border-left: 2px solid var(--background-color-dark);
-        border-bottom: 2px solid var(--background-color-dark);
+        bottom: 0;
+        border-top: 2px solid var(--background-color-dark);
+        overflow: auto;
+        z-index: 3;
+        height: 50%;
     }
 
     #mainNavBar {
-        padding-left: 0;
+        padding-left: 10px;
+        padding-bottom: 5px;
     }
 
     #sideBarPush, .hiddenFeatureMob {
@@ -141,7 +142,7 @@ body {
 
     #pageContainer {
         display: flex;
-        min-height: 100%;
+        height: 100%;
     }
 
     #sideBar {
@@ -151,14 +152,15 @@ body {
     }
 
     #pageContent {
-        flex: 5;
+        flex: 1;
+        flex-basis: 65%;
+        overflow-y: auto;
     }
 
     #pageRightHand {
         flex: 1;
         background-color: var(--background-color);
     }
-
 
     .hiddenFeatureBig {
         display: none;
@@ -181,7 +183,7 @@ body {
 
 #pageText {
     padding-left: 3%;
-    padding-right: 10%;
+    padding-right: 3%;
 }
 
 #siteGreeting {
@@ -198,10 +200,6 @@ body {
     color: inherit;
 }
 
-.docMenuLink:hover {
-    color: var(--base-text-colour);
-}
-
 #docMenuArea {
     padding-left: 10%;
     margin-top: 35px;
@@ -211,11 +209,8 @@ img {
     margin: auto;
     display: block;
     background-color: var(--background-color-light);
-    padding: 10px 40px;
-}
-
-pre {
-    background-color: var(--background-color-dark);
+    padding: 1% 2%;
+    max-width: 96%;
 }
 
 .headerRowH3 {
@@ -261,7 +256,7 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover {
+a:hover{
     text-decoration: underline;
 }
 
@@ -270,4 +265,6 @@ pre code {
     padding: 10px 15px;
     font-size: 105%;
     line-height: 150%;
+    border-radius: 7px;
+    overflow-x: auto;
 }
