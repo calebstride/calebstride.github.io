@@ -1,3 +1,11 @@
+:root {
+    --base-text-colour: #a2a2a2;
+    --background-color: #1c1c1c;
+    --background-color-light: #cecece;
+    --background-color-dark: black;
+    --base-text-highlight-colour: #fafafa;
+}
+
 /* Create page size and make sure it fits the whole screen */
 html, body {
     width: 100%;
@@ -5,8 +13,8 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    color: #a2a2a2;
-    background-color: #1c1c1c;
+    color: var(--base-text-colour);
+    background-color: var(--background-color);
 }
 
 body {
@@ -14,8 +22,8 @@ body {
 }
 
 #sideBar {
-    background-color: #1c1c1c;
-    border-right: 1px black solid;
+    background-color: var(--background-color);
+    border-right: 1px var(--background-color-dark) solid;
 }
 
 #sideBar ul {
@@ -24,7 +32,7 @@ body {
 }
 
 #sideBar #mainNavBar > li > div:hover, .dropDownContent div:hover {
-    color: #fafafa;
+    color: var(--base-text-highlight-colour);
 }
 
 #sideBar a {
@@ -41,7 +49,7 @@ body {
 }
 
 .selected {
-    color: #fafafa;
+    color: var(--base-text-highlight-colour);
     text-decoration: underline;
 }
 
@@ -52,14 +60,14 @@ body {
 /* Create the caret/arrow with a unicode, and style it */
 .dropDownButton .dropDownIcon::before {
     content: "\279C";
-    color: #a2a2a2;
+    color: var(--base-text-colour);
     display: inline-block;
     margin-right: 6px;
     margin-left: 6px;
 }
 
 .dropDownButton.selected .dropDownIcon::before {
-    color: #fafafa;
+    color: var(--base-text-highlight-colour);
 }
 
 
@@ -80,7 +88,7 @@ body {
         position: absolute;
         padding-right: 10px;
         font-size: 50px;
-        color: #a2a2a2;
+        color: var(--base-text-colour);
         display: inline-block;
         line-height: 25px;
         cursor: pointer;
@@ -96,14 +104,14 @@ body {
     .b_men {
         width: 35px;
         height: 5px;
-        background-color: #a2a2a2;
+        background-color: var(--base-text-colour);
         margin: 6px 0;
     }
 
     #burgerHug {
-        background-color: #a2a2a2;
+        background-color: var(--base-text-colour);
         overflow: auto;
-        border-bottom: 1px black solid;
+        border-bottom: 1px var(--background-color-dark) solid;
     }
 
     #sideBar {
@@ -112,8 +120,8 @@ body {
         right: 0;
         top: 0;
         padding-top: 20px;
-        border-left: 2px solid black;
-        border-bottom: 2px solid black;
+        border-left: 2px solid var(--background-color-dark);
+        border-bottom: 2px solid var(--background-color-dark);
     }
 
     #mainNavBar {
@@ -148,7 +156,7 @@ body {
 
     #pageRightHand {
         flex: 1;
-        background-color: #1c1c1c;
+        background-color: var(--background-color);
     }
 
 
@@ -160,4 +168,99 @@ body {
         padding-left: 10px;
         padding-top: 2%
     }
+}
+
+#dynamicContent h1 {
+    background-color: var(--background-color);
+    margin: 0;
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    color: var(--base-text-colour);
+}
+
+#pageText {
+    padding-left: 3%;
+    padding-right: 10%;
+}
+
+#siteGreeting {
+    text-align: center;
+    padding-top: 40vh;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.docMenuLink {
+    display: block;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.docMenuLink:hover {
+    color: var(--base-text-colour);
+}
+
+#docMenuArea {
+    padding-left: 10%;
+    margin-top: 35px;
+}
+
+img {
+    margin: auto;
+    display: block;
+    background-color: var(--background-color-light);
+    padding: 10px 40px;
+}
+
+pre {
+    background-color: var(--background-color-dark);
+}
+
+.headerRowH3 {
+    padding-left: 30px;
+}
+
+.headerRowH4 {
+    padding-left: 60px;
+}
+
+.headerRowH5 {
+    padding-left: 90px;
+}
+
+
+h4, h5 {
+    margin-bottom: 0px;
+}
+
+h2 + p, h3 + p, h4 + p, h5 + p {
+    margin-top: 5px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    font-size: 160%;
+}
+
+h3 {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-size: 125%;
+}
+
+h4 {
+    margin-top: 5px;
+    font-size: 110%;
+}
+
+a:link, a:visited {
+    color: var(--base-text-highlight-colour);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
