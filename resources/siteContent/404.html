@@ -4,7 +4,8 @@
     <title>404</title>
 </head>
 <script>
-    function beautify() {
+
+    function colourTitle() {
         const letters = document.getElementsByClassName('notFoundLetter');
         for (let i = 0; i < letters.length; i++) {
             letters[i].style.color = randomColour();
@@ -12,35 +13,43 @@
     }
 
     function randomColour() {
-        const h = Math.floor(Math.random() * 360);
-        const s = 100;
-        const l = 50;
-        return 'hsl(' + h + ', ' + s + '%, ' + l + '%' + ')'
+        return 'hsl(' + Math.floor(Math.random() * 360) + ', 100%, 50%)'
     }
 
-    function adjustSpeed(value) {
-        let speed = 1500 - value;
-        window.clearInterval(intervalId);
-        intervalId = window.setInterval(beautify, speed);
+    function adjustSpeed() {
+        let speed = Math.floor(calculateNewSpeed(80, 1500));
+        window.clearInterval(colourTitleInterval);
+        colourTitleInterval = window.setInterval(colourTitle, speed);
+        document.body.style.animation = 'slide ' + calculateNewSpeed(0.2, 3) + 's linear infinite';
+    }
+
+    function calculateNewSpeed(minValue, maxValue) {
+        return maxValue - (maxValue - minValue) *
+            (document.getElementById('slider-id').value / document.getElementById('slider-id').getAttribute('max'));
     }
 
     function spawnDiv(x, y) {
+        const cursorDivs = document.getElementsByClassName('cursorDiv');
+        if (cursorDivs.length >= 30) {
+            cursorDivs.item(0).remove();
+        }
         const newDiv = document.createElement('div');
+        newDiv.classList.add('cursorDiv');
         newDiv.style.position = 'fixed';
         newDiv.style.width = '13px';
         newDiv.style.height = '13px';
-        newDiv.style.background = 'red';
+        newDiv.style.background = randomColour();
         newDiv.style.zIndex = '10';
         newDiv.style.left = x + 'px';
         newDiv.style.top = y + 'px';
         document.body.appendChild(newDiv);
     }
 
-    let intervalId = null;
+    let colourTitleInterval = null;
 
     window.onload = () => {
-        intervalId = window.setInterval(beautify, 1500);
-        //document.body.addEventListener('mousemove', (event) => {spawnDiv(event.x, event.y)});
+        colourTitleInterval = window.setInterval(colourTitle, 1500);
+        document.body.addEventListener('mousemove', (event) => {spawnDiv(event.x, event.y)});
     }
 
 </script>
@@ -50,6 +59,7 @@
         padding: 0;
         margin: 0;
         width: 100%;
+        height: 100vh;
     }
 
     body {
@@ -69,6 +79,7 @@
         );
         animation: slide 3s linear infinite;
         background-size: 500px auto;
+        cursor: url(./images/404/tortoise.png), auto;
     }
 
     @keyframes slide {
@@ -143,7 +154,7 @@
 
         <div id="slider-wrap">
             <label for="slider-id">Speed: </label>
-            <input type="range" min="1" max="1500" value="2" id="slider-id" oninput="adjustSpeed(this.value)">
+            <input type="range" min="0" max="20" value="1" id="slider-id" oninput="adjustSpeed()">
         </div>
     </body>
 </html>
