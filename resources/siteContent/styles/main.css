@@ -51,7 +51,7 @@ html, body {
 
 /* Create the caret/arrow with a unicode, and style it */
 .dropDownButton .dropDownIcon::before {
-    content: "\279C";
+    content: ">";
     color: var(--base-text-highlight-colour);
     display: inline-block;
     margin-right: 6px;
@@ -109,7 +109,7 @@ html, body {
         position: sticky;
         bottom: 0;
         width: 100%;
-        height: 8%;
+        height: 8vh;
         background: var(--background-color);
         border-top: 3px solid var(--background-color-dark);
     }
@@ -135,7 +135,8 @@ html, body {
     }
 
     #pageContent {
-        display: block;
+        min-height: 89vh;
+        padding-top: 2vh;
     }
 }
 
@@ -144,6 +145,9 @@ html, body {
     #pageContainer {
         display: flex;
         height: 100%;
+        padding-top: 2%;
+        padding-left: 12%;
+        padding-right: 12%;
     }
 
     #sideBar {
@@ -176,7 +180,6 @@ html, body {
 #dynamicContent h1 {
     background-color: var(--background-color);
     margin: 0;
-    padding-top: 3%;
     padding-bottom: 1%;
     padding-left: 3%;
     color: var(--base-text-colour);
@@ -189,9 +192,13 @@ html, body {
 
 #siteGreeting {
     text-align: center;
-    padding-top: 40vh;
     font-size: 2em;
     font-weight: bold;
+    padding-top: 30%;
+}
+
+#siteGreeting div {
+    width: 100%;
 }
 
 .docMenuLink {
