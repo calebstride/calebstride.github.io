@@ -19,17 +19,17 @@ html, body {
     overflow: hidden;
 }
 
-#sideBar {
+#side-bar {
     background-color: var(--background-color);
 }
 
-#sideBar ul {
+#side-bar ul {
     list-style-type: none;
     margin: 0;
 }
 
 
-#sideBar a {
+#side-bar a {
     display: inline-block;
     color: var(--base-text-highlight-colour);
     padding: 12px 8px 6px 10px;
@@ -37,7 +37,7 @@ html, body {
     cursor: pointer;
 }
 
-#sideBar .dropDownContent{
+#side-bar .drop-down-content {
     padding-left: 16px;
 }
 
@@ -45,12 +45,12 @@ html, body {
     text-decoration: underline;
 }
 
-.hiddenFeature {
+.hidden-feature {
     display: none;
 }
 
 /* Create the caret/arrow with a unicode, and style it */
-.dropDownButton .dropDownIcon::before {
+.drop-down-button .drop-down-icon::before {
     content: ">";
     color: var(--base-text-highlight-colour);
     display: inline-block;
@@ -58,17 +58,17 @@ html, body {
     margin-left: 6px;
 }
 
-.dropDownButton.selected .dropDownIcon::before {
+.drop-down-button.selected .drop-down-icon::before {
     color: var(--base-text-highlight-colour);
 }
 
 
 /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.dropDownButton.selectedDD .dropDownIcon::before {
+.drop-down-button.selected-drop-down .drop-down-icon::before {
     transform: rotate(90deg);
 }
 
-#sideBar .dropDownIcon {
+#side-bar .drop-down-icon {
     display: inline-block;
     width: 20px;
     cursor: pointer;
@@ -80,7 +80,7 @@ html, body {
         overflow: auto;
     }
 
-    #closeContainer {
+    #close-container {
         right: 10px;
         bottom: 20px;
         position: fixed;
@@ -91,22 +91,22 @@ html, body {
         cursor: pointer;
     }
 
-    #b_menu {
+    #b-menu {
         padding: 8px 10px 8px 100%;
         display: block;
         float: right;
         z-index: 101;
     }
 
-    .b_men {
+    .b-men {
         width: 35px;
         height: 5px;
         background-color: var(--base-text-colour);
         margin: 6px 0;
     }
 
-    #burgerHug {
-        position: sticky;
+    #burger-hug {
+        position: absolute;
         bottom: 0;
         width: 100%;
         height: 8vh;
@@ -114,7 +114,7 @@ html, body {
         border-top: 3px solid var(--background-color-dark);
     }
 
-    #sideBar {
+    #side-bar {
         width: 100%;
         position: fixed;
         right: 0;
@@ -125,16 +125,16 @@ html, body {
         height: 50%;
     }
 
-    #mainNavBar {
+    #main-nav-bar {
         padding-left: 10px;
         padding-bottom: 5px;
     }
 
-    #sideBarPush, .hiddenFeatureMob {
+    #side-bar-push, .hidden-feature-mob {
         display: none;
     }
 
-    #pageContent {
+    #page-content {
         min-height: 89vh;
         padding-top: 2vh;
     }
@@ -142,7 +142,7 @@ html, body {
 
 @media screen and (min-width: 600px) {
 
-    #pageContainer {
+    #page-container {
         display: flex;
         height: 100%;
         padding-top: 2%;
@@ -150,34 +150,34 @@ html, body {
         padding-right: 12%;
     }
 
-    #sideBar {
+    #side-bar {
         flex: 1;
         max-width: 25%;
         min-width: 250px;
     }
 
-    #pageContent {
+    #page-content {
         flex: 1;
         flex-basis: 65%;
         overflow-y: auto;
     }
 
-    #pageRightHand {
+    #page-right-hand {
         flex: 1;
         background-color: var(--background-color);
     }
 
-    .hiddenFeatureBig {
+    .hidden-feature-big {
         display: none;
     }
 
-    #mainNavBar {
+    #main-nav-bar {
         padding-left: 10px;
         padding-top: 2%
     }
 }
 
-#dynamicContent h1 {
+#dynamic-content h1 {
     background-color: var(--background-color);
     margin: 0;
     padding-bottom: 1%;
@@ -185,29 +185,29 @@ html, body {
     color: var(--base-text-colour);
 }
 
-#pageText {
+#page-text {
     padding-left: 3%;
     padding-right: 3%;
 }
 
-#siteGreeting {
+#site-greeting {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
     padding-top: 30%;
 }
 
-#siteGreeting div {
+#site-greeting div {
     width: 100%;
 }
 
-.docMenuLink {
+.doc-menu-link {
     display: block;
     padding-bottom: 5px;
     text-decoration: none;
 }
 
-#docMenuArea {
+#doc-menu-area {
     padding-left: 10%;
     margin-top: 35px;
 }
@@ -220,21 +220,21 @@ img {
     max-width: 96%;
 }
 
-.headerRowH3 {
+.header-row-h3 {
     padding-left: 30px;
 }
 
-.headerRowH4 {
+.header-row-h4 {
     padding-left: 60px;
 }
 
-.headerRowH5 {
+.header-row-h5 {
     padding-left: 90px;
 }
 
 
 h4, h5 {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 h2 + p, h3 + p, h4 + p, h5 + p {

@@ -19,14 +19,14 @@
 
 <body>
 
-    <div id="pageContainer">
+    <div id="page-container">
 
-        <nav id="sideBar" class="hiddenFeatureMob"><div id="closeContainer" class="hiddenFeatureBig" onclick="ContentTools.hideOrShow('sideBar', true);">×</div><ul id="mainNavBar"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li class="selected"><div class="dropDownButton" id="ProjectsDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'ProjectsDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="dropDownContent selectedDD" id="ProjectsDropDown"><li><div class="dropDownButton" id="Manage CabbageDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'Manage CabbageDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="dropDownContent selectedDD" id="Manage CabbageDropDown"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Implementing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/troubles.html">Implementing</a></div></li></ul></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="dropDownButton" id="BlogDropDownB" onclick="ContentTools.hideOrShowNavBar(this, 'BlogDropDown')"><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="dropDownContent selectedDD" id="BlogDropDown"><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('React OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React OpenID</a></div></li></ul></li><li><div><div class="dropDownIcon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+        <nav id="side-bar" class="hidden-feature-mob"><div id="close-container" class="hidden-feature-big" onclick="ContentTools.hideOrShow('side-bar', true);">×</div><ul id="main-nav-bar"><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li class="selected"><div class="drop-down-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Implementing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/troubles.html">Implementing</a></div></li></ul></li><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React OpenID</a></div></li></ul></li><li><div><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
 
-        <div id="pageContent">
-            <div id="dynamicContent">
-                <h1 id="pageTitle">Projects</h1>
-                <div id="pageText"><p>Feel free to look at the projects I've worked / am currently working on.</p>
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Projects</h1>
+                <div id="page-text"><p>Feel free to look at the projects I've worked / am currently working on.</p>
 <p>A lot of these pages are pretty short and don't go into much detail as it would take a lot of time to do, and it would probably be boring to read.</p>
 <p>Some of the projects remain private on GitHub so not all of them will have the code available.</p>
 <p>NOTE: A lot of these projects are done to help develop and practice my skills. I know a lot of the projects I've worked on already have solutions (probably better than mine) but I see this as good practice either way.</p>
@@ -34,17 +34,17 @@
             </div>
         </div>
 
-        <div id="pageRightHand">
+        <div id="page-right-hand">
 
         </div>
 
     </div>
 
-    <div id="burgerHug">
-        <div id="b_menu" class="hiddenFeatureBig" onclick="ContentTools.hideOrShow('sideBar', true);">
-            <div class="b_men"></div>
-            <div class="b_men"></div>
-            <div class="b_men"></div>
+    <div id="burger-hug">
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShow('side-bar', true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
         </div>
     </div>
 

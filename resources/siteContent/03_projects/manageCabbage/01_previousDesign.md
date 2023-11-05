@@ -4,7 +4,7 @@ header: Previous Design
 ---
 This page is about the initial version of ManageCabbage. It follows the processes and designing I went through from start to finish. Whilst hopefully picking out some interesting things I learnt along the way. Admittedly I am writing this a long time after creating the website so it will be on the briefer side. In addition most of the code design will be included in the pages for the new website.
 
-<div id="docMenuArea" class="numberedMenu"> </div>
+<div id="doc-menu-area" class="numberedMenu"> </div>
 
 ## Introduction
 The main goals of the webapp were to allow for spending to be logged and to show insights of the spending to the user.

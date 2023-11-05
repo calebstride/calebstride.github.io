@@ -3,16 +3,16 @@ class ContentTools {
     
     // Hides or show an element from the nav bar
     static hideOrShowNavBar(element, id) {
-        if (element.classList.contains("selectedDD")) {
+        if (element.classList.contains("selected-drop-down")) {
             this.hideOrShow(id);
-            element.classList.toggle("selectedDD");
-            window.sessionStorage.setItem(element.id.replace("DropDownB", ""), 'false');
+            element.classList.toggle("selected-drop-down");
+            window.sessionStorage.setItem(element.id.replace("drop-down-b", ""), 'false');
         } else {
-            if (element.nextElementSibling.classList.contains("hiddenFeature")) {
+            if (element.nextElementSibling.classList.contains("hidden-feature")) {
                 this.hideOrShow(id);
             } 
-            element.classList.toggle("selectedDD");
-            window.sessionStorage.setItem(element.id.replace("DropDownB", ""), 'true');
+            element.classList.toggle("selected-drop-down");
+            window.sessionStorage.setItem(element.id.replace("drop-down-b", ""), 'true');
         }
 
     }
@@ -23,11 +23,11 @@ class ContentTools {
         let classString;
 
         if (mobile === true) {
-            classString = "hiddenFeatureMob";
+            classString = "hidden-feature-mob";
         } else if (mobile === false) {
-            classString = "hiddenFeatureBig";
+            classString = "hidden-feature-big";
         } else {
-            classString = "hiddenFeature";
+            classString = "hidden-feature";
         }
 
         if (element.classList.contains(classString)) {
@@ -38,20 +38,20 @@ class ContentTools {
     }
 
     static findAndSetSelectedFromStorage() {
-        const allDropDowns = document.querySelectorAll('.dropDownButton');
+        const allDropDowns = document.querySelectorAll('.drop-down-button');
         allDropDowns.forEach(element => {
-            this.setElementSelectedNav(element, element.id.substring(0, element.id.indexOf('DropDownB')));
+            this.setElementSelectedNav(element, element.id.substring(0, element.id.indexOf('drop-down-b')));
         });
     }
 
     // Sets the nav bar button as selected
     static setElementSelectedNav(element, pageName) {
         if (window.sessionStorage.getItem(pageName) === 'true') {
-            element.classList.add('selectedDD');
-            element.nextElementSibling.classList.remove('hiddenFeature');
+            element.classList.add('selected-drop-down');
+            element.nextElementSibling.classList.remove('hidden-feature');
         } else {
-            element.classList.remove('selectedDD');
-            element.nextElementSibling.classList.add('hiddenFeature');
+            element.classList.remove('selected-drop-down');
+            element.nextElementSibling.classList.add('hidden-feature');
         }
     }
 }

@@ -4,12 +4,12 @@ header: Home
 ---
 
 <style>
-    #pageTitle {
+    #page-title {
         display : none;
     }
 </style>
 
-<div id="siteGreeting">
+<div id="site-greeting">
     <div>Hello</div>
     <div>And</div>
     <div>Welcome</div>

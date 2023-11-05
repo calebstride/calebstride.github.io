@@ -7,7 +7,7 @@ header: Manage Cabbage
 Manage Cabbage is a personal spending management web application created by me (Caleb). It's main purpose is to record spending and to give insights into where money has been spent.
 
 
-<div id="docMenuArea"> </div>
+<div id="doc-menu-area"> </div>
 
 ## Creation
 ### Why?

@@ -5,7 +5,7 @@ header: Designing
 I decided to redo the managecabbage website.
 
 
-<div id="docMenuArea"> </div>
+<div id="doc-menu-area"> </div>
 
 
 ## Introduction

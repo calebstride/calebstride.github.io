@@ -9,7 +9,7 @@ Admittedly I could have used many different web templates or website technologie
 create this website. But I wanted to make the website small and quick to load. I've 
 tried to keep the javascript used down to a minimum and only use it where it is needed.
 
-<div id="docMenuArea"> </div>
+<div id="doc-menu-area"> </div>
 
 ## Summary
 The tool works in a similar way to [jekll](https://jekyllrb.com/). It takes 
