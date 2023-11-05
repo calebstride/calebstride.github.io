@@ -1,5 +1,7 @@
 :root {
     --base-text-colour: #a2a2a2;
+    --base-text-colour-dark: #6b6b6b;
+    --base-text-colour-darker: #414141;
     --background-color: #1c1c1c;
     --background-color-light: #cecece;
     --background-color-dark: black;
@@ -32,7 +34,7 @@ html, body {
 #side-bar a {
     display: inline-block;
     color: var(--base-text-highlight-colour);
-    padding: 12px 8px 6px 10px;
+    padding: 10px;
     user-select: none;
     cursor: pointer;
 }
@@ -111,7 +113,7 @@ html, body {
         width: 100%;
         height: 8vh;
         background: var(--background-color);
-        border-top: 3px solid var(--background-color-dark);
+        border-top: 3px solid var(--base-text-colour-darker);
     }
 
     #side-bar {
@@ -119,15 +121,25 @@ html, body {
         position: fixed;
         right: 0;
         bottom: 0;
-        border-top: 2px solid var(--background-color-dark);
+        border-top: 3px solid var(--base-text-colour-darker);
         overflow: auto;
         z-index: 3;
         height: 50%;
     }
 
+    #side-bar a {
+        padding: 15px;
+    }
+
+    .menu-button {
+        border-bottom: solid var(--base-text-colour-darker) 1px;
+        border-left: var(--base-text-colour-dark) solid 4px;
+        border-top: solid var(--base-text-colour-darker) 1px;
+    }
+
     #main-nav-bar {
-        padding-left: 10px;
-        padding-bottom: 5px;
+        padding-left: 0;
+        padding-bottom: 70px;
     }
 
     #side-bar-push, .hidden-feature-mob {
@@ -142,29 +154,33 @@ html, body {
 
 @media screen and (min-width: 600px) {
 
+    @media screen and (max-width: 1400px) {
+        #page-right-hand {
+            display: none;
+        }
+    }
+
     #page-container {
         display: flex;
         height: 100%;
         padding-top: 2%;
-        padding-left: 12%;
-        padding-right: 12%;
     }
 
     #side-bar {
         flex: 1;
-        max-width: 25%;
-        min-width: 250px;
+        max-width: 15%;
+        min-width: 200px;
     }
 
     #page-content {
         flex: 1;
-        flex-basis: 65%;
         overflow-y: auto;
     }
 
     #page-right-hand {
         flex: 1;
         background-color: var(--background-color);
+        max-width: 15%;
     }
 
     .hidden-feature-big {
@@ -172,8 +188,12 @@ html, body {
     }
 
     #main-nav-bar {
-        padding-left: 10px;
+        padding-left: 0;
         padding-top: 2%
+    }
+
+    .page-buffer {
+        min-width: 20px;
     }
 }
 
@@ -188,6 +208,7 @@ html, body {
 #page-text {
     padding-left: 3%;
     padding-right: 3%;
+    padding-bottom: 20%;
 }
 
 #site-greeting {

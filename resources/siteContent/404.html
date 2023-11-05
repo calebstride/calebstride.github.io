@@ -17,9 +17,10 @@
     }
 
     function adjustSpeed() {
-        let speed = Math.floor(calculateNewSpeed(80, 1500));
         window.clearInterval(colourTitleInterval);
-        colourTitleInterval = window.setInterval(colourTitle, speed);
+        window.clearInterval(snakesInterval);
+        colourTitleInterval = window.setInterval(colourTitle, Math.floor(calculateNewSpeed(80, 1500)));
+        snakesInterval = window.setInterval(() => {moveAndSpawnSnakes(snakeStates)}, Math.floor(calculateNewSpeed(10, 110)));
         document.body.style.animation = 'slide ' + calculateNewSpeed(0.2, 3) + 's linear infinite';
     }
 
@@ -206,6 +207,15 @@
         #cat-pusher {
             display: none;
         }
+
+        #slider-wrap label {
+            font-size: xxx-large;
+        }
+
+        #slider-wrap input {
+            width: 80%;
+        }
+
     }
 
     .snake-div, .cursor-div {

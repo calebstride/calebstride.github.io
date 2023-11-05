@@ -1,4 +1,4 @@
-// Contains the simple methods for helping display the nav menu a
+// Contains the simple methods for helping display the nav menu
 class ContentTools {
     
     // Hides or show an element from the nav bar
