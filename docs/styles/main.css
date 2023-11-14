@@ -155,23 +155,29 @@ html, body {
         #page-right-hand {
             display: none;
         }
+
+        .page-buffer {
+            flex-grow: 0.1;
+        }
     }
 
     #page-container {
         display: flex;
         height: 100%;
-        padding-top: 2%;
     }
 
     #side-bar {
         flex: 1;
         max-width: 15%;
-        min-width: 200px;
+        min-width: 210px;
     }
 
     #page-content {
         flex: 1;
         overflow-y: auto;
+        max-width: 1000px;
+        min-width: 500px;
+        padding-top: 1%;
     }
 
     #page-right-hand {
@@ -186,11 +192,12 @@ html, body {
 
     #main-nav-bar {
         padding-left: 0;
-        padding-top: 2%
+        padding-top: 15%
     }
 
     .page-buffer {
         min-width: 20px;
+        flex-grow: 0.2;
     }
 }
 

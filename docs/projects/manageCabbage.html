@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Manage Cabbage | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">  
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+    
+
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            ContentTools.findAndSetSelectedFromStorage();
+        };
+    </script>
+    </head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li class="selected"><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Implementing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/troubles.html">Implementing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Manage Cabbage</h1>
+                <div id="page-text"><h2 id="Summary">Summary</h2>
+<p>Manage Cabbage is a personal spending management web application created by me. It's main purpose is to record spending 
+and to give insights into how money has been spent.</p>
+<div id="doc-menu-area"> <div><a href="#Summary" class="header-row-h2 doc-menu-link"> 
+            Summary </a><a href="#Creation" class="header-row-h2 doc-menu-link"> 
+            Creation </a><a href="#Why?" class="header-row-h3 doc-menu-link"> 
+            Why? </a><a href="#How?" class="header-row-h3 doc-menu-link"> 
+            How? </a><a href="#FAQs" class="header-row-h2 doc-menu-link"> 
+            FAQs </a><a href="#CanIuseit?" class="header-row-h3 doc-menu-link"> 
+            Can I use it? </a><a href="#Whydon'tyoujustuseoneofthemanyexistingapplications?" class="header-row-h3 doc-menu-link"> 
+            Why don't you just use one of the many existing applications? </a><a href="#Willyouintegrateyourwebsitetopickupexternaltransactions(e.g.throughbankapis)?" class="header-row-h3 doc-menu-link"> 
+            Will you integrate your website to pick up external transactions (e.g. through bank apis)? </a><a href="#Wheredidthenamecomefrom?" class="header-row-h3 doc-menu-link"> 
+            Where did the name come from? </a></div></div>
+
+<h2 id="Creation">Creation</h2>
+<h3 id="Why?">Why?</h3>
+<p>I've always liked to keep on top of my personal finances. Although finding an easy way 
+to do so was a struggle. For a couple of years I used spreadsheets to keep track of all my 
+spending. This was pretty messy and only held basic information for transactions 
+(such as how much and the day). So I decided to put my free time to good use and create a website
+to store and manage this data instead.</p>
+<h3 id="How?">How?</h3>
+<p>When I started designing and coding the website I didn't really have that much web 
+experience and was fresh out of university. So I decided to use what I php which was what
+I had most experience with in web design. You can read about the first design 
+<a href="manageCabbage/manageCabbageOld.html">here</a>.</p>
+<p>After a while the website seemed like it was in need of an upgrade. It didn't help 
+that the whole of the backend was written in php (a language I knew little about). 
+So I decided to start looking at more up-to-date technologies and how I could better 
+utilise my Java experience.</p>
+<h2 id="FAQs">FAQs</h2>
+<h3 id="CanIuseit?">Can I use it?</h3>
+<p>Unfortunately, not currently. Maybe in the future I'll make it publicly accessible but at 
+the moment I wouldn't be comfortable for other people to use it, and it probably doesn't
+meet the specific standards for storing financial data.</p>
+<h3 id="Whydon'tyoujustuseoneofthemanyexistingapplications?">Why don't you just use one of the many existing applications?</h3>
+<p>I know there are currently a lot of different mobile apps and web applications for
+managing personal finances. I always had issues with these though, as they didn't quite 
+meet the requirements I needed for them. By making my own, I can easily add features
+and meet all the requirements I need.</p>
+<h3 id="Willyouintegrateyourwebsitetopickupexternaltransactions(e.g.throughbankapis)?">Will you integrate your website to pick up external transactions (e.g. through bank apis)?</h3>
+<p>It's been something I've thought about. It would definitely reduce the manual effort of
+entering each transaction. The easiest way would be to use the open banking api but again,
+this would require certain licenses and additional costs. </p>
+<h3 id="Wheredidthenamecomefrom?">Where did the name come from?</h3>
+<p>I was trying to think of a name for the website when buying a domain to host it. 
+One of my friends suggested this and it just kind of stuck.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="b-menu" class="hidden-feature-big" onclick=" ContentTools.hideOrShow('side-bar', true);
+                    ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+    </div>
+
+    <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShow('side-bar', true);
+                ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+        ×
+    </div>
+
+</body></html>
