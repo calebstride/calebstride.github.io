@@ -3,7 +3,5 @@ title: Blog
 header: Blog
 ---
 
-This will include my blogs. Feel free to search through them.
+These pages contain the blogs I've written. Feel free to take a look through them.
 
-
-ideas:

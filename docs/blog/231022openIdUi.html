@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>React Router OpenID | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">  
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+    
+
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            ContentTools.findAndSetSelectedFromStorage();
+        };
+    </script>
+    </head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Connecting via OpenID from React Router</h1>
+                <div id="page-text"><h3 id="Problem">Problem</h3>
+<p>This blog is about the issues I encountered when trying to use an OpenID flow 
+from my React application. </p>
+<h3 id="CurrentIssues">Current Issues</h3>
+<p>Currently, I am using <a href="https://github.com/react-keycloak/react-keycloak#readme">this React project</a> 
+to handle logging in to my application in the ui.</p>
+<p>There are a few issues with this project. The main one being that this project 
+is no longer maintained.</p>
+<p>The other main issue is that it has a few problems with 
+<a href="https://reactrouter.com/en/main">React Router v6</a>, which I'm using in my project. 
+One of which being that the new React router loaders run during the rendering 
+of the page. This means that the app will try to call the resource servers before 
+the keycloak authorisation flow has finished. This results in a http 401 and the
+first time the ui is loaded it will say that the resources couldn't be retrieved.
+Despite the fact that the authorisation flow would have finished successfully by that
+point.</p>
+<p>So to fix these issues I needed to focus on two things, upgrading or replacing the 
+old library to something new that will handle the authorisation flow. But at the 
+same time I need a solution that will work with loaders, so it can't all be done
+in the rendering of the page. Or I switch from using loaders to using fetchers
+so the retrieval of the data is done in the main rendering stage.</p>
+<h3 id="Solution">Solution</h3>
+<p>I found the <a href="https://github.com/authts/react-oidc-context">react-oidc-context</a> 
+library that I could use to handle logging-in, but this would still have the 
+issue with loaders fetching data before the user is logged-in.</p>
+<p>I also found <a href="https://github.com/remix-run/react-router/tree/main/examples/auth-router-provider">this guide</a>
+for an example of using logging-in with loaders and actions.
+The potential issue with this is that I'd need to add lots of logic
+to work with the authorisation flow.</p>
+<p>I decided to go with a simpler option that would avoid a lot of the headache around
+moving the authentication logic into the loaders. My solution is to implement a
+callback page in my frontend. This would receive the user after they log in, and 
+then redirect them to a suitable location. This route won't be associated with
+a loader, so no failed attempts would be made to backend apis. It also means that
+we can wait for the user to finish authenticating before moving the user to the 
+private ui pages.</p>
+<p>I used the react-oidc-context library for my app to handle the calls
+to the authorisation server. The only issue with this is that the auth object is
+returned via hooks, which you can't use in loaders as they are run separately. I
+got around this by using the token that's stored in the sessionStorage (which
+react-oidc-context does by default) for the loaders.</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">createBearerToken</span>(<span class="hljs-params"></span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Bearer '</span> + (<span class="hljs-title function_">getUser</span>()?.<span class="hljs-property">access_token</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getUser</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> storageString = <span class="hljs-string">`oidc.user:<span class="hljs-subst">${oidcConfig.authority}</span>:<span class="hljs-subst">${oidcConfig.client_id}</span>`</span>;
+    <span class="hljs-keyword">const</span> oidcStorage = <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(storageString);
+    <span class="hljs-keyword">if</span> (!oidcStorage) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">User</span>.<span class="hljs-title function_">fromStorageString</span>(oidcStorage);
+}
+</code></pre><p>The above functions are an example of how you can retrieve the access token from the
+session storage. These are called within the loaders and can assume the user is 
+logged in.</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> {useAuth} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-oidc-context'</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title class_">Link</span>, <span class="hljs-title class_">Navigate</span>} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router-dom'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">CallbackLanding</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> auth = <span class="hljs-title function_">useAuth</span>();
+    <span class="hljs-keyword">const</span> state = <span class="hljs-keyword">typeof</span> auth.<span class="hljs-property">user</span>?.<span class="hljs-property">state</span> === <span class="hljs-string">'string'</span> ? auth.<span class="hljs-property">user</span>?.<span class="hljs-property">state</span> : <span class="hljs-string">'/home'</span>;
+
+    <span class="hljs-keyword">return</span> (
+        <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+            {auth.isLoading ?
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>You are being redirected to the desired page. If you are not redirected, click
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">{</span>'/<span class="hljs-attr">home</span>'}&gt;</span> here<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                :
+                <span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">{state}/</span>&gt;</span>
+            }
+        <span class="hljs-tag">&lt;/&gt;</span></span>
+    );
+}
+</code></pre><p>This is an example of the callback page where the user is redirected after logging-in via the
+authentication provider. It uses the react-oidc-context provider to retrieve the authentication
+information to see if the user is logged in. This page also stores a state so the 
+user can be redirected to a specific page if necessary.</p>
+<h3 id="PotentialIssuesWithSolution">Potential Issues With Solution</h3>
+<p>One thing I don't really like about the solution is the fact that it requires
+the use of the sessionStorage for storing tokens. This is potentially not safe against
+XSS attacks. Although due to the fact that you can't see other people's data in
+the ui, and the backend is strict on what data it will save, I think this can be
+ignored for the time being.</p>
+<p>It would be better to have some in memory storage for this token. Or perhaps to 
+move the token retrieval to a backend application. This backend application could then 
+be called from the frontend and do the token retrieval on behalf of the user. 
+This would stop the tokens from being accessible via man-in-the-middle attacks 
+or similar. Although it would have similar issues with storing session information
+in the browser.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="b-menu" class="hidden-feature-big" onclick=" ContentTools.hideOrShow('side-bar', true);
+                    ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+    </div>
+
+    <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShow('side-bar', true);
+                ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+        ×
+    </div>
+
+</body></html>
