@@ -23,7 +23,7 @@
 
         <div class="page-buffer" id="left-buffer"></div>
 
-        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li></ul></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
 
         <div id="page-content">
             <div id="dynamic-content">
@@ -33,22 +33,22 @@ purpose was convert markdown files into a collection of static html files.
 Admittedly I could have used many different web templates or website technologies to 
 create this website. But I wanted to make the website small and quick to load. I've 
 tried to keep the javascript used down to a minimum and only use it where it is needed.</p>
-<div id="doc-menu-area"> <div><a href="#Summary" class="header-row-h2 doc-menu-link"> 
-            Summary </a><a href="#Howitworks" class="header-row-h2 doc-menu-link"> 
-            How it works </a><a href="#SiteNavigation/Layout" class="header-row-h3 doc-menu-link"> 
-            Site Navigation / Layout </a><a href="#HtmlGeneration" class="header-row-h3 doc-menu-link"> 
-            Html Generation </a><a href="#Blogpages" class="header-row-h3 doc-menu-link"> 
-            Blog pages </a><a href="#Thoughts" class="header-row-h2 doc-menu-link"> 
-            Thoughts </a></div></div>
+<div id="doc-menu-area" class="numbered-menu"> <div><a href="#Summary" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;Summary </a><a href="#Howitworks" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;How it works </a><a href="#SiteNavigation/Layout" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.1.</div>&nbsp;&nbsp;Site Navigation / Layout </a><a href="#HtmlGeneration" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.2.</div>&nbsp;&nbsp;Html Generation </a><a href="#Blogpages" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.3.</div>&nbsp;&nbsp;Blog pages </a><a href="#Thoughts" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.</div>&nbsp;&nbsp;Thoughts </a></div></div>
 
-<h2 id="Summary">Summary</h2>
+<h2 id="Summary"><div class="header-num">1.</div>&nbsp;&nbsp;Summary</h2>
 <p>The tool works in a similar way to <a href="https://jekyllrb.com/">jekll</a>. It takes 
 your markdown files and converts them into static html pages. The reason for 
 this was to allow for documentation to be written easier, rather than writing 
 it directly to html.</p>
 <p>You can use javascript, css and other files along with the produced html files.</p>
 <p><a href="https://github.com/CalebStride/personal-site">View the source code on GitHub.</a></p>
-<h2 id="Howitworks">How it works</h2>
+<h2 id="Howitworks"><div class="header-num">2.</div>&nbsp;&nbsp;How it works</h2>
 <p>The code is pretty simple. It takes your markdown files and uses a Markdown 
 parser to generate html content, it then adds this to templates files which then
 form the final html page. These files, along with all the other webpage content, 
@@ -58,7 +58,7 @@ get moved into a new directory that makes up your functioning website.</p>
 and template.</p>
 <p>After the pages are generated you can then move the contents of the output 
 directory into a web host of your choice.</p>
-<h3 id="SiteNavigation/Layout">Site Navigation / Layout</h3>
+<h3 id="SiteNavigation/Layout"><div class="header-num">2.1.</div>&nbsp;&nbsp;Site Navigation / Layout</h3>
 <p>There are some other things that are done during the website generation that 
 can help with the website development. For example a site map is generated. This 
 is a Json object that contains the file structure of your web pages. This is the 
@@ -69,7 +69,7 @@ There were some things I had to do to make this work as expected. For example,
 as the files are read in an order that might differ from the order you want pages 
 to appear in the website, I allowed a number suffix in the file names so an order 
 could be enforced. This suffix is removed in the html pages.</p>
-<h3 id="HtmlGeneration">Html Generation</h3>
+<h3 id="HtmlGeneration"><div class="header-num">2.2.</div>&nbsp;&nbsp;Html Generation</h3>
 <p>One thing I changed during development was to move the generation of the navigation
 menu and content menus to the markdown conversion stage, rather than having it 
 generated in the ui.</p>
@@ -96,11 +96,11 @@ time the page took to render.
 Even though this time would be negligible it had to be run every time a page was
 visited. Instead, it now loads once when first loading the page but can be cached
 for subsequent requests.</p>
-<h3 id="Blogpages">Blog pages</h3>
+<h3 id="Blogpages"><div class="header-num">2.3.</div>&nbsp;&nbsp;Blog pages</h3>
 <p>This part of the site is still under development. I was thinking about a search
 functionality which could be helpful if someone had a lot of blog posts. But 
 currently this would just contain a list of subpages.</p>
-<h2 id="Thoughts">Thoughts</h2>
+<h2 id="Thoughts"><div class="header-num">3.</div>&nbsp;&nbsp;Thoughts</h2>
 <p>I thought this was a fun little project. I definitely learnt a bit about node
 as I hadn't previously used it. I didn't write any tests for this as I'm not 
 sure on how testing frameworks work within node so that's something to look in to.</p>

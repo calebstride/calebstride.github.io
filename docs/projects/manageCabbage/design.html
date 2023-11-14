@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Designing | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">  
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+    
+
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            ContentTools.findAndSetSelectedFromStorage();
+        };
+    </script>
+    </head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Designing</h1>
+                <div id="page-text"><p>I decided to redo the "Manage Cabbage" website. The main reason was that I wanted to learn
+some new technologies that I hadn't been given the chance to learn previously. This
+would mainly include cloud technologies, such as Docker, Kubernetes and cloud platforms.</p>
+<div id="doc-menu-area" class="numbered-menu"> <div><a href="#Introduction" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;Introduction </a><a href="#Designingtheapplication" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;Designing the application </a><a href="#Microservices" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.1.</div>&nbsp;&nbsp;Microservices </a><a href="#ApplicationRESTService" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">2.1.1.</div>&nbsp;&nbsp;Application REST Service </a><a href="#AuthenticationService" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">2.1.2.</div>&nbsp;&nbsp;Authentication Service </a><a href="#Databases" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">2.1.3.</div>&nbsp;&nbsp;Databases </a><a href="#UIDelivery" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">2.1.4.</div>&nbsp;&nbsp;UI Delivery </a><a href="#Kubernetes" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.2.</div>&nbsp;&nbsp;Kubernetes </a><a href="#Ingress" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">2.2.1.</div>&nbsp;&nbsp;Ingress </a><a href="#Helm" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">2.2.2.</div>&nbsp;&nbsp;Helm </a><a href="#Finisheddesign" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.2.</div>&nbsp;&nbsp;Finished design </a></div></div>
+
+<h2 id="Introduction"><div class="header-num">1.</div>&nbsp;&nbsp;Introduction</h2>
+<p>There were a couple of reasons I mentioned in
+the <a href="previousDesign.html">previous design section</a>
+about what I would want to change about the website. With these points and wanting to
+learn some new technologies I thought it would be a good idea to start the project again
+from scratch. This page is all about the design of the new site and how it would be
+created.</p>
+<h2 id="Designingtheapplication"><div class="header-num">2.</div>&nbsp;&nbsp;Designing the application</h2>
+<p>I knew that I wanted to learn about cloud architecture, so I decided that the application
+would focus around using Docker and Kubernetes to create and deploy microservices. So to
+start, I needed to plan about what microservices I would need to run my website.</p>
+<h3 id="Microservices"><div class="header-num">2.1.</div>&nbsp;&nbsp;Microservices</h3>
+<p>I started by planning out a rough idea of what I needed processing and what I'd need to
+replace everything the current website does. Unlike my old website I decided to move out
+some of the logic into separate services. This would make scalability easier to achieve
+and would allow me to use existing microservices for of the server logic.</p>
+<p><img src="/images/mcNew/new-design-one.png" alt="Initial design of new system"></p>
+<h4 id="ApplicationRESTService"><div class="header-num">2.1.1.</div>&nbsp;&nbsp;Application REST Service</h4>
+<p>The main microservice I would need would be one that handles all the logic of storing
+and processing spending data given by users.</p>
+<p>Initially I was thinking of having an individual microservice for each entity and
+having them communicate via events. For
+example, one microservice for transactions, and one for accounts. Then when a transaction
+is
+added an event is sent to the account service to tell it to add/remove the amount from the
+given account. I decided against this as there wouldn't be that much logic surrounding
+a lot of the data, e.g. categories. Also, a lot of the data is very tightly coupled, for
+example, a category on its own contains no useful information. Only when it's grouped with
+a transaction is where it's useful. So for simplicity I decided to keep it as one service.</p>
+<p>To implement this service I was going to use Spring Boot to create a REST api. I already
+had experience with Spring and Java so this seemed like the sensible option. Also, there
+are lots of resources on using Spring Boot to create REST apis, so it should be
+easier to learn how to do it.</p>
+<h4 id="AuthenticationService"><div class="header-num">2.1.2.</div>&nbsp;&nbsp;Authentication Service</h4>
+<p>The old website did all the user management and authentication within the main codebase.
+As I was trying to make this website a little easier to maintain I decided to move out all
+this logic into a separate microservice.</p>
+<p>Luckily for me there are already a few open source solutions that fulfill this
+requirement.
+For example, OpenAM, Keycloak and Apache Syncope to name a few. I decided to go with
+Keycloak
+as it had detailed documentation, as well as guides on how to get it working with cloud
+architecture.</p>
+<p>This would hopefully be pretty easy to set up and would require configuration rather than
+having to code a new identity platform.</p>
+<h4 id="Databases"><div class="header-num">2.1.3.</div>&nbsp;&nbsp;Databases</h4>
+<p>I would need two database containers in total to store data for the main REST service and
+the authentication service. I decided to choose the same database for both as this would
+reduce complexity of the tech stack.</p>
+<p>I decided to go with PostgresSQL as I already had experience with it and I knew setting
+up the docker image was relatively easy and simple to do. It's also open source and still
+well maintained.</p>
+<h4 id="UIDelivery"><div class="header-num">2.1.4.</div>&nbsp;&nbsp;UI Delivery</h4>
+<p>I wasn't too sure on what would be a suitable solution to fulfill this service. The main
+reason being that I knew I wanted to the UI to be separate from the backend.</p>
+<p>After researching a bit I found that if the UI was written to be a static site that just
+made requests to the backend. Then I could use a CDN or some sort of cloud object storage
+to deliver the frontend. The issue with this approach though is that during development
+I wouldn't really have the ability to do this locally.</p>
+<p>For this reason I decided to just use a Nginx docker image to deliver the static web
+files.
+In the future when the whole of the app was in the cloud it should be possible to change
+where the frontend is retrieved from.</p>
+<p>As I knew that I wanted the UI to use static resources and not compiled by a
+backend I decided to create it using React. This was also because I was interested in
+how React worked and wanted to get some practice.</p>
+<h3 id="Kubernetes"><div class="header-num">2.2.</div>&nbsp;&nbsp;Kubernetes</h3>
+<h4 id="Ingress"><div class="header-num">2.2.1.</div>&nbsp;&nbsp;Ingress</h4>
+<p>As I was looking into which parts of my app should be publicly accessible I came across
+the use of Ingress controllers. Instead of having to run multiple services for each public
+part of my application I could run a single Ingress that would route the requests
+depending
+on the link to the appropriate service.</p>
+<p>This seemed like a good idea as I would only need to configure the Ingress to decide which
+parts of the microservices were accessible from the outside. One example is that Keycloak
+came with admin endpoints that shouldn't be accessible to the public. So I could just
+add a rule to the ingress that would make sure anybody requesting these endpoints
+couldn't reach them. I could also
+add <a href="https://kubernetes.github.io/ingress-nginx/examples/auth/basic/">authentication</a>
+to these endpoints.</p>
+<h4 id="Helm"><div class="header-num">2.2.2.</div>&nbsp;&nbsp;Helm</h4>
+<p>As I was starting to mess around with Kubernetes I discovered a tool that I'll aim to make
+use of. This tool is called <a href="https://helm.sh/">Helm</a>, which is a package manager for
+kubernetes.</p>
+<p>The idea being that you build your kubernetes resource files with templates, so that you
+can swap out values in them between deployments. It also means that you don't need to
+deploy a whole list of files, just the one helm project instead. By the look of it there
+are already a lot of packages already available for common apps, such as database
+deployments and proxy servers. So I could potentially make use of a few of these in the
+future.</p>
+<h2 id="Finisheddesign"><div class="header-num">3.2.</div>&nbsp;&nbsp;Finished design</h2>
+<p>In the end my design looked like this:</p>
+<p><img src="/images/mcNew/new-design-two.png" alt="Finished design of new system"></p>
+<p>I don't expect the finished application to stick to these designs exactly, but it's a good
+starting point. It should also be relatively easy to add extra services later on. For 
+example, I might want to add a Prometheus server with a Grafana frontend.</p>
+<p>I also haven't added much design around the cloud platform I'll be hosting it in. This
+is mainly because I want to keep my options open, but also because if it runs in 
+Kubernetes then it should be deployable in most cloud platforms.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="b-menu" class="hidden-feature-big" onclick=" ContentTools.hideOrShow('side-bar', true);
+                    ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+    </div>
+
+    <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShow('side-bar', true);
+                ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+        ×
+    </div>
+
+</body></html>

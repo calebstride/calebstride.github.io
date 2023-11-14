@@ -7,7 +7,7 @@ and designing I went through from start to finish. Whilst hopefully picking out 
 interesting things I learnt along the way. Admittedly I am writing this a long time 
 after creating the website, so it will be on the briefer side.
 
-<div id="doc-menu-area" class="numberedMenu"> </div>
+<div id="doc-menu-area" class="numbered-menu"> </div>
 
 ## Introduction
 The main goals of the web app were to allow for spending to be logged and to show 

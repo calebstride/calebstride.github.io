@@ -23,7 +23,7 @@
 
         <div class="page-buffer" id="left-buffer"></div>
 
-        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
 
         <div id="page-content">
             <div id="dynamic-content">
@@ -32,41 +32,41 @@
 and designing I went through from start to finish. Whilst hopefully picking out some 
 interesting things I learnt along the way. Admittedly I am writing this a long time 
 after creating the website, so it will be on the briefer side.</p>
-<div id="doc-menu-area" class="numberedMenu"> <div><a href="#Introduction" class="header-row-h2 doc-menu-link"> 
-            Introduction </a><a href="#Technologies" class="header-row-h2 doc-menu-link"> 
-            Technologies </a><a href="#Backend" class="header-row-h3 doc-menu-link"> 
-            Backend </a><a href="#Frontend" class="header-row-h3 doc-menu-link"> 
-            Frontend </a><a href="#DesigningandImplementing" class="header-row-h2 doc-menu-link"> 
-            Designing and Implementing </a><a href="#Testing" class="header-row-h2 doc-menu-link"> 
-            Testing </a><a href="#KeyPointsLearned" class="header-row-h2 doc-menu-link"> 
-            Key Points Learned </a><a href="#SizeofApplication" class="header-row-h3 doc-menu-link"> 
-            Size of Application </a><a href="#Testing" class="header-row-h3 doc-menu-link"> 
-            Testing </a><a href="#CodeDesign" class="header-row-h3 doc-menu-link"> 
-            Code Design </a><a href="#Javascript" class="header-row-h3 doc-menu-link"> 
-            Javascript </a><a href="#Frontend" class="header-row-h3 doc-menu-link"> 
-            Frontend </a><a href="#Updating" class="header-row-h2 doc-menu-link"> 
-            Updating </a><a href="#Remembermefunctionality" class="header-row-h3 doc-menu-link"> 
-            Remember me functionality </a><a href="#MonthlyPayments" class="header-row-h3 doc-menu-link"> 
-            Monthly Payments </a><a href="#Examples" class="header-row-h2 doc-menu-link"> 
-            Examples </a><a href="#Signup/Loginscreen" class="header-row-h3 doc-menu-link"> 
-            Sign up / Login screen </a><a href="#Addingentities" class="header-row-h3 doc-menu-link"> 
-            Adding entities </a><a href="#Viewingentities" class="header-row-h3 doc-menu-link"> 
-            Viewing entities </a><a href="#Filteringentities" class="header-row-h3 doc-menu-link"> 
-            Filtering entities </a><a href="#EditingandDeletingentities" class="header-row-h3 doc-menu-link"> 
-            Editing and Deleting entities </a><a href="#Categoriestree(WIP)" class="header-row-h3 doc-menu-link"> 
-            Categories tree (WIP) </a><a href="#Homepage" class="header-row-h3 doc-menu-link"> 
-            Home page </a><a href="#Mobile" class="header-row-h3 doc-menu-link"> 
-            Mobile </a><a href="#Summary" class="header-row-h2 doc-menu-link"> 
-            Summary </a></div></div>
+<div id="doc-menu-area" class="numbered-menu"> <div><a href="#Introduction" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;Introduction </a><a href="#Technologies" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;Technologies </a><a href="#Backend" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.1.</div>&nbsp;&nbsp;Backend </a><a href="#Frontend" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.2.</div>&nbsp;&nbsp;Frontend </a><a href="#DesigningandImplementing" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.</div>&nbsp;&nbsp;Designing and Implementing </a><a href="#Testing" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">4.</div>&nbsp;&nbsp;Testing </a><a href="#KeyPointsLearned" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">5.</div>&nbsp;&nbsp;Key Points Learned </a><a href="#SizeofApplication" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.1.</div>&nbsp;&nbsp;Size of Application </a><a href="#Testing" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.2.</div>&nbsp;&nbsp;Testing </a><a href="#CodeDesign" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.3.</div>&nbsp;&nbsp;Code Design </a><a href="#Javascript" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.4.</div>&nbsp;&nbsp;Javascript </a><a href="#Frontend" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.5.</div>&nbsp;&nbsp;Frontend </a><a href="#Updating" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">6.</div>&nbsp;&nbsp;Updating </a><a href="#Remembermefunctionality" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">6.1.</div>&nbsp;&nbsp;Remember me functionality </a><a href="#MonthlyPayments" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">6.2.</div>&nbsp;&nbsp;Monthly Payments </a><a href="#Examples" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">7.</div>&nbsp;&nbsp;Examples </a><a href="#Signup/Loginscreen" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.1.</div>&nbsp;&nbsp;Sign up / Login screen </a><a href="#Addingentities" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.2.</div>&nbsp;&nbsp;Adding entities </a><a href="#Viewingentities" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.3.</div>&nbsp;&nbsp;Viewing entities </a><a href="#Filteringentities" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.4.</div>&nbsp;&nbsp;Filtering entities </a><a href="#EditingandDeletingentities" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.5.</div>&nbsp;&nbsp;Editing and Deleting entities </a><a href="#Categoriestree(WIP)" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.6.</div>&nbsp;&nbsp;Categories tree (WIP) </a><a href="#Homepage" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.7.</div>&nbsp;&nbsp;Home page </a><a href="#Mobile" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">7.8.</div>&nbsp;&nbsp;Mobile </a><a href="#Summary" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">8.</div>&nbsp;&nbsp;Summary </a></div></div>
 
-<h2 id="Introduction">Introduction</h2>
+<h2 id="Introduction"><div class="header-num">1.</div>&nbsp;&nbsp;Introduction</h2>
 <p>The main goals of the web app were to allow for spending to be logged and to show 
 insights of the spending to the user.</p>
 <p>To start, I briefly designed how the website would function and the technologies 
 needed to do so. Then I went on to design how the code would work and the objects 
 etc. needed to run it.</p>
-<h2 id="Technologies">Technologies</h2>
-<h3 id="Backend">Backend</h3>
+<h2 id="Technologies"><div class="header-num">2.</div>&nbsp;&nbsp;Technologies</h2>
+<h3 id="Backend"><div class="header-num">2.1.</div>&nbsp;&nbsp;Backend</h3>
 <p>At the time of starting this project the only programming language I knew how to 
 use as a website backend was php so that's what I went with.</p>
 <p>I did a bit of googling for a php hosting platform (there are tonnes apparently) 
@@ -74,7 +74,7 @@ and ended up going with hostgator as it was reasonably low cost and provided wha
 I needed. Although I wouldn't choose this again as it was hosted in America (whoops).</p>
 <p>The choice of the hosting platform meant I was stuck with mysql as a database. 
 But luckily it was the one I'd worked with before when using php.</p>
-<h3 id="Frontend">Frontend</h3>
+<h3 id="Frontend"><div class="header-num">2.2.</div>&nbsp;&nbsp;Frontend</h3>
 <p>There isn't really much of a choice for frontend technologies for a website as 
 it's mainly just HTML and JavaScript. </p>
 <p>I decided to not use any of the big JavaScript libraries 
@@ -82,7 +82,7 @@ it's mainly just HTML and JavaScript. </p>
 (e.g. CoffeeScript, TypeScript). The reason being I wanted to try and 
 learn the fundamentals and how it worked rather than just learning a specific 
 way to use it. My final thought on this can be found <a href="#javascript">here</a>.</p>
-<h2 id="DesigningandImplementing">Designing and Implementing</h2>
+<h2 id="DesigningandImplementing"><div class="header-num">3.</div>&nbsp;&nbsp;Designing and Implementing</h2>
 <p>Honestly there wasn't too much designing that took place for this project. 
 The simple outline would be that the user could add transactions that would 
 CREDIT or DEBIT against accounts. I also added categories, so you could group 
@@ -94,32 +94,32 @@ need to create and persist in the database.</p>
 operations to each entity. In the code I just used plain sql that would insert 
 the values provided from the UI (whilst validating the values and parsing them correctly
 and safely).</p>
-<h2 id="Testing">Testing</h2>
+<h2 id="Testing"><div class="header-num">4.</div>&nbsp;&nbsp;Testing</h2>
 <p>Admittedly this is an area that I could have improved a lot on. 
 I didn't look into any testing frameworks for php so my the code for
 this has absolutely no tests :(. The same goes with the JavaScript in the project.</p>
 <p>Instead, I just did manual testing. Luckily the system isn't that big, and 
 I was only adding small features so the manual testing didn't take very long.</p>
-<h2 id="KeyPointsLearned">Key Points Learned</h2>
-<h3 id="SizeofApplication">Size of Application</h3>
+<h2 id="KeyPointsLearned"><div class="header-num">5.</div>&nbsp;&nbsp;Key Points Learned</h2>
+<h3 id="SizeofApplication"><div class="header-num">5.1.</div>&nbsp;&nbsp;Size of Application</h3>
 <p>Something I didn't really think about was how big this application would be. 
 I know that it was relatively simple but currently the whole database is only 
 82KB, and that's after about three years of use. Admittedly that's with only one 
 user. But even with 1000 users that would still only be 82MB, and with 1,000,000 
 about 82GB. This is just something that stood out, as it helps you realise how 
 little storage simple numeric/text based data can use up.</p>
-<h3 id="Testing">Testing</h3>
+<h3 id="Testing"><div class="header-num">5.2.</div>&nbsp;&nbsp;Testing</h3>
 <p>I think even though this was a smaller project I should have added tests. This 
 would have allowed me to find some issues earlier, before I deployed the changes. 
 As well as picking up some smaller issues that passed through the gaps in my testing. 
 The downside to this would be that I'd probably have spent more time writing tests 
 than the actual website.</p>
-<h3 id="CodeDesign">Code Design</h3>
+<h3 id="CodeDesign"><div class="header-num">5.3.</div>&nbsp;&nbsp;Code Design</h3>
 <p>In addition to testing, this is an area I should have paid more attention to. 
 I ended up redesigning the backend multiple times as it became hard to understand 
 and read when more things were added. If I planned how the code would work and 
 stuck to some proper design patterns this could have been avoided.</p>
-<h3 id="Javascript">Javascript</h3>
+<h3 id="Javascript"><div class="header-num">5.4.</div>&nbsp;&nbsp;Javascript</h3>
 <p>As I don't have much JavaScript experience this was a bit challenging.
 I think the main problem I have with JavaScript is that I didn't stick to 
 any guidelines or anything. It also doesn't help that everyone on the internet 
@@ -128,15 +128,15 @@ should be used.</p>
 <p>I think for next time I'm going to try and stick to some syntax / a specific 
 way to do things. TypeScript might be what I'm looking for as it forces you to 
 use javascript in a specific way.</p>
-<h3 id="Frontend">Frontend</h3>
+<h3 id="Frontend"><div class="header-num">5.5.</div>&nbsp;&nbsp;Frontend</h3>
 <p>I think the frontend is ok, but it definitely needs some work. I think the 
 main problem was that I did it from scratch. This meant the majority 
 of my time was spent on the frontend (although this may be because I'm more experienced 
 with backend). If I chose some framework or even some templates this could have 
 been done quicker, and it would also look nicer.</p>
-<h2 id="Updating">Updating</h2>
+<h2 id="Updating"><div class="header-num">6.</div>&nbsp;&nbsp;Updating</h2>
 <p>The following are just some things I implemented that stood out as interesting.</p>
-<h3 id="Remembermefunctionality">Remember me functionality</h3>
+<h3 id="Remembermefunctionality"><div class="header-num">6.1.</div>&nbsp;&nbsp;Remember me functionality</h3>
 <p>I found <a href="https://paragonie.com/blog/2015/04/secure-authentication-php-with-long-term-persistence">this blog page</a> 
 about implementing remember me functionality within php. 
 It gave me a good idea about how to implement the functionality, 
@@ -148,7 +148,7 @@ for example you needed to lookup if a given string exists. A closer match
 would take longer to reject as it checks more characters before finding out 
 the value is incorrect, whereas, if the first character is wrong it would return 
 false almost instantly.</p>
-<h3 id="MonthlyPayments">Monthly Payments</h3>
+<h3 id="MonthlyPayments"><div class="header-num">6.2.</div>&nbsp;&nbsp;Monthly Payments</h3>
 <p>Not too long after using the website I realised that some things would become 
 tedious when logging manually. One of these would be payments that occur on a 
 monthly basis like bills etc. So to solve this I added a new entity that could 
@@ -163,23 +163,23 @@ be removed meaning it would never be automatically added as a transaction.
 This was pretty useful if you had a frequent payment that had inconsistent 
 timing as you only need to press one button instead of filling out all the 
 transaction's information. </p>
-<h2 id="Examples">Examples</h2>
+<h2 id="Examples"><div class="header-num">7.</div>&nbsp;&nbsp;Examples</h2>
 <p>The site is currently pretty empty and has a lot of blank space. The following 
 screenshots show some examples of the different pages / functionalities, and a brief 
 explanation if needed.</p>
-<h3 id="Signup/Loginscreen">Sign up / Login screen</h3>
+<h3 id="Signup/Loginscreen"><div class="header-num">7.1.</div>&nbsp;&nbsp;Sign up / Login screen</h3>
 <p>This is just a simple form with two fields. I didn't add any css as the remember me
 functionality would skip this step most of the time.</p>
 <p><img src="/images/mcOld/login.png" alt="Screenshot of singup screen"></p>
-<h3 id="Addingentities">Adding entities</h3>
+<h3 id="Addingentities"><div class="header-num">7.2.</div>&nbsp;&nbsp;Adding entities</h3>
 <p>All the entities you could add (transactions, categories etc.) had very similar pages.
 They consisted of fields you could fill out and then just a button to submit the data.</p>
 <p><img src="/images/mcOld/add-transaction.png" alt="Screenshot of adding entities"></p>
-<h3 id="Viewingentities">Viewing entities</h3>
+<h3 id="Viewingentities"><div class="header-num">7.3.</div>&nbsp;&nbsp;Viewing entities</h3>
 <p>When viewing the entities you've added most of the pages were pretty similar. They
 would consist of a list and then a total of the list if they had a monetary value.</p>
 <p><img src="/images/mcOld/view-accounts.png" alt="Screenshot of viewing entities"></p>
-<h3 id="Filteringentities">Filtering entities</h3>
+<h3 id="Filteringentities"><div class="header-num">7.4.</div>&nbsp;&nbsp;Filtering entities</h3>
 <p>As it would be inefficient to retrieve all of certain entities at once, some of them
 were filtered. Transactions were retrieved by a date range, you could then filter them
 by account or category.</p>
@@ -187,29 +187,29 @@ by account or category.</p>
 <p>Other entities were filtered to stop displaying less important data so often. For example
 the accounts that were closed were viewed on a different tab.</p>
 <p><img src="/images/mcOld/closed-accounts.png" alt="Screenshot of viewing closed accounts"></p>
-<h3 id="EditingandDeletingentities">Editing and Deleting entities</h3>
+<h3 id="EditingandDeletingentities"><div class="header-num">7.5.</div>&nbsp;&nbsp;Editing and Deleting entities</h3>
 <p>To remove or update entities they would have an edit button that appeared. This would 
 cause a popup with all the values of the entity populated. You could then
 change the desired fields and update, or just delete the entity.</p>
 <p><img src="/images/mcOld/update-monthly.png" alt="Screenshot of updating entities"></p>
-<h3 id="Categoriestree(WIP)">Categories tree (WIP)</h3>
+<h3 id="Categoriestree(WIP)"><div class="header-num">7.6.</div>&nbsp;&nbsp;Categories tree (WIP)</h3>
 <p>This was a work in progress, but the idea was to show how much of the spending was in
 each category. You would be able to view a tree that would nicely show you the sums
 how your spending was split between categories. Although currently it's not very pretty
 and a bit confusing.</p>
 <p><img src="/images/mcOld/transaction-tree.png" alt="Screenshot of spending category tree"></p>
-<h3 id="Homepage">Home page</h3>
+<h3 id="Homepage"><div class="header-num">7.7.</div>&nbsp;&nbsp;Home page</h3>
 <p>The goal of the home page was to give a quick summary over certain fixed time periods. 
 You could select your time period (month, year, week) and the spending per account 
 would be shown, as well as the predicted spending if you continued to spend at the same
 rate.</p>
 <p><img src="/images/mcOld/home-page.png" alt="Screenshot of home page"></p>
-<h3 id="Mobile">Mobile</h3>
+<h3 id="Mobile"><div class="header-num">7.8.</div>&nbsp;&nbsp;Mobile</h3>
 <p>The app looks slightly different on mobile, which is where I use it the most. The nav
 bar is hidden by a burger menu button. I prefer the look of the website this way as it
 fills up more available space.</p>
 <p><img src="/images/mcOld/mobile.png" alt="Screenshot of the app on mobile"></p>
-<h2 id="Summary">Summary</h2>
+<h2 id="Summary"><div class="header-num">8.</div>&nbsp;&nbsp;Summary</h2>
 <p>In summary, I'm pretty happy with the website. It achieves the goal it set out to do, 
 which is to log personal spending.</p>
 <p>There are a couple of things I would like to change though. One of which is the design
