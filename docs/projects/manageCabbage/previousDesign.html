@@ -1,4 +1,9 @@
 <!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
     <title>Previous Design | Caleb Stride</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,14 +14,9 @@
     <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
 
     <script>
-        window.addEventListener('load', () => {ContentTools.initTheme()});
+         ContentTools.initTheme();
     </script>
-
-    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
-    <script type="text/javascript">
-        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
-    </script>
-    </head>
+</head>
 
 <body>
 

@@ -62,7 +62,7 @@ class ContentTools {
     }
 
     static changeTheme() {
-        const page = document.body;
+        const page = document.documentElement;
         let theme = '';
         if (page.className === 'dark-theme') {
             theme  = 'light-theme';
@@ -74,7 +74,7 @@ class ContentTools {
     }
 
     static initTheme() {
-        const page = document.body;
+        const page = document.documentElement;
         page.className = localStorage.getItem('theme') || 'dark-theme';
     }
 }

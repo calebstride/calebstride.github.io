@@ -9,7 +9,7 @@
     --blue-highlight: #00bfbf;
 }
 
-body.light-theme {
+html.light-theme {
     --base-text-colour: black;
     --base-text-colour-dark: #6b6b6b;
     --base-text-colour-darker: #414141;

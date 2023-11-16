@@ -1,4 +1,9 @@
 <!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
     <title>Webpage Colour Themes | Caleb Stride</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,14 +14,9 @@
     <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
 
     <script>
-        window.addEventListener('load', () => {ContentTools.initTheme()});
+         ContentTools.initTheme();
     </script>
-
-    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
-    <script type="text/javascript">
-        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
-    </script>
-    </head>
+</head>
 
 <body>
 
@@ -106,7 +106,38 @@ was a theme that the site looked a lot nicer in, then this should probably be th
 rather than the users system theme.</p>
 <p>At the time of writing this the theme changing functionality is on this website, so feel
 free to take a look.</p>
-</div>
+<h3 id="Updates">Updates</h3>
+<p>I noticed a slight issue with the approach I'd done. When you load the website it first
+loads the default colour theme very briefly before changing it to the saved one. This 
+very quick colour change doesn't affect much, but it doesn't look very appealing. The reason 
+for this is that the initialisation of the theme is done on the window onload 
+event. Which would be after the default theme has already loaded. </p>
+<p>To get around this I set the theme class on the html element (document.documentElement) 
+rather than the body (document.body), this allowed me to initialise
+the theme within a script tag before the body had loaded. Then I could switch the css
+variable definitions to be under the html rather than body. e.g.</p>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* The html replaces the body element */</span>
+<span class="hljs-selector-tag">html</span><span class="hljs-selector-class">.dark-theme</span> {
+    <span class="hljs-attr">--colour-example-one</span>: darkblue;
+    <span class="hljs-attr">--colour-example-two</span>: darkred;
+    <span class="hljs-attr">--colour-example-three</span>: darkgreen;
+}
+</code></pre><p>The rest of the page should then use the correct colour variables 
+as the class has already been set on the html element. I'm not sure if this will cause
+other issues, but it does seem to work a little better.</p>
+<p>The other solution I found was to use the css perfers-color-scheme method within the css. 
+This would be
+a little more robust, but it only allows for two options of themes. Whereas the
+solution I have allows for any number of themes. It would also make changing themes 
+manually more complex.</p>
+<pre><code class="hljs language-css"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme</span>: dark) {
+    <span class="hljs-selector-tag">body</span> {
+        <span class="hljs-attr">--colour-example-one</span>: darkblue;
+        <span class="hljs-attr">--colour-example-two</span>: darkred;
+        <span class="hljs-attr">--colour-example-three</span>: darkgreen;
+    }
+}
+</code></pre></div>
             </div>
         </div>
 
