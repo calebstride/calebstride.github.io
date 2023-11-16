@@ -9,6 +9,17 @@
     --blue-highlight: #00bfbf;
 }
 
+body.light-theme {
+    --base-text-colour: black;
+    --base-text-colour-dark: #6b6b6b;
+    --base-text-colour-darker: #414141;
+    --background-color: #e1e0e0;
+    --background-color-light: #e1e0e0;
+    --background-color-dark: black;
+    --base-text-highlight-colour: black;
+    --blue-highlight: #0034ff;
+}
+
 /* Create page size and make sure it fits the whole screen */
 html, body {
     width: 100%;
@@ -103,6 +114,7 @@ html, body {
         height: 5px;
         background-color: var(--base-text-colour);
         margin: 6px 0;
+        border-radius: 2px;
     }
 
     #burger-hug {
@@ -147,6 +159,17 @@ html, body {
         min-height: 89vh;
         padding-top: 2vh;
     }
+
+    #theme-wrap-mob .theme-button {
+        font-size: inherit;
+        padding: 4px 8px;
+        border: 2px solid var(--base-text-colour-dark);
+    }
+
+    #theme-wrap-mob {
+        margin: 10px 10px 10px 20px;
+    }
+
 }
 
 @media screen and (min-width: 600px) {
@@ -312,4 +335,20 @@ pre code {
     line-height: 150%;
     border-radius: 7px;
     overflow-x: auto;
+}
+
+.theme-button {
+    color: var(--base-text-highlight-colour);
+    background-color: var(--background-color);
+    border: 2px solid var(--base-text-highlight-colour);
+    border-radius: 3px;
+}
+
+.theme-button:hover {
+    text-decoration: underline;
+}
+
+#theme-wrap {
+    position: fixed;
+    bottom: 20px;
 }

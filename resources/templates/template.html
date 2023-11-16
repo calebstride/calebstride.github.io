@@ -11,7 +11,10 @@
 
     <link href="/styles/main.css" rel="stylesheet" type="text/css" />
     <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
-    
+
+    <script>
+        window.addEventListener('load', () => {ContentTools.initTheme()});
+    </script>
 </head>
 
 <body>
@@ -20,7 +23,11 @@
 
         <div class="page-buffer" id="left-buffer"></div>
 
-        <nav id="side-bar"></nav>
+        <nav id="side-bar">
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
 
         <div id="page-content">
             <div id="dynamic-content">
@@ -34,17 +41,19 @@
     </div>
 
     <div id="burger-hug">
-        <div id="b-menu" class="hidden-feature-big" onclick=" ContentTools.hideOrShow('side-bar', true);
-                    ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big"
+             onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
             <div class="b-men"></div>
             <div class="b-men"></div>
             <div class="b-men"></div>
         </div>
-    </div>
-
-    <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShow('side-bar', true);
-                ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
-        &times;
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob"
+             onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            &times;
+        </div>
     </div>
 </body>
 </html>

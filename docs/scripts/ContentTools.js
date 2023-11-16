@@ -37,6 +37,12 @@ class ContentTools {
         }
     }
 
+    static hideOrShowList(ids, mobile) {
+        for (const id of ids) {
+            this.hideOrShow(id, mobile);
+        }
+    }
+
     static findAndSetSelectedFromStorage() {
         const allDropDowns = document.querySelectorAll('.drop-down-button');
         allDropDowns.forEach(element => {
@@ -53,5 +59,22 @@ class ContentTools {
             element.classList.remove('selected-drop-down');
             element.nextElementSibling.classList.add('hidden-feature');
         }
+    }
+
+    static changeTheme() {
+        const page = document.body;
+        let theme = '';
+        if (page.className === 'dark-theme') {
+            theme  = 'light-theme';
+        } else {
+            theme = 'dark-theme';
+        }
+        page.className = theme;
+        localStorage.setItem('theme', theme);
+    }
+
+    static initTheme() {
+        const page = document.body;
+        page.className = localStorage.getItem('theme') || 'dark-theme';
     }
 }

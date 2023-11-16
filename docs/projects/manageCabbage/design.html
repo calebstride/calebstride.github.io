@@ -7,13 +7,14 @@
 
     <link href="/styles/main.css" rel="stylesheet" type="text/css">
     <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
-    
+
+    <script>
+        window.addEventListener('load', () => {ContentTools.initTheme()});
+    </script>
 
     <script type="text/javascript" src="/scripts/ContentTools.js"></script>
     <script type="text/javascript">
-        window.onload = function() {
-            ContentTools.findAndSetSelectedFromStorage();
-        };
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
     </script>
     </head>
 
@@ -23,7 +24,11 @@
 
         <div class="page-buffer" id="left-buffer"></div>
 
-        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul></nav>
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/231116themes.html">Webpage Colour Themes</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
 
         <div id="page-content">
             <div id="dynamic-content">
@@ -152,17 +157,17 @@ Kubernetes then it should be deployable in most cloud platforms.</p>
     </div>
 
     <div id="burger-hug">
-        <div id="b-menu" class="hidden-feature-big" onclick=" ContentTools.hideOrShow('side-bar', true);
-                    ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
             <div class="b-men"></div>
             <div class="b-men"></div>
             <div class="b-men"></div>
         </div>
-    </div>
-
-    <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShow('side-bar', true);
-                ContentTools.hideOrShow('close-container', true); ContentTools.hideOrShow('b-menu', true);">
-        ×
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
     </div>
 
 </body></html>

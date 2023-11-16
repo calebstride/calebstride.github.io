@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>Webpage Colour Themes | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">  
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+
+    <script>
+        window.addEventListener('load', () => {ContentTools.initTheme()});
+    </script>
+
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    </head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/231116themes.html">Webpage Colour Themes</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Webpage Colour Themes</h1>
+                <div id="page-text"><h3 id="Problem">Problem</h3>
+<p>On one of my websites I decided it would be nice if the user had a choice in what colour 
+theme the website used. I decided to have a look at how other websites did this and
+came across <a href="https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/">this</a> 
+article which explains some popular approaches.</p>
+<h3 id="Goal">Goal</h3>
+<p>To start off with I would just want a theme that could toggle between light and dark. But
+I wanted to the option to add more themes in the future.</p>
+<h3 id="Solution">Solution</h3>
+<h4 id="Changingthetheme">Changing the theme</h4>
+<p>The way that I would implement this was to use css variables and classes to change the 
+colours used throughout the website.</p>
+<p>I would start by defining a list of colour variables in my css that would be used by 
+default. To get them to be used throughout the website they would be set under the :root. 
+e.g.</p>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* These variables will be accessible throughout the rest of the css */</span>
+<span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-attr">--colour-example-one</span>: blue;
+    <span class="hljs-attr">--colour-example-two</span>: red;
+    <span class="hljs-attr">--colour-example-three</span>: green;
+}
+<span class="hljs-comment">/* For example to change element colours  */</span>
+<span class="hljs-selector-tag">p</span> {
+    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--colour-example-one);
+}
+</code></pre><p>Then I could override these variables to use a different colour pallet. I did this by
+changing the class on the body element. Then by adding the corresponding css.</p>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* A new theme can be created by specifying the class on the body element */</span>
+<span class="hljs-selector-tag">body</span><span class="hljs-selector-class">.dark-theme</span> {
+    <span class="hljs-attr">--colour-example-one</span>: darkblue;
+    <span class="hljs-attr">--colour-example-two</span>: darkred;
+    <span class="hljs-attr">--colour-example-three</span>: darkgreen;
+}
+</code></pre><pre><code class="hljs language-javascript"><span class="hljs-comment">// Changing the theme just requires adding the theme class to the body element</span>
+<span class="hljs-keyword">const</span> page = <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>;
+page.<span class="hljs-property">className</span> = <span class="hljs-string">'dark-theme'</span>;
+</code></pre><p>You could then add an event onto an element of choice to trigger changing the theme.
+This could be a toggle button, or a dropdown list.</p>
+<h4 id="Storingthetheme">Storing the theme</h4>
+<p>The choice of theme should be remembered to provide a consistent user experience, and to
+stop the user having to manually change the theme every time they visit. The easiest way
+to do this for my site was to just store the choice of theme in localStorage.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Setting the data</span>
+<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'theme'</span>, theme);
+
+<span class="hljs-comment">// Getting the data we need to make sure it's been set</span>
+<span class="hljs-keyword">let</span> theme = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'theme'</span>);
+<span class="hljs-keyword">if</span> (theme !== <span class="hljs-literal">undefined</span>) {
+    page.<span class="hljs-property">className</span> = theme;
+}
+</code></pre><h4 id="Defaultvalue">Default value</h4>
+<p>When the user loads the website we need to decide what theme should be set. Originally I 
+was just going to have this set to the theme stored in localStorage, or the dark theme if
+nothing existed in storage. </p>
+<p>But I decided to also consider the users system theme, this can be accessed using the
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">prefers-color-scheme</a> 
+media feature. Below is an example of checking this in javascript, the values are either
+dark or light.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">matchMedia</span> &amp;&amp; <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">matchMedia</span>(<span class="hljs-string">'(prefers-color-scheme: light)'</span>).<span class="hljs-property">matches</span>) {
+    <span class="hljs-comment">// Set light theme</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Set dark theme</span>
+}
+</code></pre><h3 id="Conclusion">Conclusion</h3>
+<p>This turned out to not be that hard to implement and was mainly focused around changing
+classes and css values. </p>
+<p>The only thing I wasn't too sure about keeping was setting the 
+default colour scheme from the users system theme. The reason being that most users will
+probably just have the default light theme without really thinking about it. So if there
+was a theme that the site looked a lot nicer in, then this should probably be the default
+rather than the users system theme.</p>
+<p>At the time of writing this the theme changing functionality is on this website, so feel
+free to take a look.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
+    </div>
+
+</body></html>
