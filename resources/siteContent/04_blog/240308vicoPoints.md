@@ -104,14 +104,11 @@ class ShapeComponentAdaptable(
     colourBottom: Int,
 ) : Component() {
 
-    private val shapeComponentTop: ShapeComponent // Shape component for y>0
+    // Shape component for y>0
+    private val shapeComponentTop = ShapeComponent(shape = shape, color = colourTop) 
 
-    private val shapeComponentBottom: ShapeComponent // Shape component for y<0
-
-    init {
-        shapeComponentTop = ShapeComponent(shape = shape, color = colourTop)
-        shapeComponentBottom = ShapeComponent(shape = shape, color = colourBottom)
-    }
+    // Shape component for y<0
+    private val shapeComponentBottom =  ShapeComponent(shape = shape, color = colourBottom) 
 
     override fun draw(
         context: DrawContext,

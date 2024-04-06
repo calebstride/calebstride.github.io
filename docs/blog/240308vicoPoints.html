@@ -110,14 +110,11 @@ to allow for different point shapes or styles depending on their position.</p>
     colourBottom: <span class="hljs-built_in">Int</span>,
 ) : Component() {
 
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> shapeComponentTop: ShapeComponent <span class="hljs-comment">// Shape component for y&gt;0</span>
+    <span class="hljs-comment">// Shape component for y&gt;0</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> shapeComponentTop = ShapeComponent(shape = shape, color = colourTop) 
 
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> shapeComponentBottom: ShapeComponent <span class="hljs-comment">// Shape component for y&lt;0</span>
-
-    <span class="hljs-keyword">init</span> {
-        shapeComponentTop = ShapeComponent(shape = shape, color = colourTop)
-        shapeComponentBottom = ShapeComponent(shape = shape, color = colourBottom)
-    }
+    <span class="hljs-comment">// Shape component for y&lt;0</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> shapeComponentBottom =  ShapeComponent(shape = shape, color = colourBottom) 
 
     <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">draw</span><span class="hljs-params">(
         context: <span class="hljs-type">DrawContext</span>,
