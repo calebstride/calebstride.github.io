@@ -1,6 +1,8 @@
 ---
 title: React Router OpenID
 header: Connecting via OpenID from React Router
+description: A blog post on an investigation on how to connect via OpenId to an authorisation
+    server within React Router
 ---
 
 ### Problem

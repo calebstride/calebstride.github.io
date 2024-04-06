@@ -1,6 +1,7 @@
 ---
 title: Projects
 header: Projects
+description: Page containing the summary of the projects I've worked on in my spare time
 ---
 Feel free to look at the projects I've worked / am currently working on.
 

@@ -1,6 +1,7 @@
 ---
 title: Designing
 header: Designing
+description: A look at redesigning and creating a new version of Manage Cabbage 
 ---
 
 I decided to redo the "Manage Cabbage" website. The main reason was that I wanted to learn

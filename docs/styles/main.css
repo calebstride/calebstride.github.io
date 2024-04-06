@@ -252,7 +252,8 @@ html, body {
 
 .doc-menu-link {
     display: block;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
+    padding-top: 4px;
     text-decoration: none;
 }
 

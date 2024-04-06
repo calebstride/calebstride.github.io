@@ -1,6 +1,7 @@
 ---
 title: Manage Cabbage
 header: Manage Cabbage
+description: A page containing the summary of the personal finance project named Manage Cabbage
 ---
 ## Summary
 
@@ -21,8 +22,8 @@ to store and manage this data instead.
 ### How?
 When I started designing and coding the website I didn't really have that much web 
 experience and was fresh out of university. So I decided to use what I php which was what
-I had most experience with in web design. You can read about the first design 
-[here](manageCabbage/manageCabbageOld.html).
+I had most experience with in web design. [You can read about the 
+first design](manageCabbage/manageCabbageOld.html).
 
 After a while the website seemed like it was in need of an upgrade. It didn't help 
 that the whole of the backend was written in php (a language I knew little about). 

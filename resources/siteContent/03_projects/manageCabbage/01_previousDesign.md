@@ -1,6 +1,7 @@
 ---
 title: Previous Design
 header: Previous Design
+description: The summary and analysis of the old Manage Cabbage website 
 ---
 This page is about the initial version of "Manage Cabbage". It follows the processes 
 and designing I went through from start to finish. Whilst hopefully picking out some 

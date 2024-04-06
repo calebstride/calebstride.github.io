@@ -1,6 +1,8 @@
 ---
 title: Android Vico Point Colours
 header: Android Vico Point Colours
+description: A guide on how to change the colour of a point in a vico chart depending on 
+  where the point is located
 ---
 
 ### Problem
@@ -96,7 +98,8 @@ to allow for different point shapes or styles depending on their position.
 
 ```kotlin
 /**
- * A shape component that uses a different shape depending on the position it is drawn
+ * A shape component that uses a different shape components depending on the position 
+ * the point is drawn
  */
 class ShapeComponentAdaptable(
     shape: Shape = Shapes.pillShape,

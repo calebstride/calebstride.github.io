@@ -7,7 +7,8 @@
     <title>Android Vico Point Colours | Caleb Stride</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
+    <meta name="description" content="A guide on how to change the colour of a point in a vico chart depending on where the point is located">
     <meta name="author" content="Caleb Stride">
 
     <link href="/styles/main.css" rel="stylesheet" type="text/css">
@@ -102,7 +103,8 @@ point value in the LineSpec to our new class the result is the following.</p>
 for something to go wrong when using zooming. This class could be extended further
 to allow for different point shapes or styles depending on their position.</p>
 <pre><code class="hljs language-kotlin"><span class="hljs-comment">/**
- * A shape component that uses a different shape depending on the position it is drawn
+ * A shape component that uses a different shape components depending on the position 
+ * the point is drawn
  */</span>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">ShapeComponentAdaptable</span>(
     shape: Shape = Shapes.pillShape,

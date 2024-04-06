@@ -1,6 +1,8 @@
 ---
 title: Website Generator
 header: Website Generator
+description: A quick project on creating a website generator, that generates a static website
+    from a directory of .md files.
 ---
 
 This project was created to generate the website you're looking at now. It's main 
@@ -92,8 +94,7 @@ I thought this was a fun little project. I definitely learnt a bit about node
 as I hadn't previously used it. I didn't write any tests for this as I'm not 
 sure on how testing frameworks work within node so that's something to look in to.
 
-You can see the website that I generated using this tool
-[here](https://calebstride.com/index.html) and the 
+[You can see the website that I generated using this tool](https://calebstride.com/index.html) and the 
 [resources](https://github.com/CalebStride/CalebStride.github.io) of that site.
 
 

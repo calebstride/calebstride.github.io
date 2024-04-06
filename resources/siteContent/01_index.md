@@ -1,6 +1,7 @@
 ---
 title: Home
 header: Home
+description: The main page of the website of Caleb Stride
 ---
 
 <style>
