@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
+    <title>Jetpack Compose Progress Bar | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="description" content="A blog post on creating a nice looking loading / progress bar using jetpack compose">
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+
+    <script>
+         ContentTools.initTheme();
+    </script>
+</head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/231116themes.html">Webpage Colour Themes</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Android Vico Point Colours') === 'true'){event.stopPropagation();}" href="/blog/240308vicoPoints.html">Android Vico Point Colours</a></div></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Jetpack Compose Progress Bar') === 'true'){event.stopPropagation();}" href="/blog/240406loadingBar.html">Jetpack Compose Progress Bar</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Creating a Nice Progress Bar (Using Jetpack Compose)</h1>
+                <div id="page-text"><h3 id="Problem">Problem</h3>
+<p>When working on a part of my app I was trying to implement a progress/loading bar that would
+describe to a user how close they were to a goal.</p>
+<p>To do this I wanted to implement a 'nice' looking progress bar that would fit in with the
+rest of my application. I've been using Material Design 3 as design guidelines but the 
+loading bar element looks like this:</p>
+<img src="/images/loadingBar/m3-progress-bar.png" width="400" alt="The default M3 Loading Bar">
+
+<p>Which isn't very clear and doesn't look very appealing. I would prefer a bar that was:</p>
+<ul>
+<li>Larger, so it could be viewed easier</li>
+<li>Could be styled in different ways</li>
+<li>Had rounded ends</li>
+<li>The end of the coloured section should be flat</li>
+</ul>
+<p>However, I came across a lot more issues when doing this than I thought I would. So this
+blog goes through those issues and explains the final design I came up with.</p>
+<h3 id="SetUp">Set Up</h3>
+<p>The idea for this bar is that I can provide it with the current value and also the
+maximum value. It will then draw the bar in the container I place it in.</p>
+<p>To start I figure out the fraction of the bar that is filled in then I can draw the 
+bar the appropriate length. The composable layout looks like this:</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">ExampleBar</span><span class="hljs-params">(
+    currentValue: <span class="hljs-type">Float</span>,
+    limit: <span class="hljs-type">Float</span>,
+    modifier: <span class="hljs-type">Modifier</span> = Modifier
+)</span></span> {
+    <span class="hljs-comment">// Work out the fraction of the bar that is filled</span>
+    <span class="hljs-keyword">val</span> fraction = <span class="hljs-keyword">if</span> (currentValue &gt; limit) <span class="hljs-number">1f</span> <span class="hljs-keyword">else</span> (currentValue / limit)
+    Row(modifier = modifier) {
+        LoadingElement(fraction = fraction)
+    }
+}
+
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">LoadingElement</span><span class="hljs-params">(fraction: <span class="hljs-type">Float</span>)</span></span> {
+    <span class="hljs-comment">// The bar will be created here</span>
+}
+</code></pre><h3 id="FirstAttempt">First Attempt</h3>
+<p>My first attempt was to create two Box composables with varying weight values. The idea
+being that one box will hold display the highlighted value, and the other will be empty.
+As the fraction increases then the boxes will grow and shrink to display the correct
+value. The bar can be seen below with the modifiers set as different colours.</p>
+<img src="/images/loadingBar/first-nice.png" width="400" alt="The first attempt">
+
+<p>The problem with this attempt was there was a lot of other logic needed when rendering
+the Boxes using width. The reason for this is that if the fraction is either 0 or 1. Then 
+the opposite side Box would fail to render as width can't be 0.</p>
+<p>Also, as seen below. When the width of a rounded corner shape is smaller than the
+corner radius it behaves a bit weirdly.</p>
+<img src="/images/loadingBar/first-bad.png" width="400" alt="The rounded corner issue">
+
+<h4 id="Improvement">Improvement</h4>
+<p>I found out that you could use the Modifier.fillMaxWidth(fraction) method to fill in a 
+fraction of the available width. This meant that I could avoid all the logic about handling
+weight values and just use one Box instead.</p>
+<p>The first attempt code:</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-meta">@Composable</span>
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">LoadingElement</span><span class="hljs-params">(fraction: <span class="hljs-type">Float</span>)</span></span> {
+    <span class="hljs-keyword">val</span> barColour = Color.Green <span class="hljs-comment">// Placeholder to show the bar easier</span>
+    <span class="hljs-comment">// The row sets the width for the bar to use and a border</span>
+    Row(
+        modifier = Modifier
+            <span class="hljs-comment">// I added a border for the whole bar so you can see where the max size is</span>
+            .border(
+                width = <span class="hljs-number">2.</span>dp,
+                color = Color.Magenta,
+                shape = RoundedCornerShape(<span class="hljs-number">8.</span>dp)
+            )
+            .fillMaxWidth()
+    ) {
+        <span class="hljs-comment">// The box represents the progress (signified by green)</span>
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(fraction)
+                .height(<span class="hljs-number">20.</span>dp)
+                .background(
+                    color = barColour,
+                    <span class="hljs-comment">// This still needs changing to something that would allow a flat end</span>
+                    <span class="hljs-comment">// but not overflow when near the rounded ends</span>
+                    shape = RoundedCornerShape(topStart = <span class="hljs-number">8.</span>dp, bottomStart = <span class="hljs-number">8.</span>dp)
+                )
+        )
+    }
+}
+</code></pre><p>The main issue with this is still the ends of the bar. They don't fit with the shape of
+the outline and clip out of the border at extreme values. e.g:</p>
+<img src="/images/loadingBar/clipped-end.png" width="400" alt="The clipping issue">
+
+<p>One way to avoid this would to use a rounded cap instead of a flat end. But this makes the
+actual position of the bar harder to interpret.</p>
+<img src="/images/loadingBar/rounded-end.png" width="400" alt="The bar with a rounded end">
+
+<h3 id="SecondAttempt">Second Attempt</h3>
+<p>To handle the issues I decided to switch to trying to draw the bar in the Modifier.drawBehind
+method. This turned out to not be necessary, but it was interesting
+to get some experience with drawing straight to the canvas.</p>
+<p>To fix the issue where the ends of the bar were clipping through the border I decided to
+apply a radius to the bar depending on how close to the end it was. So for most the time
+there was no end corner radius. But when the loading bar reached the end it would apply
+a radius. Here is that code:</p>
+<pre><code class="hljs language-kotlin">
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">LoadingElement</span><span class="hljs-params">(fraction: <span class="hljs-type">Float</span>)</span></span> {
+    <span class="hljs-comment">// As the progress bar section is done within the Box, it can now set the full width</span>
+    <span class="hljs-comment">// and the border colour</span>
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(<span class="hljs-number">20.</span>dp)
+            .border(
+                width = <span class="hljs-number">2.</span>dp,
+                color = Color.Magenta,
+                shape = RoundedCornerShape(<span class="hljs-number">8.</span>dp)
+            )
+            <span class="hljs-comment">// Our new extension function handles drawing the bar of a given fraction</span>
+            .drawBar(fraction)
+    )
+}
+
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> Modifier.<span class="hljs-title">drawBar</span><span class="hljs-params">(fraction: <span class="hljs-type">Float</span>)</span></span>: Modifier {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.drawBehind {
+        <span class="hljs-comment">// The radius of the corners in pixels</span>
+        <span class="hljs-keyword">val</span> roundLength = <span class="hljs-number">8</span> * density
+        <span class="hljs-comment">// The bar should be a fraction of the available width</span>
+        <span class="hljs-keyword">val</span> barLength = size.width * fraction
+        <span class="hljs-keyword">val</span> cornerRadius = CornerRadius(x = roundLength)
+        <span class="hljs-comment">// The end corner radius is 0 until we reach within the radius of the end of the bar</span>
+        <span class="hljs-keyword">val</span> cornerEndRadius = <span class="hljs-keyword">if</span> (barLength &lt;= size.width - roundLength) {
+            CornerRadius(x = <span class="hljs-number">0f</span>)
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// When inside the radius of the end corners we find how far we are passed </span>
+            <span class="hljs-comment">// the radius start. Then we apply that as a corner radius to the progress bar</span>
+            CornerRadius( x = barLength - (size.width - roundLength) )
+        }
+        <span class="hljs-comment">// We construct a round rectangle using the corner radii calculated earlier </span>
+        <span class="hljs-keyword">val</span> rr = RoundRect(
+            rect = Rect(
+                topLeft = Offset.Zero,
+                bottomRight = Offset(x = barLength, y = <span class="hljs-number">20</span> * density)
+            ),
+            topLeft = cornerRadius,
+            bottomLeft = cornerRadius,
+            topRight = cornerEndRadius,
+            bottomRight = cornerEndRadius
+        )
+        <span class="hljs-comment">// We then provide the rectable to a path and drawer that path</span>
+        drawPath(path = Path().apply { addRoundRect(rr) }, color = Color.Green)
+    }
+}
+</code></pre><p>As you can see this is a lot larger than the previous attempts. But it does give a nice
+finish to the end of the progress bar when nearing the end.</p>
+<img src="/images/loadingBar/second-near-end.png" width="400" alt="The bar with a slight round end">
+
+<p>It appears straight which is what we want, and it doesn't clip through the border. We
+still have this problem at the start though. </p>
+<img src="/images/loadingBar/second-near-start.png" width="400" alt="The bar with a slight round end">
+
+<p>Unfortunately I don't think we can fix this issue using the same method as the end of the 
+bar. The reason being that the corner radius can't be greater than the length of the 
+shape. So the shape height can't be reduced, which is what we need to happen to stop
+the issue at the front.</p>
+<h3 id="Findingtheheightvalue">Finding the height value</h3>
+<p>Another possible fix would be to change the height of the rectangle based on the length.
+So a short length would have a short height and not clip the border. This would fix the 
+issue at the start of the bar. </p>
+<p>I decided that I wouldn't use this solution for the actual implementation as it was becoming
+too complex especially considering the edge case it would be fixing. </p>
+<p>I did look at the maths behind it out of interest. I labeled this diagram where the 
+dashed line (x) represents the height we need to find.</p>
+<img src="/images/loadingBar/height-equation.png" width="400" alt="The equation to find the rounded bar height">
+
+<p>If you place together the top and bottom of the rounded rectangle corners you get a circle
+which makes this easier to visualise. </p>
+<img src="/images/loadingBar/height-equation-two.png" width="400" alt="The equation to find the rounded bar height">
+
+<p>So we are now finding the length of the chord of a circle, shown here as x - (h - 2r).
+Using the pythagoras theorem we can find the length of a which is double the length of 
+x - (h - 2r). Doing some more rearranging we get the equation: </p>
+<p>x = (2 * sqrt(c<sup>2</sup> + b<sup>2</sup>)) + (h - 2r)</p>
+<p>We could then use this height as the maximum height for the bar to be to stop it clipping
+through the border. Although even then there might be some issue with how the radius works
+on such small shapes.</p>
+<h3 id="ThirdSolution">Third Solution</h3>
+<p>I decided to do a bit of research into clipping and if there was any way to avoid doing it,
+then I came across the <a href="https://developer.android.com/develop/ui/compose/graphics/draw/modifiers#graphics-modifier-clip-shape">Modifier.clip()</a> method.</p>
+<p>This looked promising as it would clip away anything outside a defined shape. So I changed
+my first implementation and added this clip method. Thankfully this worked perfectly,
+everything outside the border was removed. As this was happening I could completely 
+remove the RoundedShape information as I could use a normal rectangle and anything outside the
+border would be removed.</p>
+<p>This looked exactly how I wanted it to in terms of the shape of the bar.</p>
+<img src="/images/loadingBar/third-end.png" width="400" alt="The third solution bar at the end">
+
+<p>The code was also small and simple.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-meta">@Composable</span>
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">LoadingElement</span><span class="hljs-params">(fraction: <span class="hljs-type">Float</span>)</span></span> {
+    <span class="hljs-comment">// The shape for the outside border</span>
+    <span class="hljs-keyword">val</span> loadingShape = RoundedCornerShape(<span class="hljs-number">8.</span>dp)
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(<span class="hljs-number">20.</span>dp)
+            .border(color = Color.Magenta, width = <span class="hljs-number">2.</span>dp, shape = loadingShape)
+             <span class="hljs-comment">// The inner composable is clipped within the bounds of this shape</span>
+            .clip(shape = loadingShape)
+    ) {
+        <span class="hljs-comment">// The inner fill area</span>
+        Box(
+            modifier = Modifier
+                .height(<span class="hljs-number">20.</span>dp)
+                .fillMaxWidth(fraction)
+                .background(color = Color.Green)
+        )
+    }
+}
+</code></pre><p>This attempt was definitely good enough for the use cases and was the solution I went 
+with. Here is the third attempt with the border set to the same colour as the bar.</p>
+<img src="/images/loadingBar/third-final.png" width="400" alt="The final look at the third solution">
+
+<h3 id="Touch-ups">Touch-ups</h3>
+<h4 id="Extremevalues">Extreme values</h4>
+<p>One thing I noticed with the final solution is that when the values are very close the 
+minimum they don't actually show on the bar. The reason for this is that they're behind
+the border.</p>
+<p>The opposite is true for extreme maximums, where the bar is full before the fraction reaches
+1f. To fix this I just added horizontal padding equal to the border width so that the bar starts 
+where the outside border ends.</p>
+<h4 id="Colouring">Colouring</h4>
+<p>I decided to add the option of a brush instead of a colour. This gives more freedom to
+colouring the bar and allows for different patterns.</p>
+<p>I also wanted the bar to display a different colour depending on if the fraction was over 1.
+This was because the bar is being used to show how close to a limit the value is, and it
+would be good to differentiate when the limit has been reached.</p>
+<h3 id="Conclusion">Conclusion</h3>
+<p>In the end my loading/progress bar looks like this:</p>
+<img src="/images/loadingBar/final-bars.png" width="400" alt="The final look the solution">
+
+<p>Which is much nicer than the default progress bar, and fits better to the rest of the 
+application. It also has the option to change colours and size, which the existing one
+doesn't.</p>
+<p>There are a couple of things that could be added to make it more flexible. For one, the 
+bar is made to be static, which means there are no animations and if it was updated it
+would look pretty ugly. Also, the way the fraction is handled could be changed to 
+prevent as much of the composable being recomposed.</p>
+<p>Finally, it would be nice to have an indication of how much over the limit you are if you
+have a limit. This could be just by adding a notch, or another graphic indication on the 
+bar. For my use-case the bar has the percentage displayed below it, so the information
+isn't too important to display.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-meta">@Composable</span>
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">LoadingElement</span><span class="hljs-params">(fraction: <span class="hljs-type">Float</span>, overLimit: <span class="hljs-type">Boolean</span>)</span></span> {
+    <span class="hljs-keyword">val</span> borderColour = <span class="hljs-comment">// Determine colour based on overLimit, or pass as a parameter</span>
+    <span class="hljs-keyword">val</span> brush = <span class="hljs-comment">// Create the brush you want, or pass it as a parmeter</span>
+    <span class="hljs-keyword">val</span> loadingShape = RoundedCornerShape(<span class="hljs-number">8.</span>dp)
+    <span class="hljs-keyword">val</span> borderWidth = <span class="hljs-number">2.</span>dp
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(<span class="hljs-number">20.</span>dp)
+            .border(color = borderColour, width = borderWidth, shape = loadingShape)
+            .clip(shape = loadingShape)
+    ) {
+        Box(
+            modifier = Modifier
+                .height(<span class="hljs-number">20.</span>dp)
+                 <span class="hljs-comment">// Add padding to move passed the border</span>
+                .padding(horizontal = borderWidth)
+                .fillMaxWidth(fraction)
+                .background(brush = brush)
+        )
+    }
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
+    </div>
+
+</body></html>
