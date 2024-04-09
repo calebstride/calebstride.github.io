@@ -14,6 +14,10 @@
     <link href="/styles/main.css" rel="stylesheet" type="text/css">
     <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
 
+    <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="images/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="images/favicon-32x32.png" sizes="32x32" type="image/png">
+
     <script>
          ContentTools.initTheme();
     </script>
@@ -197,7 +201,7 @@ still have this problem at the start though. </p>
 bar. The reason being that the corner radius can't be greater than the length of the 
 shape. So the shape height can't be reduced, which is what we need to happen to stop
 the issue at the front.</p>
-<h3 id="Findingtheheightvalue">Finding the height value</h3>
+<h4 id="Findingtheheightvalue">Finding the height value</h4>
 <p>Another possible fix would be to change the height of the rectangle based on the length.
 So a short length would have a short height and not clip the border. This would fix the 
 issue at the start of the bar. </p>

@@ -191,7 +191,7 @@ bar. The reason being that the corner radius can't be greater than the length of
 shape. So the shape height can't be reduced, which is what we need to happen to stop
 the issue at the front.
 
-### Finding the height value
+#### Finding the height value
 Another possible fix would be to change the height of the rectangle based on the length.
 So a short length would have a short height and not clip the border. This would fix the 
 issue at the start of the bar. 
