@@ -3,6 +3,7 @@
     --base-text-colour-dark: #6b6b6b;
     --base-text-colour-darker: #414141;
     --background-color: #1c1c1c;
+    --background-color-shade: #282828;
     --background-color-light: #cecece;
     --background-color-dark: black;
     --base-text-highlight-colour: #e8e8e8;
@@ -14,6 +15,7 @@ html.light-theme {
     --base-text-colour-dark: #6b6b6b;
     --base-text-colour-darker: #414141;
     --background-color: #e1e0e0;
+    --background-color-shade: #c5c5c5;
     --background-color-light: #e1e0e0;
     --background-color-dark: black;
     --base-text-highlight-colour: black;
@@ -43,19 +45,25 @@ html, body {
 
 
 #side-bar a {
-    display: inline-block;
     color: var(--base-text-highlight-colour);
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     user-select: none;
     cursor: pointer;
+    flex-grow: 1;
+    border-bottom: 1px solid var(--background-color-shade);
 }
 
 #side-bar .drop-down-content {
-    padding-left: 16px;
+    padding-left: 24px;
 }
 
 .selected > div > a {
     text-decoration: underline;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
 }
 
 .hidden-feature {
@@ -352,4 +360,29 @@ pre code {
 #theme-wrap {
     position: fixed;
     bottom: 20px;
+}
+
+.blog-list {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--background-color-shade);
+}
+
+.blog-list > div {
+    padding: 10px;
+    border-bottom: 2px solid var(--background-color-shade);
+}
+
+.blog-date {
+    font-size: 90%;
+    font-weight: bold;
+    float: right;
+}
+
+.blog-link {
+    padding-bottom: 5px;
+}
+
+.blog-summary {
+    padding-top: 12px;
 }
