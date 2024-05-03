@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
+    <title>App | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="description" content="Creating the android app version of Manage Cabbage">
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+
+    <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="images/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="images/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    <script>
+         ContentTools.initTheme();
+    </script>
+</head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('App') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/app.html">App</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/231022openIdUi.html">React Router OpenID</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/231116themes.html">Webpage Colour Themes</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Android Vico Point Colours') === 'true'){event.stopPropagation();}" href="/blog/240308vicoPoints.html">Android Vico Point Colours</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Jetpack Compose Progress Bar') === 'true'){event.stopPropagation();}" href="/blog/240406loadingBar.html">Jetpack Compose Progress Bar</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">App (Manage Cabbage)</h1>
+                <div id="page-text"><p>After thinking a while about how I actually use the current Manage Cabbage website to
+manage my finances, I realised that I only really used the website through my phone. So I
+thought about creating an app version of the website that I could create. I had always 
+been slightly interested in learning app development and had no prior experience, so I 
+decided to give it a go.</p>
+<div id="doc-menu-area" class="numbered-menu"> <div><a href="#Pickingaframework" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;Picking a framework </a><a href="#ReactNative" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.1.</div>&nbsp;&nbsp;React Native </a><a href="#JetpackCompose" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.2.</div>&nbsp;&nbsp;Jetpack Compose </a><a href="#Flutter" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.3.</div>&nbsp;&nbsp;Flutter </a><a href="#FinalChoice" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.4.</div>&nbsp;&nbsp;Final Choice </a><a href="#Learningtheframework" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;Learning the framework </a><a href="#Kotlin" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.1.</div>&nbsp;&nbsp;Kotlin </a><a href="#JetpackCompose" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.2.</div>&nbsp;&nbsp;Jetpack Compose </a><a href="#LearningSummary" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.3.</div>&nbsp;&nbsp;Learning Summary </a><a href="#Creatingtheapp" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.</div>&nbsp;&nbsp;Creating the app </a><a href="#UsingKotlin" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.1.</div>&nbsp;&nbsp;Using Kotlin </a><a href="#Lackofuniformity" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.2.</div>&nbsp;&nbsp;Lack of uniformity </a><a href="#Publishing" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.3.</div>&nbsp;&nbsp;Publishing </a><a href="#CreationSummary" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.4.</div>&nbsp;&nbsp;Creation Summary </a><a href="#FinalApp" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">4.</div>&nbsp;&nbsp;Final App </a></div></div>
+
+<h2 id="Pickingaframework"><div class="header-num">1.</div>&nbsp;&nbsp;Picking a framework</h2>
+<p>The first thing I had to do was to pick a language / framework to create the app in. I 
+have an android phone so that already limited my choices slightly. I wanted to find one
+that I wouldn't need to learn a new language for, and that was popular enough to have
+good resources and decent learning materials.</p>
+<h3 id="ReactNative"><div class="header-num">1.1.</div>&nbsp;&nbsp;React Native</h3>
+<p>The first framework I looked at was <a href="https://reactnative.dev/">React Native</a>. This framework
+seemed like a good contender. It uses javascript, which I have previous experience using.
+I also have experience using the web version of React so a lot of the terminology would
+be familiar. The site has a good amount of resources and learning material, as well as a
+decently sized community. In addition, as it is written in javascript it is platform independent,
+meaning that the app I develop can be used on both Android and ios devices.</p>
+<h3 id="JetpackCompose"><div class="header-num">1.2.</div>&nbsp;&nbsp;Jetpack Compose</h3>
+<p>I then decided to look if any framework used Java, as that is the language I have most
+experience with, and therefore would be easiest to learn. It turns out that most native 
+Android apps use Java as their main language, which I was unaware of.</p>
+<p>Looking into this a bit more it appears that Android now encourages app developers to use
+Kotlin + Jetpack Compose rather than Java + XML for development. Therefore, I started looking at
+<a href="https://developer.android.com/develop/ui/compose">Jetpack Compose</a>. The language it uses
+is Kotlin, which I had no experience with, but it compiles into Java bytecode and runs
+on the JVM. It seemed to have a good collection of learning resources and documentation. 
+The only downside seemed to be that it was normally only used for creating Android apps
+and couldn't be used on other platforms. There are the Compose Multiplatform libraries,
+but they seemed early on in development.</p>
+<h3 id="Flutter"><div class="header-num">1.3.</div>&nbsp;&nbsp;Flutter</h3>
+<p>The final framework I looked at was <a href="https://flutter.dev/">Flutter</a>. This uses Dart as 
+its programming language which, unlike the other frameworks I looked at, I had no 
+experience in at all. Like the other two it seemed to have a large amount of learning
+resources and the community seemed pretty large. Like React Native this could be deployed
+on any platform, including the web.</p>
+<h3 id="FinalChoice"><div class="header-num">1.4.</div>&nbsp;&nbsp;Final Choice</h3>
+<p>My final decision for the framework I was going to use was Jetpack Compose. The main
+reason being that I would find working in the JVM ecosystem a lot easier than in 
+javascript, or learning Dart from scratch. Although I would need to learn Kotlin, but as
+I already had a good grasp on Java it shouldn't be too difficult. It's also specifically
+made for Android which is the device I use and will be developing for.</p>
+<h2 id="Learningtheframework"><div class="header-num">2.</div>&nbsp;&nbsp;Learning the framework</h2>
+<p>I started learning Jetpack Compose by doing <a href="https://developer.android.com/courses/android-basics-compose/course">this tutorial</a>.
+It started completely from the ground though and assumes you have very little coding
+experience, which does make some parts worth skipping.</p>
+<h3 id="Kotlin"><div class="header-num">2.1.</div>&nbsp;&nbsp;Kotlin</h3>
+<p>This tutorial also included resources to learn Kotlin. I found Kotlin pretty fun to use.
+It's very similar to Java, although you seem less restricted to having to define classes
+to do everything. </p>
+<p>Functions are also first class, so you can pass them around as parameters
+or store them in variables. This is what Jetpack Compose uses as it's main structure to create
+elements. For example, I can pass a function to a method that with apply some processing
+after running the lambda, no matter what the lambda does</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// Functions can take another function as an argument </span>
+<span class="hljs-comment">// (Unit means nothing is returned, a bit like void in Java)</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onClickHandler</span><span class="hljs-params">(onClick: () -&gt; <span class="hljs-type">Unit</span>)</span></span> {
+    <span class="hljs-comment">// Run the given lambda</span>
+    onClick()
+    <span class="hljs-comment">// We can then do additional processing</span>
+    println(<span class="hljs-string">"Clear up some data"</span>)
+}
+
+<span class="hljs-comment">// You can then call the handler and run whatever you want in the lambda</span>
+onClickHandler({ println(<span class="hljs-string">"Do some processing"</span>) })
+
+<span class="hljs-comment">// If the final parameter of a function is a lambda it can be moved outside of ()</span>
+onClickHandler() { println(<span class="hljs-string">"Do some processing"</span>) }
+
+<span class="hljs-comment">// Finally an empty () isn't needed if no other params are present</span>
+onClickHandler { println(<span class="hljs-string">"Do some processing"</span>) }
+
+<span class="hljs-comment">// The above three function calls are identical</span>
+</code></pre><p>It also handles null a lot better than Java. Instead of every type possibly
+being null and having to fudge your way around it with null checks and @NotNull etc. you
+can define types as possible being null by using '?' when defining the type. You can
+also call methods safely on potential null values by using '.?'</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// A string that is not nullable</span>
+<span class="hljs-keyword">var</span> notNullable: String = <span class="hljs-string">"I am definitely not null"</span>
+notNullable = <span class="hljs-literal">null</span>   <span class="hljs-comment">// This will show an error and is not possible</span>
+
+<span class="hljs-comment">// A string that is nullable (Notice the '?')</span>
+<span class="hljs-keyword">var</span> nullable: String? = <span class="hljs-string">"I could be null"</span>
+nullable = <span class="hljs-literal">null</span>      <span class="hljs-comment">// This is fine as the string can be null</span>
+
+<span class="hljs-comment">// It makes using values a lot easier</span>
+notNullable.length   <span class="hljs-comment">// This is fine as we know the value is not null</span>
+nullable.length      <span class="hljs-comment">// This will throw an error as it could be null</span>
+
+<span class="hljs-comment">// If you want to call a potential null value you use '?.'</span>
+nullable?.length     <span class="hljs-comment">// This returns null if the first value is null, otherwise calls .length</span>
+</code></pre><h3 id="JetpackCompose"><div class="header-num">2.2.</div>&nbsp;&nbsp;Jetpack Compose</h3>
+<p>Jetpack Compose is a framework built on top of Kotlin. It behaves a little like a markup
+language in terms of nesting elements. But you can define each element yourself using
+some building blocks, such as Box, Column, Row and Text. Each component you define is
+done in a function and marked with the @Composable annotation.</p>
+<p>You can modify these components using a Modifier to give them extra details, such as
+making them clickable, changing their colour, their shape and the position they're 
+displayed.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// This creates some simple text with a blue background</span>
+<span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">TextInBlueBox</span><span class="hljs-params">(textInput: <span class="hljs-type">String</span>)</span></span> {
+    <span class="hljs-comment">// As you can see the child elements are passed as a lambda function</span>
+    Box(modifier = Modifier.background(color = Color.Blue, shape = RectangleShape)) {
+        <span class="hljs-comment">// The text element will be displayed inside the box element</span>
+        Text(text = textInput)
+    }
+}
+
+<span class="hljs-comment">// You can then call this element</span>
+TextInBlueBox(textInput = <span class="hljs-string">"Display me in a box"</span>)
+
+<span class="hljs-comment">// Notice that you can optionally name parameters in Kotlin. The below would also work</span>
+<span class="hljs-comment">// but it's best practice to write the parameter name with Composable elements</span>
+TextInBlueBox(<span class="hljs-string">"Display me as well"</span>)
+</code></pre><p>There are some libraries to add elements for you. The one in the training is the material
+design 3 library which adds elements to fit with Google's material design guidelines.</p>
+<h3 id="LearningSummary"><div class="header-num">2.3.</div>&nbsp;&nbsp;Learning Summary</h3>
+<p>In the end I had a good understanding of the main concepts and how to use them. I knew
+pretty much everything I would need to create a CRUD application, which is what 
+Manage Cabbage would be. Also, I liked how you were encouraged to match Google's material
+design guidelines. As I hadn't had much experience with designing UIs this made it much
+easier.</p>
+<h2 id="Creatingtheapp"><div class="header-num">3.</div>&nbsp;&nbsp;Creating the app</h2>
+<p>From this position I was able to start creating my Manage Cabbage android application. 
+Taking everything that I had learnt in the tutorials
+I felt comfortable I knew everything I would need to know. This section just goes over the
+main observations I had creating the app.</p>
+<h3 id="UsingKotlin"><div class="header-num">3.1.</div>&nbsp;&nbsp;Using Kotlin</h3>
+<p>I found using Kotlin pretty fun. It ended up being very similar to Java, so I felt
+comfortable with the terminology and structure. But then it had a lot of features that
+are definitely not well done in Java. For example the null handling is very nice, so
+many times in Java you would have to do null checking just for safety. Whilst in Kotlin
+there are features to make dealing with nulls a lot easier and quicker.</p>
+<p>I miss ternary operators, as they aren't available in Kotlin. Instead, they have
+one-line if else statements. Which are easier to read, but they don't look as nice.</p>
+<p>Being able to assign variables from if statements and switch ('when' in Kotlin) statements
+is very handy. For example,</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// In Java</span>
+String a = <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">if</span> (num &gt; <span class="hljs-number">6</span>) {
+    a = <span class="hljs-string">"GOOD"</span>;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">6</span> &amp;&amp; num &gt; <span class="hljs-number">3</span>) {
+    a = <span class="hljs-string">"OK"</span>;
+} <span class="hljs-keyword">else</span> {
+    a = <span class="hljs-string">"BAD"</span>;
+}
+<span class="hljs-comment">// In Kotlin</span>
+<span class="hljs-keyword">val</span> a = <span class="hljs-keyword">if</span> (num &gt; <span class="hljs-number">6</span>) {
+    <span class="hljs-string">"OK"</span> 
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">6</span> &amp;&amp; num &gt; <span class="hljs-number">3</span>) {
+    <span class="hljs-string">"BAD"</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-string">"BAD"</span>
+}
+</code></pre><p>Also, surprisingly I learnt quiet a lot about multithreading when creating the app. 
+Multithreading is needed in Android apps to separate the rendering of the ui and the backend
+work. This is so the main thread doesn't get stuck causing a janky UI. Kotlin has a 
+multithreading library called Coroutines which is the suggested library to deal with this.</p>
+<h3 id="Lackofuniformity"><div class="header-num">3.2.</div>&nbsp;&nbsp;Lack of uniformity</h3>
+<p>It did seem a bit like Jetpack Compose hasn't reached full maturity yet. The reason I think
+this is that there are some features where there isn't much documentation online, 
+and the documentation that exists conflicts with other places the feature is documented.</p>
+<p>An example of this is when dealing with ViewModel state. Each example app or tutorial 
+seems to deal with it slightly differently, whether it's the classes they suggest using
+or the structure. It may also be just up to the developer how to structure it, but it was
+something I had trouble fully understanding.</p>
+<p>Also, when accessing a lot of features on the Android device, such as the Biometric features
+or permission, a lot of the suggested ways of doing things use the old Android methods. 
+They do work together with Jetpack Compose but are a bit awkward to implement and require
+knowledge of the old framework. I'm not sure if this would be an issue with other frameworks
+especially the multiplatform ones.</p>
+<h3 id="Publishing"><div class="header-num">3.3.</div>&nbsp;&nbsp;Publishing</h3>
+<p>I found publishing the application to be pretty straightforward but rather slow. The main 
+storefront for Android apps is Google Play. To get your app on Google Play you need to 
+pay to create a development account. You also need to get 20 people to test the app 
+before being able to publish it.</p>
+<p>It did seem like the store isn't aimed at individuals creating apps but rather encourages you
+to do it as a company instead. For example, having to have your details publicly available
+on the store page.</p>
+<p>There are probably legal reasons for this, but it makes using Google Play as an individual
+a bit of a pain. It's also probably to try and keep the apps good quality and not allow
+the store to fill up with shovelware.</p>
+<h3 id="CreationSummary"><div class="header-num">3.4.</div>&nbsp;&nbsp;Creation Summary</h3>
+<p>Overall I found it interesting and pretty fun using Jetpack Compose and Kotlin. I think
+I might enjoy Kotlin more than Java, which I wasn't expecting at the start of this project.
+It seems a lot more flexible than Java whilst still somehow being strongly typed, and the
+lambdas in Kotlin take the Java ones to the next level.</p>
+<p>I also enjoyed being able to see the changes you make when creating the UI, which you
+don't get to experience much when doing backend work.</p>
+<h2 id="FinalApp"><div class="header-num">4.</div>&nbsp;&nbsp;Final App</h2>
+<p>It was interesting working on app development especially since I've never done any work
+on mobile applications before. It would be interesting to see how other frameworks worked
+in comparison to Jetpack Compose but perhaps that's for another day.</p>
+<p>In the meantime the app is still having features added but the majority of it has 
+been completed and a demo version is <a href="https://play.google.com/store/apps/details?id=com.managecabbage.android">available on the play store</a>.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
+    </div>
+
+</body></html>
