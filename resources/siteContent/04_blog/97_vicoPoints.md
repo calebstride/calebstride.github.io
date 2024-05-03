@@ -3,6 +3,8 @@ title: Android Vico Point Colours
 header: Android Vico Point Colours
 description: A guide on how to change the colour of a point in a vico chart depending on 
   where the point is located
+type: blog
+creationDate: 2024-03-08
 ---
 
 ### Problem

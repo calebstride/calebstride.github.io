@@ -1,7 +1,9 @@
 ---
 title: Jetpack Compose Progress Bar
 header: Creating a Nice Progress Bar (Using Jetpack Compose)
-description: A blog post on creating a nice looking loading / progress bar using jetpack compose
+description: Creating a nice looking loading / progress bar using jetpack compose
+type: blog
+creationDate: 2024-04-06
 ---
 
 ### Problem

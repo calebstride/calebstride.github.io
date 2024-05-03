@@ -1,8 +1,10 @@
 ---
 title: Webpage Colour Themes
 header: Webpage Colour Themes
-description: A blog post on a quick way to change the theme in a html page with css and 
+description: A quick way to change the theme in a html page with css and 
   javascript
+type: blog
+creationDate: 2023-11-16
 ---
 
 ### Problem
