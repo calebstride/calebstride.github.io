@@ -1,6 +1,6 @@
 ---
 title: App
-header: App (Manage Cabbage)
+header: Manage Cabbage App
 description: Creating the android app version of Manage Cabbage 
 ---
 
