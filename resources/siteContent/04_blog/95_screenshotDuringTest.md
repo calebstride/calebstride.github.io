@@ -321,7 +321,10 @@ pretty interesting though as many of the Google apps show text and the device fr
 as [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos&hl=en&gl=US)
 and [Google Wallet](https://play.google.com/store/apps/details?id=com.google.android.apps.walletnfcrel).
 
-Overall I think I've spent a little too long looking into this. Hopefully I need to create
-and update the screenshots enough times to make it worthwhile. Another plus side is that
-I could use this tool for debugging if I have to take screenshots to make sure a page
-is rendering correctly.
+Overall I think I've spent a little too long looking into this for the help it 
+currently provides. Especially considering I
+won't need to update the screenshots that frequently. In the future it 
+could prove a lot more beneficial, especially if I need screenshots for documentation. 
+Another plus side is that I could use this tool for debugging if I have to take screenshots 
+to make sure a page is rendering correctly. Either way it definitely wasn't wasted time
+as I learnt a lot more about UI testing within the Android ecosystem.
