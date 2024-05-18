@@ -7,18 +7,18 @@ type: blog
 creationDate: 2023-11-16
 ---
 
-### Problem
+## Problem
 On one of my websites I decided it would be nice if the user had a choice in what colour 
 theme the website used. I decided to have a look at how other websites did this and
 came across [this](https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/) 
 article which explains some popular approaches.
 
-### Goal
+## Goal
 To start off with I would just want a theme that could toggle between light and dark. But
 I wanted to the option to add more themes in the future.
 
-### Solution
-#### Changing the theme
+## Solution
+### Changing the theme
 The way that I would implement this was to use css variables and classes to change the 
 colours used throughout the website.
 
@@ -57,7 +57,7 @@ page.className = 'dark-theme';
 You could then add an event onto an element of choice to trigger changing the theme.
 This could be a toggle button, or a dropdown list.
 
-#### Storing the theme
+### Storing the theme
 The choice of theme should be remembered to provide a consistent user experience, and to
 stop the user having to manually change the theme every time they visit. The easiest way
 to do this for my site was to just store the choice of theme in localStorage.
@@ -72,7 +72,7 @@ if (theme !== undefined) {
 }
 ```
 
-#### Default value
+### Default value
 When the user loads the website we need to decide what theme should be set. Originally I 
 was just going to have this set to the theme stored in localStorage, or the dark theme if
 nothing existed in storage. 
@@ -89,7 +89,7 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matc
 }
 ```
 
-### Conclusion
+## Conclusion
 This turned out to not be that hard to implement and was mainly focused around changing
 classes and css values. 
 
@@ -102,7 +102,7 @@ rather than the users system theme.
 At the time of writing this the theme changing functionality is on this website, so feel
 free to take a look.
 
-### Updates
+## Updates
 I noticed a slight issue with the approach I'd done. When you load the website it first
 loads the default colour theme very briefly before changing it to the saved one. This 
 very quick colour change doesn't affect much, but it doesn't look very appealing. The reason 

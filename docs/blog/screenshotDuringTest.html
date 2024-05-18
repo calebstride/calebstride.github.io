@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
+    <title>Screenshots in Android Tests | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="description" content="Taking a screenshot in an android test using jetpack compose">
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+
+    <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    <script>
+         ContentTools.initTheme();
+    </script>
+</head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('App') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/app.html">App</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Screenshots in Android Tests') === 'true'){event.stopPropagation();}" href="/blog/screenshotDuringTest.html">Screenshots in Android Tests</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Jetpack Compose Progress Bar') === 'true'){event.stopPropagation();}" href="/blog/loadingBar.html">Jetpack Compose Progress Bar</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Android Vico Point Colours') === 'true'){event.stopPropagation();}" href="/blog/vicoPoints.html">Android Vico Point Colours</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/themes.html">Webpage Colour Themes</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Screenshots in Android Tests</h1>
+                <div id="page-text"><p>As I was getting ready to publish my app there was a requirement to post screenshots of your
+app so potential users know what it looks like.</p>
+<p>I did this manually on an Android emulator by going to the screens I wanted and taking a
+screenshot. I then had to transfer the screenshots from the emulator to my pc. I could
+then upload them to the store page.</p>
+<p>The issue with this is that it was pretty slow. Also, if my ui changed at all I would need
+to redo it again. So I started looking at ways to automate it.</p>
+<div id="doc-menu-area"> <div><a href="#Requirements" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;Requirements </a><a href="#Research" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;Research </a><a href="#Paparazzi" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.1.</div>&nbsp;&nbsp;Paparazzi </a><a href="#Shot" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.2.</div>&nbsp;&nbsp;Shot </a><a href="#AndroidTestify" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.3.</div>&nbsp;&nbsp;Android Testify </a><a href="#Dropshots" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.4.</div>&nbsp;&nbsp;Dropshots </a><a href="#DataIssue" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.</div>&nbsp;&nbsp;Data Issue </a><a href="#MockData" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.1.</div>&nbsp;&nbsp;Mock Data </a><a href="#Choice" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">4.</div>&nbsp;&nbsp;Choice </a><a href="#ResearchAgain" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">5.</div>&nbsp;&nbsp;Research Again </a><a href="#PixelCopy" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.1.</div>&nbsp;&nbsp;PixelCopy </a><a href="#UiAutomator" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.2.</div>&nbsp;&nbsp;Ui Automator </a><a href="#DeviceCaptor" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.3.</div>&nbsp;&nbsp;DeviceCaptor </a><a href="#SemanticNodeInteraction" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">5.4.</div>&nbsp;&nbsp;SemanticNodeInteraction </a><a href="#Creatingatest" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">6.</div>&nbsp;&nbsp;Creating a test </a><a href="#MovingFilesfromtheEmulator" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">6.1.</div>&nbsp;&nbsp;Moving Files from the Emulator </a><a href="#FinalSolution" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">6.2.</div>&nbsp;&nbsp;Final Solution </a><a href="#Thoughts" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">7.</div>&nbsp;&nbsp;Thoughts </a></div></div>
+
+<h2 id="Requirements"><div class="header-num">1.</div>&nbsp;&nbsp;Requirements</h2>
+<p>There were a few things I needed to make sure were possible with the solution I choose.</p>
+<p>Firstly I would prefer to be able to run this as a test via JUnit. This is just so it 
+fits with the rest of the architecture and could be run easily with Gradle and the current
+build pipeline.</p>
+<p>Secondly I need to be able to run the whole version of my app with data included. This is
+so the screenshots are meaningful and show of what the system looks like in use.</p>
+<p>Finally, it would be useful to run the test using different screen sizes. This way I can
+create screenshots for tablet devices as well as mobile ones.</p>
+<h2 id="Research"><div class="header-num">2.</div>&nbsp;&nbsp;Research</h2>
+<p>I spent a while looking at different solutions to solve this. Ideally I could just write 
+some pre-defined flow in a test and then at each point I wanted a screenshot I would just
+have to call some method to take the screenshot. Then at the end I would have a collection
+of the screenshots I wanted.</p>
+<h3 id="Paparazzi"><div class="header-num">2.1.</div>&nbsp;&nbsp;Paparazzi</h3>
+<p>The first potential solution I came across was <a href="https://github.com/cashapp/paparazzi">Paparazzi</a>.
+This allows for you to render you application screens without using an emulator, and also
+allows you to take an image from these rendered screens. It also fully integrates with
+JUnit and Gradle.</p>
+<h3 id="Shot"><div class="header-num">2.2.</div>&nbsp;&nbsp;Shot</h3>
+<p>The next solution I looked at was <a href="https://github.com/pedrovgs/Shot">Shot</a>. This seems to
+be a screenshot testing plugin. It also includes support for Jetpack Compose.</p>
+<p>From what I can see this library is built upon 
+<a href="https://github.com/facebook/screenshot-tests-for-android">Screenshot Tests for Andriod</a> 
+but unfortunately that library doesn't support Jetpack Compose. It also hasn't been updated
+for two years.</p>
+<h3 id="AndroidTestify"><div class="header-num">2.3.</div>&nbsp;&nbsp;Android Testify</h3>
+<p>This next one is called <a href="https://github.com/ndtp/android-testify/">Android Testify</a>. Like
+the others it supports Jetpack Compose out of the box. It also comes with an Android
+Studio plugin to help with retrieving and recording screenshots.</p>
+<p>This seems like a pretty small project, but it appears to have good documentation. From
+a brief look it looks like it supports working with composeTestRule so writing
+tests would be similar to existing ui tests I have.</p>
+<h3 id="Dropshots"><div class="header-num">2.4.</div>&nbsp;&nbsp;Dropshots</h3>
+<p><a href="https://github.com/dropbox/dropshots">Dropshots</a> is another open source screenshot testing
+Gradle plugin. This seems to focus on having your screenshots within your test device so
+comparisons can be made straight away within the test. This isn't really relevant to me
+though as I only want the screenshots to be able to post them on the play store.</p>
+<p>Apart from that it looks pretty similar to the other frameworks, although this one doesn't
+have much in terms of documentation. So it could potentially be hard to get working. I also
+don't see any mention of Jetpack Compose so there's a chance that getting my app to work
+would be difficult.</p>
+<h2 id="DataIssue"><div class="header-num">3.</div>&nbsp;&nbsp;Data Issue</h2>
+<p>After looking at a few solutions I'm starting to think that having real data when creating
+the screenshots might be unnecessary and make things more complicated. </p>
+<p>The reason being that with some real data I would need to either create it within the app
+during the test. Or load it into the app via the restore data feature.</p>
+<p>Creating the data through the app would just take too long. I would need to code 
+every button press and field input, and I want a fairly large amount of data to make all the 
+graphs and pages look populated.</p>
+<p>Importing some manually created data wouldn't be too bad. Currently, I do this during manual
+testing as it's quick and easy to do. The issue would be moving the 
+data to the emulator in the test, which would somehow need to be done within a Gradle script.</p>
+<h3 id="MockData"><div class="header-num">3.1.</div>&nbsp;&nbsp;Mock Data</h3>
+<p>Instead, I think using some fake/mock data would be easier. I could create this data in the 
+test and manipulate it easily. </p>
+<p>I already have some fake classes set up to replace all the
+classes that interact with a database. These are loaded for tests using hilt. These 
+classes essentially just return a constant set of data instead of interacting
+with any database. For example,</p>
+<pre><code class="hljs language-kotlin">
+<span class="hljs-comment">// The normal repository that retrieves accounts from a database</span>
+AccountRepository(<span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> accountDao) {
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getAccounts</span><span class="hljs-params">()</span></span>: Flow&lt;List&lt;Account&gt;&gt; {
+        <span class="hljs-keyword">return</span> accountDao.getAccounts()
+    }
+}
+
+<span class="hljs-comment">// The fake repository, allowing me to define the data used in the tests</span>
+FakeAccountRepository() {
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getAccounts</span><span class="hljs-params">()</span></span>: Flow&lt;List&lt;Account&gt;&gt; {
+        <span class="hljs-keyword">return</span> flow { emit(someConstantDefined) }
+    }
+}
+</code></pre><h2 id="Choice"><div class="header-num">4.</div>&nbsp;&nbsp;Choice</h2>
+<p>All of these libraries seem to be screenshot testing libraries, where the screenshots are 
+compared against some baseline desired screenshots. Then if there's a difference between
+the screenshots then the test will fail. But for my use cases I only need to take the 
+screenshots without any comparisons.</p>
+<p>The thing I don't really like about the majority of them is that they require you to 
+retrieve the screenshots from the emulator after taking them. But after looking a bit more
+into how Instrumentation tests work this is probably unavoidable. The reason being that 
+when you run an Instrumentation it runs the test on the emulator. So any screenshots you 
+take have to be saved on the emulator.</p>
+<p>I was torn between either Paparazzi or Android Testify. But I think paparazzi is built for
+testing specific components rather than running the whole app. And since I would need to
+load in my whole app to get the desired screens I decided to go with Android Testify.</p>
+<h2 id="ResearchAgain"><div class="header-num">5.</div>&nbsp;&nbsp;Research Again</h2>
+<p>Before I started using the library I decided to take a look at other ways of creating 
+screenshots. As currently I've only really been looking at screenshot testing libraries. 
+It turns out there are many different ways it can be done.</p>
+<h3 id="PixelCopy"><div class="header-num">5.1.</div>&nbsp;&nbsp;PixelCopy</h3>
+<p>There's a class called PixelCopy within the android.view package. You can copy the whole 
+view into a bitmap image.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// This is setup for a ui test with hilt dependencies</span>
+<span class="hljs-meta">@HiltAndroidTest</span>
+<span class="hljs-meta">@RunWith(AndroidJUnit4::class)</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ScreenshotTest</span> {
+    
+    <span class="hljs-comment">// This injects all the hilt dependencies</span>
+    <span class="hljs-meta">@get:Rule</span>(order = <span class="hljs-number">0</span>)
+    <span class="hljs-keyword">val</span> hiltRule = HiltAndroidRule(<span class="hljs-keyword">this</span>)
+    
+    <span class="hljs-comment">// This creates the rule for controlling the app activity</span>
+    <span class="hljs-meta">@get:Rule</span>(order = <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">val</span> composeTestRule = createAndroidComposeRule&lt;MainActivity&gt;()
+    
+    <span class="hljs-comment">// Provides a directory to save the images on the device</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> screenshotsDir = InstrumentationRegistry.getInstrumentation().targetContext.filesDir
+    
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">createScreenshot</span><span class="hljs-params">()</span></span> {
+        <span class="hljs-comment">// Get the window and save create a bitmap of the same size</span>
+        <span class="hljs-keyword">val</span> window = composeTestRule.activity.window
+        <span class="hljs-keyword">val</span> bitmap = Bitmap.createBitmap(
+            window.decorView.width,
+            window.decorView.height,
+            Bitmap.Config.ARGB_8888
+        )
+    
+        <span class="hljs-comment">// Copy the window into the provided bitmap</span>
+        PixelCopy.request(window, bitmap, { pixelCopyResult -&gt;
+           <span class="hljs-keyword">if</span> (pixelCopyResult == PixelCopy.SUCCESS) {
+               saveBitmap(bitmap, <span class="hljs-string">"screenshot.png"</span>)
+           }
+        }, Handler(Looper.getMainLooper()))
+    }
+    
+    <span class="hljs-comment">// Save the bitmap into the given file location</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">saveBitmap</span><span class="hljs-params">(bitmap: <span class="hljs-type">Bitmap</span>, fileName: <span class="hljs-type">String</span>)</span></span> {
+        <span class="hljs-keyword">val</span> file = File(screenshotsDir, fileName)
+        FileOutputStream(file).use {
+            bitmap.compress(Bitmap.CompressFormat.PNG, <span class="hljs-number">90</span>, it)
+        }
+    }
+}
+</code></pre><p>This worked as expected and the screenshot.png was on the device after running the test.
+The only downside was that the screenshot contained the window toolbars as empty spaces.</p>
+<h3 id="UiAutomator"><div class="header-num">5.2.</div>&nbsp;&nbsp;Ui Automator</h3>
+<p><a href="https://developer.android.com/training/testing/other-components/ui-automator">Ui Automator</a> 
+seems to be a library for writing tests that focuses on the whole device rather than a
+specific activity. It allows you to launch different apps during the test and also interact
+with the device.</p>
+<p>This means you can call <a href="https://developer.android.com/reference/androidx/test/uiautomator/UiDevice#takeScreenshot(java.io.File)">UiDevice.takeScreenshot</a> 
+to create a screenshot file of the whole device. I didn't try this one, but it seems like 
+a very versatile library.</p>
+<h3 id="DeviceCaptor"><div class="header-num">5.3.</div>&nbsp;&nbsp;DeviceCaptor</h3>
+<p><a href="https://developer.android.com/reference/androidx/test/core/app/DeviceCapture">DeviceCaptor</a>
+has the takeScreenshot method. This mentions it's a wrapper for the Ui Automator's screenshot
+method. So I expect it acts the same way.</p>
+<h3 id="SemanticNodeInteraction"><div class="header-num">5.4.</div>&nbsp;&nbsp;SemanticNodeInteraction</h3>
+<p><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsNodeInteraction">SemanticNodeInteraction</a> 
+has the captureToImage method. This returns a bitmap of the captured image which can be saved
+on the device.</p>
+<p>The benefit of this one is that other UI test I currently have make use of SemanticNodeInteraction
+for ui interaction and assertions. It also works directly with the composeTestRule which
+is used for creating compose ui tests.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// The test could not be much shorter and doesn't include any of the system ui</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">createScreenshot</span><span class="hljs-params">()</span></span> {
+    saveBitmap(composeTestRule.onRoot().captureToImage().asAndroidBitmap(), <span class="hljs-string">"screenshot.png"</span>)
+}
+</code></pre><h2 id="Creatingatest"><div class="header-num">6.</div>&nbsp;&nbsp;Creating a test</h2>
+<p>After looking at the non-screenshot-test ways I decided to give the SemanticNodeInteraction
+method a go. The main reason being that it wouldn't require me to add any more 
+libraries to my project and the tests would fit with the currently running tests.</p>
+<p>I had already managed to create the file as shown by the example above. What I needed to
+do was move that file to my local storage after the test was run. Ideally I could
+move it to somewhere where it would be tracked by git.</p>
+<h3 id="MovingFilesfromtheEmulator"><div class="header-num">6.1.</div>&nbsp;&nbsp;Moving Files from the Emulator</h3>
+<p>I found a feature where if you saved a file in the 
+"/sdcard/Android/media/<appid>/additional_test_output" directory it was automatically 
+moved to the "app\build\outputs\connected_android_test_additional_output" directory. 
+It would then be within a file named after the emulator. I couldn't find much about this
+feature apart from a <a href="https://stackoverflow.com/questions/74069309/copy-data-from-an-android-emulator-that-is-run-by-gradle-managed-devices">mention on stackoverflow</a>, 
+so I'm not sure if it's actively supported.</appid></p>
+<p>The only downside with this is that it's not in a file managed by git. It also is in a file
+named by the emulator. So if I changed emulator it would appear in a different file.</p>
+<p>The other way would be to copy the files across using a gradle task. This task would
+run an adb command that would copy the files. I could then run this task whenever I wanted
+to update the screenshots, and have them updated in the git repository.</p>
+<pre><code class="hljs language-kotlin">task&lt;Exec&gt;(<span class="hljs-string">"copyScreenshots"</span>) {
+    commandLine(adbPullCommandArgs)
+}
+</code></pre><p>Again though, like the other way, this has the problem that if there are multiple emulators
+then the command probably won't run correctly. It also requires you to have abd installed 
+and working (which you most likely would if running this).</p>
+<h3 id="FinalSolution"><div class="header-num">6.2.</div>&nbsp;&nbsp;Final Solution</h3>
+<p>The final solution I had was a new object that would use a SemanticsNodeInteraction and 
+filename to create a new screenshot file. This would
+allow you to take a screenshot of the node you wanted, which would then be saved on the 
+emulator.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-keyword">object</span> ScreenshotCreator {
+    <span class="hljs-comment">// Ensures the files are moved after the test is run</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> screenshotsDir = File(<span class="hljs-string">"/sdcard/Android/media/<span class="hljs-subst">${BuildConfig.APPLICATION_ID}</span>/additional_test_output"</span>)
+    
+    <span class="hljs-keyword">init</span> {
+        <span class="hljs-comment">// Create the directory if doesn't exist</span>
+        screenshotsDir.mkdirs()
+    }
+    
+    <span class="hljs-comment">// Create the screenshot from the node and the filename</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">create</span><span class="hljs-params">(semanticsNodeInteraction: <span class="hljs-type">SemanticsNodeInteraction</span>, fileName: <span class="hljs-type">String</span>)</span></span> {
+        <span class="hljs-keyword">val</span> bitmap = semanticsNodeInteraction.captureToImage().asAndroidBitmap()
+        <span class="hljs-keyword">val</span> file = File(screenshotsDir, <span class="hljs-string">"<span class="hljs-variable">$fileName</span>.png"</span>)
+        FileOutputStream(file).use {
+            bitmap.compress(Bitmap.CompressFormat.PNG, <span class="hljs-number">90</span>, it)
+        }
+    }
+
+}
+
+<span class="hljs-comment">// Example of running the screenshot creation on a root node, will create filname.png</span>
+ScreenshotCreator.create(composeTestRule.onRoot(), <span class="hljs-string">"filename"</span>)
+</code></pre><p>I then created a gradle task that would find the screenshots and move them to the git
+repo. This could either be run manually or setup so that it runs after a build. I created
+this in the parent gradle file.</p>
+<pre><code class="hljs language-kotlin"><span class="hljs-comment">// Copy the screenshot files into the git tracked repo=</span>
+task&lt;Copy&gt;(<span class="hljs-string">"copyScreenshots"</span>) {
+    <span class="hljs-comment">// Sort the files by creation date and then keep the most recent if multiple have the same name</span>
+    <span class="hljs-keyword">val</span> screenshotsByDate = fileTree(<span class="hljs-string">"app/build/outputs/connected_android_test_additional_output"</span>) {
+        include(<span class="hljs-string">"**/*.png"</span>)
+    }.files.sortedByDescending {
+        Files.readAttributes(it.toPath(), BasicFileAttributes::<span class="hljs-keyword">class</span>.java).creationTime().toInstant()
+    }.distinctBy { it.name }
+
+    from(screenshotsByDate)
+    into(<span class="hljs-string">"otherFiles/screenshots"</span>)
+}
+</code></pre><h2 id="Thoughts"><div class="header-num">7.</div>&nbsp;&nbsp;Thoughts</h2>
+<p>I think this solution works fine for what I need it for. I also don't really need any other
+tests in the end as I can just create a screenshot in existing tests. I also don't need
+to do any testing or analysis with the screenshots.</p>
+<p>The solution fits all my requirements apart from the multiple screen sizes one. I decided
+for now I can just run the tests with different emulators. Using different screen sizes is
+something I need to figure out for all my testing.</p>
+<p>I was also looking at other app pages on the Google Play Store to get an idea of how
+other apps format their screenshots. It appears that a lot of apps include text with their
+screenshots and an image of the actual device. They could be using tools like <a href="https://app-mockup.com">AppMockUp</a>
+or <a href="https://developer.android.com/distribute/marketing-tools/device-art-generator">device art generator</a>.
+Google recommends not using any framing for screenshots on the device art 
+generator page, so I won't be doing any post-processing to my screenshots. I find this
+pretty interesting though as many of the Google apps show text and the device frame, such
+as <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.photos&amp;hl=en&amp;gl=US">Google Photos</a>
+and <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.walletnfcrel">Google Wallet</a>.</p>
+<p>Overall I think I've spent a little too long looking into this. Hopefully I need to create
+and update the screenshots enough times to make it worthwhile. Another plus side is that
+I could use this tool for debugging if I have to take screenshots to make sure a page
+is rendering correctly.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
+    </div>
+
+</body></html>

@@ -7,7 +7,7 @@ type: blog
 creationDate: 2024-03-08
 ---
 
-### Problem
+## Problem
 Whilst working on an android app I started using a great chart library called [vico](https://github.com/patrykandpatrick/vico). 
 This library is very extensible and has great documentation as well as some good examples.
 
@@ -19,8 +19,8 @@ before and after the points:
 
 This issue with this is that the points don't obey the colour of the line.
 
-### Solution
-#### Creating A New Component
+## Solution
+### Creating A New Component
 To fix this I looked at the class that was used to define the point. This class implements 
 the com.patrykandpatrick.vico.core.component.Component class. I then started implement a 
 child of this class that would be able to change the point colour based on the position 
@@ -44,7 +44,7 @@ The left, top, right and bottom values are the positions in the canvas rather th
 position in x,y space. Luckily the context provided the minimum and maximum y and x values
 of the chart.
 
-#### Determining If Above Zero
+### Determining If Above Zero
 Unfortunately, the x and y ranges would not provide us with the current position of the 
 point being drawn. To get this we need the position of the axis relative to the canvas.
 
@@ -81,12 +81,12 @@ position is the top left, hence why we subtract the value.
 Finally, we can check if the canvasYPos of the current point is above the canvas Y position
 of 0.
 
-#### Render Different Colours
+### Render Different Colours
 To make the colours of the points different I just added two different shape components
 with different colours in my class. Depending on if the value is negative or positive
 a different shape component is used.
 
-### Conclusion
+## Conclusion
 The final class is at the bottom of this page. After implementing it and setting the
 point value in the LineSpec to our new class the result is the following.
 

@@ -1,7 +1,8 @@
 ---
 title: App
 header: Manage Cabbage App
-description: Creating the android app version of Manage Cabbage 
+description: Creating the android app version of Manage Cabbage
+numbered: true
 ---
 
 After thinking a while about how I actually use the current Manage Cabbage website to
@@ -10,7 +11,7 @@ thought about creating an app version of the website that I could create. I had 
 been slightly interested in learning app development and had no prior experience, so I 
 decided to give it a go.
 
-<div id="doc-menu-area" class="numbered-menu"> </div>
+<div id="doc-menu-area"> </div>
 
 ## Picking a framework
 The first thing I had to do was to pick a language / framework to create the app in. I 

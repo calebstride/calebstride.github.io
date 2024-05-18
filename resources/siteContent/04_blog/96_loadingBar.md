@@ -4,9 +4,9 @@ header: Creating a Nice Progress Bar (Using Jetpack Compose)
 description: Creating a nice looking loading / progress bar using jetpack compose
 type: blog
 creationDate: 2024-04-06
+numbered: true
 ---
 
-### Problem
 When working on a part of my app I was trying to implement a progress/loading bar that would
 describe to a user how close they were to a goal.
 
@@ -25,7 +25,9 @@ Which isn't very clear and doesn't look very appealing. I would prefer a bar tha
 However, I came across a lot more issues when doing this than I thought I would. So this
 blog goes through those issues and explains the final design I came up with.
 
-### Set Up
+<div id="doc-menu-area"> </div>
+
+## Set Up
 The idea for this bar is that I can provide it with the current value and also the
 maximum value. It will then draw the bar in the container I place it in.
 
@@ -52,7 +54,7 @@ private fun LoadingElement(fraction: Float) {
 }
 ```
 
-### First Attempt
+## First Attempt
 My first attempt was to create two Box composables with varying weight values. The idea
 being that one box will hold display the highlighted value, and the other will be empty.
 As the fraction increases then the boxes will grow and shrink to display the correct
@@ -69,7 +71,7 @@ corner radius it behaves a bit weirdly.
 
 <img src="/images/loadingBar/first-bad.png" width="400" alt="The rounded corner issue">
 
-#### Improvement
+### Improvement
 I found out that you could use the Modifier.fillMaxWidth(fraction) method to fill in a 
 fraction of the available width. This meant that I could avoid all the logic about handling
 weight values and just use one Box instead.
@@ -116,7 +118,7 @@ actual position of the bar harder to interpret.
 
 <img src="/images/loadingBar/rounded-end.png" width="400" alt="The bar with a rounded end">
 
-### Second Attempt
+## Second Attempt
 To handle the issues I decided to switch to trying to draw the bar in the Modifier.drawBehind
 method. This turned out to not be necessary, but it was interesting
 to get some experience with drawing straight to the canvas.
@@ -193,7 +195,7 @@ bar. The reason being that the corner radius can't be greater than the length of
 shape. So the shape height can't be reduced, which is what we need to happen to stop
 the issue at the front.
 
-#### Finding the height value
+### Finding the height value
 Another possible fix would be to change the height of the rectangle based on the length.
 So a short length would have a short height and not clip the border. This would fix the 
 issue at the start of the bar. 
@@ -221,7 +223,7 @@ We could then use this height as the maximum height for the bar to be to stop it
 through the border. Although even then there might be some issue with how the radius works
 on such small shapes.
 
-### Third Solution
+## Third Solution
 I decided to do a bit of research into clipping and if there was any way to avoid doing it,
 then I came across the [Modifier.clip()](https://developer.android.com/develop/ui/compose/graphics/draw/modifiers#graphics-modifier-clip-shape) method.
 
@@ -266,8 +268,8 @@ with. Here is the third attempt with the border set to the same colour as the ba
 
 <img src="/images/loadingBar/third-final.png" width="400" alt="The final look at the third solution">
 
-### Touch-ups
-#### Extreme values
+## Touch-ups
+### Extreme values
 One thing I noticed with the final solution is that when the values are very close the 
 minimum they don't actually show on the bar. The reason for this is that they're behind
 the border.
@@ -276,7 +278,7 @@ The opposite is true for extreme maximums, where the bar is full before the frac
 1f. To fix this I just added horizontal padding equal to the border width so that the bar starts 
 where the outside border ends.
 
-#### Colouring
+### Colouring
 I decided to add the option of a brush instead of a colour. This gives more freedom to
 colouring the bar and allows for different patterns.
 
@@ -284,7 +286,7 @@ I also wanted the bar to display a different colour depending on if the fraction
 This was because the bar is being used to show how close to a limit the value is, and it
 would be good to differentiate when the limit has been reached.
 
-### Conclusion
+## Conclusion
 In the end my loading/progress bar looks like this:
 
 <img src="/images/loadingBar/final-bars.png" width="400" alt="The final look the solution">

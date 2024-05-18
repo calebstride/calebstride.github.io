@@ -1,14 +1,15 @@
 ---
 title: Previous Design
 header: Previous Design
-description: The summary and analysis of the old Manage Cabbage website 
+description: The summary and analysis of the old Manage Cabbage website
+numbered: true
 ---
 This page is about the initial version of "Manage Cabbage". It follows the processes 
 and designing I went through from start to finish. Whilst hopefully picking out some 
 interesting things I learnt along the way. Admittedly I am writing this a long time 
 after creating the website, so it will be on the briefer side.
 
-<div id="doc-menu-area" class="numbered-menu"> </div>
+<div id="doc-menu-area"> </div>
 
 ## Introduction
 The main goals of the web app were to allow for spending to be logged and to show 

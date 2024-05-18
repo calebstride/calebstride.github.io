@@ -2,13 +2,14 @@
 title: Designing
 header: Designing
 description: A look at redesigning and creating a new version of Manage Cabbage 
+numbered: true
 ---
 
 I decided to redo the "Manage Cabbage" website. The main reason was that I wanted to learn
 some new technologies that I hadn't been given the chance to learn previously. This
 would mainly include cloud technologies, such as Docker, Kubernetes and cloud platforms.
 
-<div id="doc-menu-area" class="numbered-menu"> </div>
+<div id="doc-menu-area"> </div>
 
 ## Introduction
 

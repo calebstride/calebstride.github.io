@@ -6,7 +6,7 @@
     --background-color-shade: #282828;
     --background-color-light: #cecece;
     --background-color-dark: black;
-    --base-text-highlight-colour: #e8e8e8;
+    --base-text-highlight-colour: #d5d5d5;
     --blue-highlight: #00bfbf;
 }
 
@@ -302,19 +302,19 @@ h2 + p, h3 + p, h4 + p, h5 + p {
 
 h2 {
     padding-top: 20px;
-    font-size: 200%;
+    font-size: 170%;
     color: var(--base-text-highlight-colour);
 }
 
 h3 {
     padding-top: 15px;
-    font-size: 160%;
+    font-size: 140%;
     color: var(--base-text-highlight-colour);
 }
 
 h4 {
     padding-top: 10px;
-    font-size: 120%;
+    font-size: 100%;
     color: var(--base-text-highlight-colour);
     padding-bottom: 0;
 }

@@ -4,3 +4,4 @@ pageContent: # This stores some default value to be overridden in templates
     layout: template.html # The default template to use
     description: '' # The meta description tag field
     type: page
+    numbered: false

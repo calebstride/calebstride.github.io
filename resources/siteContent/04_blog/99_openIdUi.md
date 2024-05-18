@@ -7,11 +7,11 @@ type: blog
 creationDate: 2023-10-22
 ---
 
-### Problem
+## Problem
 This blog is about the issues I encountered when trying to use an OpenID flow 
 from my React application. 
 
-### Current Issues
+## Current Issues
 Currently, I am using [this React project](https://github.com/react-keycloak/react-keycloak#readme) 
 to handle logging in to my application in the ui.
 
@@ -33,7 +33,7 @@ same time I need a solution that will work with loaders, so it can't all be done
 in the rendering of the page. Or I switch from using loaders to using fetchers
 so the retrieval of the data is done in the main rendering stage.
 
-### Solution
+## Solution
 I found the [react-oidc-context](https://github.com/authts/react-oidc-context) 
 library that I could use to handle logging-in, but this would still have the 
 issue with loaders fetching data before the user is logged-in.
@@ -102,7 +102,7 @@ authentication provider. It uses the react-oidc-context provider to retrieve the
 information to see if the user is logged in. This page also stores a state so the 
 user can be redirected to a specific page if necessary.
 
-### Potential Issues With Solution
+## Potential Issues With Solution
 One thing I don't really like about the solution is the fact that it requires
 the use of the sessionStorage for storing tokens. This is potentially not safe against
 XSS attacks. Although due to the fact that you can't see other people's data in

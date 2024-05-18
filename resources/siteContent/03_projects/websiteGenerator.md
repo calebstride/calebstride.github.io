@@ -3,6 +3,7 @@ title: Website Generator
 header: Website Generator
 description: A quick project on creating a website generator, that generates a static website
     from a directory of .md files.
+numbered: true
 ---
 
 This project was created to generate the website you're looking at now. It's main 
@@ -11,7 +12,7 @@ Admittedly I could have used many different web templates or website technologie
 create this website. But I wanted to make the website small and quick to load. I've 
 tried to keep the javascript used down to a minimum and only use it where it is needed.
 
-<div id="doc-menu-area" class="numbered-menu"> </div>
+<div id="doc-menu-area"> </div>
 
 ## Summary
 The tool works in a similar way to [jekll](https://jekyllrb.com/). It takes 
