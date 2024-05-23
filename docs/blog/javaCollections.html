@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
+    <title>Java Collections Analysis | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="description" content="Comparing java collections and analysis there time and memory performance">
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+
+    <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    <script>
+         ContentTools.initTheme();
+    </script>
+</head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('App') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/app.html">App</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Java Collections Analysis') === 'true'){event.stopPropagation();}" href="/blog/javaCollections.html">Java Collections Analysis</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Screenshots in Android Tests') === 'true'){event.stopPropagation();}" href="/blog/screenshotDuringTest.html">Screenshots in Android Tests</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Jetpack Compose Progress Bar') === 'true'){event.stopPropagation();}" href="/blog/loadingBar.html">Jetpack Compose Progress Bar</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Android Vico Point Colours') === 'true'){event.stopPropagation();}" href="/blog/vicoPoints.html">Android Vico Point Colours</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/themes.html">Webpage Colour Themes</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Java Collections Analysis</h1>
+                <div id="page-text"><p>During almost every technical interview or programming exercise in Java there's always a 
+question about Java collections and the best one for the given scenario.</p>
+<p>I know the main use cases between Sets, Lists and Queues (which are the main groups of 
+collections). What I'm not really sure is the actual numerical differences between them,
+for example, I know a HashSet uses up more memory than an ArrayList but by how much?</p>
+<p>In this blog I'll go through some collections and test different use cases for them.
+Comparing the speed and memory usage as I go. You can <a href="https://github.com/calebstride/java-collection-analysis">check out the code on GitHub</a></p>
+<div id="doc-menu-area"> <div><a href="#Planning" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;Planning </a><a href="#ClassesandMethods" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.1.</div>&nbsp;&nbsp;Classes and Methods </a><a href="#MetricCollection" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.2.</div>&nbsp;&nbsp;Metric Collection </a><a href="#Time" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">1.2.1.</div>&nbsp;&nbsp;Time </a><a href="#MemoryUsage" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">1.2.2.</div>&nbsp;&nbsp;Memory Usage </a><a href="#RunningtheScenarios" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;Running the Scenarios </a><a href="#AlteringCollections" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.1.</div>&nbsp;&nbsp;Altering Collections </a><a href="#ValuetoUse" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">2.2.</div>&nbsp;&nbsp;Value to Use </a><a href="#Results" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.</div>&nbsp;&nbsp;Results </a><a href="#HashSetvsArrayList" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.1.</div>&nbsp;&nbsp;HashSet vs ArrayList </a><a href="#500kIntegersrunningeachoperation1000times" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">3.1.1.</div>&nbsp;&nbsp;500k Integers running each operation 1000 times </a><a href="#5kIntegersrunningeachoperation1000times" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">3.1.2.</div>&nbsp;&nbsp;5k Integers running each operation 1000 times </a><a href="#DifferentCollections" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.2.</div>&nbsp;&nbsp;Different Collections </a><a href="#Add" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">3.2.1.</div>&nbsp;&nbsp;Add </a><a href="#Remove/Contains" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">3.2.2.</div>&nbsp;&nbsp;Remove / Contains </a><a href="#Size" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">3.2.3.</div>&nbsp;&nbsp;Size </a><a href="#MemoryUsage" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">3.2.4.</div>&nbsp;&nbsp;Memory Usage </a><a href="#DifferentObjects" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">3.3.</div>&nbsp;&nbsp;Different Objects </a><a href="#Summary" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">4.</div>&nbsp;&nbsp;Summary </a></div></div>
+
+<h2 id="Planning"><div class="header-num">1.</div>&nbsp;&nbsp;Planning</h2>
+<p>Running this test should be pretty simple as all the Collections implement the 
+<a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/Collection.html">Collection</a>
+interface. Therefore, I can define how the test should be run and run it the same way for
+each class.</p>
+<h3 id="ClassesandMethods"><div class="header-num">1.1.</div>&nbsp;&nbsp;Classes and Methods</h3>
+<p>I will start by testing ArrayList and HashSet which are the most popular Set and List
+implementations. The methods I will be timing to start with are the add, contains, remove,
+and size. I'll make sure to design the code so that I can easily add more methods and/or
+classes when desired.</p>
+<h3 id="MetricCollection"><div class="header-num">1.2.</div>&nbsp;&nbsp;Metric Collection</h3>
+<p>The two main metrics I will be collecting are the size of the object, and the time it 
+takes to perform the method.</p>
+<h4 id="Time"><div class="header-num">1.2.1.</div>&nbsp;&nbsp;Time</h4>
+<p>To record the time I'm going to be using the StopWatch object from the <a href="https://commons.apache.org/proper/commons-lang/">commons-lang3</a> 
+library. Alternatively I could use the System.currentTimeMillis() but the StopWatch class
+makes this simpler. Also, the library includes helpful classes that I will likely be 
+using elsewhere.</p>
+<pre><code class="hljs language-java"><span class="hljs-comment">// Getting the time for something to run using System</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();
+<span class="hljs-comment">// Do processing</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">end</span> <span class="hljs-operator">=</span> System.currentTimeMillis();
+<span class="hljs-type">long</span> <span class="hljs-variable">timeTaken</span> <span class="hljs-operator">=</span> end - start;
+
+<span class="hljs-comment">// Using StopWatch</span>
+<span class="hljs-type">StopWatch</span> <span class="hljs-variable">watch</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StopWatch</span>();
+watch.start();
+<span class="hljs-comment">// Do processing</span>
+watch.stop();
+<span class="hljs-type">long</span> <span class="hljs-variable">timeTaken</span> <span class="hljs-operator">=</span> watch.getTime();
+</code></pre><h4 id="MemoryUsage"><div class="header-num">1.2.2.</div>&nbsp;&nbsp;Memory Usage</h4>
+<p>Recording the memory usage seems a bit more complicated. There seem to be a few solutions
+online ranging from creating and analysing heap dumps to just serialising the object
+to bytes and checking the byte number.</p>
+<p>The solution I went with was to use the <a href="https://github.com/openjdk/jol">jol</a> library.
+This library uses the Instrumentation API which alters existing bytecode loaded into the 
+JVM. This makes it pretty simple to check the size of objects and will make sure to check the
+nested objects as well.</p>
+<pre><code class="hljs language-java"><span class="hljs-comment">// Use the GraphLayout class to find the size of the object and all children</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> GraphLayout.parseInstance(integerArray).totalSize();
+
+<span class="hljs-comment">// You can use .toPrintable() to creat a string of the size breakdown</span>
+</code></pre><p>I decided to double-check this was returning the right kind of value because I honestly 
+wasn't sure how much data objects used in Java. This returned a size of around 1.1KB for 
+an ArrayList with 50 Integers. </p>
+<p>I created a heap dump but this suggested that the arrayList used 336 bytes which is a bit
+different. Looking at the analysis of from the .toPrintable() method it looks like the 
+heap dump shows the size of the actual ArrayList object plus some other element (24 + 312). But the
+GraphLayout output size includes the size of all the elements in the array (24 + 312 + (16 * 50)).
+As this is just being used as a comparison it shouldn't matter too much as long as 
+they're measured the same way.</p>
+<pre><code class="hljs language-text">// The size of an ArrayList with 50 Integers
+Size of the array using GraphLayout: 1136 bytes
+// The output from toPrintable() for the same ArrayList
+Size: java.util.ArrayList@4973813ad object externals:
+          ADDRESS       SIZE TYPE                PATH                           VALUE
+         ff8efd28         24 java.util.ArrayList                                (object)
+         ff8efd40        608 (something else)    (somewhere else)               (something else)
+         ff8effa0        312 [Ljava.lang.Object; .elementData                   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+         ff8f00d8    6517144 (something else)    (somewhere else)               (something else)
+         fff27270         16 java.lang.Integer   .elementData[0]                0
+         fff27280         16 java.lang.Integer   .elementData[1]                1
+         ...
+// I'm going to assume the 312 byte long value is some reference to all the elements in the array
+</code></pre><h2 id="RunningtheScenarios"><div class="header-num">2.</div>&nbsp;&nbsp;Running the Scenarios</h2>
+<p>To start I create a few collections of different types. I then fill them with integer 
+values so that they're all the same size. I then run the methods we aim to test on each
+collection n times. The reason for this is to get a good average.</p>
+<p>This returns a result which I can analyse and print to the console. You can 
+<a href="https://github.com/calebstride/java-collection-analysis">find the code on GitHub</a>.</p>
+<h3 id="AlteringCollections"><div class="header-num">2.1.</div>&nbsp;&nbsp;Altering Collections</h3>
+<p>One issue I came across was how to test the scenarios n times without altering the 
+collection. This is because if I'm adding a value n times then the collection will be
+a different size each iteration, making timings harder to compare.</p>
+<p>I decided that for this scenario I would continue with altering the collection during the
+scenarios. This does make some data useless (such as the min and max times) for scenarios,
+as they will likely just be when the collection was at its largest / smallest. But I'll
+still be able to compare the times of different collections which is the goal.</p>
+<h3 id="ValuetoUse"><div class="header-num">2.2.</div>&nbsp;&nbsp;Value to Use</h3>
+<p>Another issue was deciding what value to use for the method calls that require a given 
+value. For example, contains requires you to give a value to search for. This has a chance
+to majorly impact the test results. The reason being that I could run the worst case 
+scenario (the value isn't in the collection) on one collection, then the other collection,
+run the best case scenario (the value is the first element).</p>
+<p>To fix this I created another class to generate values that could be inserted and removed
+from the collection. The removal elements are spread throughout the collection, so it's not
+always worst case of removing from the end. I did a similar thing for contains so bad and
+good cases could be tested.</p>
+<h2 id="Results"><div class="header-num">3.</div>&nbsp;&nbsp;Results</h2>
+<p>I changed the timing from milliseconds to nanoseconds as some of the values were very
+small.</p>
+<h3 id="HashSetvsArrayList"><div class="header-num">3.1.</div>&nbsp;&nbsp;HashSet vs ArrayList</h3>
+<h4 id="500kIntegersrunningeachoperation1000times"><div class="header-num">3.1.1.</div>&nbsp;&nbsp;500k Integers running each operation 1000 times</h4>
+<p>The results are generally what I expected from my knowledge of the two classes. The thing
+that surprised me was how much quicker the Set is at retrieving values. </p>
+<pre><code class="hljs language-text">The results for the collection (size: 500000) scenarios (n: 1000): 
+The summary for the ArrayList of type Integer:
+ArrayList Size - 10160912 bytes
+Add time     : av. 235ns  min. 100ns  max. 19000ns
+Remove time  : av. 144125ns  min. 23900ns  max. 518800ns
+Contains time: av. 280670ns  min. 257900ns  max. 5430900ns
+Size time    : av. 126ns  min. 0ns  max. 7300ns
+
+The summary for the HashSet of type Integer:
+HashSet Size - 28194400 bytes
+Add time     : av. 221ns  min. 100ns  max. 37700ns
+Remove time  : av. 423ns  min. 100ns  max. 36300ns
+Contains time: av. 265ns  min. 100ns  max. 14100ns
+Size time    : av. 77ns  min. 0ns  max. 10500ns
+</code></pre><p>It's over 1000x quicker in this scenario. Although the set is using around 3x the 
+memory compared to the 
+ArrayList. I imagine the size of the Collection isn't helping the ArrayList, in some 
+scenarios it's having to loop through half a million elements, whilst the Set just does
+one hash lookup. Generally though the ArrayList is still doing the lookup in 0.28ms which
+very fast.</p>
+<h4 id="5kIntegersrunningeachoperation1000times"><div class="header-num">3.1.2.</div>&nbsp;&nbsp;5k Integers running each operation 1000 times</h4>
+<p>I ran the tests again but used a much smaller array size, this time a modest 5000. The Set
+was quicker in all scenarios this time. But the gap between them was much smaller.</p>
+<pre><code class="hljs language-text">The results for the collection (size: 5000) scenarios (n: 1000): 
+The comparison of the ArrayList against HashSet of type Integer:
+ArrayList Size - 105024 bytes against HashSets 272864 bytes
+Add: ArrayList was slower with an average time: 172ns compared to HashSets: 133ns (77.33%) (1x)
+Remove: ArrayList was slower with an average time: 7992ns compared to HashSets: 191ns (2.39%) (41x)
+Contains: ArrayList was slower with an average time: 11378ns compared to HashSets: 246ns (2.16%) (46x)
+Size: ArrayList was slower with an average time: 122ns compared to HashSets: 75ns (61.48%) (1x)
+</code></pre><p>It wasn't until I got down to collection sizes of around 50 where the Set was only 2-4x 
+quicker. In normal use cases though I don't normally have Collections with a huge set of
+values, so it's unlikely to have such a performance difference.</p>
+<p>Despite seeming much quicker in general it's important to remember that Sets provide a 
+different function to Lists. Since Sets don't allow for duplicate values there are many
+situations where you can't use a Set.</p>
+<h3 id="DifferentCollections"><div class="header-num">3.2.</div>&nbsp;&nbsp;Different Collections</h3>
+<p>I ran the test again but added some more common collections.</p>
+<pre><code class="hljs language-text">Integer Collections with 500000 elements running each process 1000 times
+
+                |   add (ns) |     remove (ns) |   contains (ns) |  size (ns) | bytes (KB) |
+      ArrayList |        211 |          135626 |          267235 |        136 |      10160 |
+     LinkedList |        111 |          667566 |         1630064 |        116 |      20000 |
+        HashSet |        206 |             313 |             273 |         94 |      28194 |
+        TreeSet |       1513 |             508 |             615 |         76 |      28000 |
+  LinkedHashSet |        226 |             240 |             133 |         66 |      32194 |
+     ArrayDeque |         95 |          208836 |          317725 |        109 |      10200 |
+          Stack |         91 |          124012 |          269064 |        148 |      10621 |
+</code></pre><p>I honestly haven't got that much experience with a some of these collections, but it was
+interesting to see the range some of them had.</p>
+<h4 id="Add"><div class="header-num">3.2.1.</div>&nbsp;&nbsp;Add</h4>
+<p>LinkedLists have a one of the quickest insertion times, especially compared to their
+removal / contains times. The reason being that they don't need
+to allocate or increase the memory usage as they can just place the element in a new area
+in memory. This is unlike ArrayLists which need to allocate and relocate to a new place
+in memory if the current allocation has been filled.</p>
+<p>The slowest to add was the TreeSet by a large margin. This is due to the logic in the
+underlying <a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red-black tree</a>. The
+tree needs to balanced to maintain an effective search time when new values are added.</p>
+<p>The Queues were also pretty quick at insertions, pretty much on level with the LinkedList. 
+As Queues seem to be built on arrays I expected them to be similar to the ArrayList rather
+than closer to the LinkedList. Looking into the Java code it looks like the only major 
+difference is how they calculate the size in which the array is grown when it reaches
+capacity.</p>
+<pre><code class="hljs language-java">\\ This is in ArrayList::grow
+ArraysSupport.newLength(oldCapacity,
+                minCapacity - oldCapacity, <span class="hljs-comment">/* minimum growth */</span>
+                oldCapacity &gt;&gt; <span class="hljs-number">1</span>           <span class="hljs-comment">/* preferred growth */</span>)
+
+\\ This is from Vector::grow (used within the Stack)
+\\ capacityIncrement is <span class="hljs-number">0</span> by <span class="hljs-keyword">default</span>
+ArraysSupport.newLength(oldCapacity,
+                minCapacity - oldCapacity, <span class="hljs-comment">/* minimum growth */</span>
+                capacityIncrement &gt; <span class="hljs-number">0</span> ? capacityIncrement : oldCapacity
+                                           <span class="hljs-comment">/* preferred growth */</span>);
+</code></pre><p>The growth in the ArrayList increases the size by the oldCapacity bitshift once to the 
+right, which is around a 50% increase each time. The Stack increases the capacity by
+the oldCapacity value, so it doubles each time. I imagine this difference is why the 
+Queues are slightly quicker. They needed to regrow less often (or not at all) during
+the 1000 elements being inserted in the test.</p>
+<p>In most cases this won't make a difference as the time difference is so small (~100ns). But it 
+makes you aware of the importance of sizing an array if you know the size beforehand. This
+would make more of a difference if the size of the collection changed dramatically.</p>
+<h4 id="Remove/Contains"><div class="header-num">3.2.2.</div>&nbsp;&nbsp;Remove / Contains</h4>
+<p>The slowest to search and remove the collection was the LinkedList. This is because of the
+way that linked lists are structured. Like an ArrayList they have to go through each element
+from the beginning to find a given element. But due to the LinkedLists design of having
+elements in separate areas of memory, and having to read / locate every element as you 
+traverse the list, it takes a lot more time. Compared to just checking the next area in
+memory as with an ArrayList.</p>
+<p>Sets were by far the quickest at removal and contains. The HashSets were quicker as they
+are able to run a constant hash function in O(1) time to get the value's location. On the
+other hand TreeSets run in O(long n) time as they need to traverse the underlying binary
+tree. Removal was slightly slower for the TreeSet as well as it needs to
+re-arrange the underlying binary tree to keep the order.</p>
+<p>The Queues (Stack and ArrayDeque) have a similar time to the ArrayList. It looks like this
+is because they are all built on an underlying array.</p>
+<h4 id="Size"><div class="header-num">3.2.3.</div>&nbsp;&nbsp;Size</h4>
+<p>Calling the size method was pretty much constant between all elements. This is because
+they all keep track of the size internally. So all they have to do is check that internal
+value.</p>
+<h4 id="MemoryUsage"><div class="header-num">3.2.4.</div>&nbsp;&nbsp;Memory Usage</h4>
+<p>Again the results for the memory usage weren't that surprising. The Queues and Lists built
+on arrays were the smallest and all pretty similar. Due to arrays being essentially just
+a block of data with not much else.</p>
+<p>The Sets were the largest as they have to contain the underlying HashMap, which maps the
+hash result to the location in memory. They also contain objects to help maintain insertion 
+order (LinkedHashSet) or ordering (TreeSet).</p>
+<p>The LinkedList is in the middle of the two. It's larger than an array as each 
+element needs to store the location of the previous and next element.</p>
+<h3 id="DifferentObjects"><div class="header-num">3.3.</div>&nbsp;&nbsp;Different Objects</h3>
+<p>I ran the results again but used a custom object called Contact (6 string fields and an
+integer field) that contained more data than an Integer.</p>
+<pre><code class="hljs language-text">Contact Collection with 500000 elements running each process 1000 times
+
+                |   add (ns) |     remove (ns) |   contains (ns) |  size (ns) | bytes (KB) |
+      ArrayList |        280 |         1722565 |         3936094 |        142 |     222160 |
+     LinkedList |        109 |        21198885 |        40902217 |         99 |     232000 |
+        HashSet |        441 |             540 |             587 |         92 |     240194 |
+        TreeSet |       1479 |            1399 |            1482 |         74 |     240000 |
+  LinkedHashSet |        395 |             415 |             388 |         79 |     244194 |
+     ArrayDeque |        103 |         2329822 |         5272262 |        114 |     222200 |
+          Stack |         91 |         3115778 |         7131846 |        155 |     222621 |
+</code></pre><p>The add timings were about the same as before. Generally add shouldn't be
+impacted by the size of the object as the references to the object are being written to
+the array rather than the whole object.</p>
+<p>Remove and contains were much slower for the Lists and Queues, but only slightly slower
+for the Sets. The reason the Lists and Queues were so slow (~20x slower) is because they
+needed to call .equals on the Contact for every single element they check against. This
+has a chance to get even slower depending on the implementation of .equals. The Sets
+only have to calculate the hash once per search, just like when using Integers. So even if
+calculating the hashCode value is complex it only needs to be done once.</p>
+<p>The difference in memory usage is about the same as when we used Integers. Although the 
+actual memory usage has increased around 10x. The large increase is just due to fact Contacts
+hold much more information compared to an Integer. I'm a bit surprised that the difference
+in memory is the same. I assume this is because all the implementations only hold references
+to the objects or hashes, both of which remain a constant size independent of the object.</p>
+<h2 id="Summary"><div class="header-num">4.</div>&nbsp;&nbsp;Summary</h2>
+<p>Overall this was an interesting little project. I hadn't really ever thought about the 
+byte size of collections before so that was interesting to explore. I'll also look at 
+increasing the use of Sets where I can because of how much quicker the lookup is (for 
+removal and searching).</p>
+<p>It would be interesting to plot the times on a graph using different array sizes 
+and seeing how they compare to their Big-O timings.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
+    </div>
+
+</body></html>
