@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="en"><head>
+    <script type="text/javascript" src="/scripts/ContentTools.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', () => { ContentTools.findAndSetSelectedFromStorage(); });
+    </script>
+    
+    <title>Java Multithreading Revision | Caleb Stride</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="description" content="Revision on Java multithreading and how to do it">
+    <meta name="author" content="Caleb Stride">
+
+    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/hljs.css" rel="stylesheet" type="text/css">
+
+    <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32" type="image/png">
+
+    <script>
+         ContentTools.initTheme();
+    </script>
+</head>
+
+<body>
+
+    <div id="page-container">
+
+        <div class="page-buffer" id="left-buffer"></div>
+
+        <nav id="side-bar" class="hidden-feature-mob"><ul id="main-nav-bar"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Home') === 'true'){event.stopPropagation();}" href="/index.html">Home</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('About') === 'true'){event.stopPropagation();}" href="/about.html">About</a></div></li><li><div class="drop-down-button menu-button" id="Projectsdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Projects-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Projects') === 'true'){event.stopPropagation();}" href="/projects.html">Projects</a></div><ul class="drop-down-content selected-drop-down" id="Projects-drop-down"><li><div class="drop-down-button menu-button" id="Manage Cabbagedrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Manage Cabbage-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Manage Cabbage') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage.html">Manage Cabbage</a></div><ul class="drop-down-content selected-drop-down" id="Manage Cabbage-drop-down"><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Previous Design') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/previousDesign.html">Previous Design</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Designing') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/design.html">Designing</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('App') === 'true'){event.stopPropagation();}" href="/projects/manageCabbage/app.html">App</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Website Generator') === 'true'){event.stopPropagation();}" href="/projects/websiteGenerator.html">Website Generator</a></div></li></ul></li><li><div class="drop-down-button menu-button" id="Blogdrop-down-b" onclick="ContentTools.hideOrShowNavBar(this, 'Blog-drop-down')"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Blog') === 'true'){event.stopPropagation();}" href="/blog.html">Blog</a></div><ul class="drop-down-content selected-drop-down" id="Blog-drop-down"><li class="selected"><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Java Multithreading Revision') === 'true'){event.stopPropagation();}" href="/blog/javaThreading.html">Java Multithreading Revision</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Java Collections Analysis') === 'true'){event.stopPropagation();}" href="/blog/javaCollections.html">Java Collections Analysis</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Screenshots in Android Tests') === 'true'){event.stopPropagation();}" href="/blog/screenshotDuringTest.html">Screenshots in Android Tests</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Jetpack Compose Progress Bar') === 'true'){event.stopPropagation();}" href="/blog/loadingBar.html">Jetpack Compose Progress Bar</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Android Vico Point Colours') === 'true'){event.stopPropagation();}" href="/blog/vicoPoints.html">Android Vico Point Colours</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Webpage Colour Themes') === 'true'){event.stopPropagation();}" href="/blog/themes.html">Webpage Colour Themes</a></div></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('React Router OpenID') === 'true'){event.stopPropagation();}" href="/blog/openIdUi.html">React Router OpenID</a></div></li></ul></li><li><div class="menu-button"><div class="drop-down-icon"></div><a onclick="if(window.sessionStorage.getItem('Contact') === 'true'){event.stopPropagation();}" href="/contact.html">Contact</a></div></li></ul>
+            <div id="theme-wrap">
+                <button class="theme-button hidden-feature-mob" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+            </div>
+        </nav>
+
+        <div id="page-content">
+            <div id="dynamic-content">
+                <h1 id="page-title">Java Multithreading Revision</h1>
+                <div id="page-text"><p>It's been a while since I've done any multithreading in Java. So this blog will be a quick
+reminder / rundown on how multithreading is done within Java. It will also contain a quick 
+analysis of multithreading performance.</p>
+<div id="doc-menu-area"> <div><a href="#HowtoRunMultipleThreads" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">1.</div>&nbsp;&nbsp;How to Run Multiple Threads </a><a href="#Using" thread""="" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.1.</div>&nbsp;&nbsp;Using "Thread" </a><a href="#ManagingThreads" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">1.1.1.</div>&nbsp;&nbsp;Managing Threads </a><a href="#ImplementingLogic" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">1.1.2.</div>&nbsp;&nbsp;Implementing Logic </a><a href="#Using" executorservice""="" class="header-row-h3 doc-menu-link"> 
+            <div class="header-num">1.2.</div>&nbsp;&nbsp;Using "ExecutorService" </a><a href="#ManagingThreads" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">1.2.1.</div>&nbsp;&nbsp;Managing Threads </a><a href="#ImplementingLogic" class="header-row-h4 doc-menu-link"> 
+            <div class="header-num">1.2.2.</div>&nbsp;&nbsp;Implementing Logic </a><a href="#Example" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">2.</div>&nbsp;&nbsp;Example </a><a href="#Summary" class="header-row-h2 doc-menu-link"> 
+            <div class="header-num">3.</div>&nbsp;&nbsp;Summary </a></div></div>
+
+<h2 id="HowtoRunMultipleThreads"><div class="header-num">1.</div>&nbsp;&nbsp;How to Run Multiple Threads</h2>
+<p>There are two main methods to use when creating / running multiple threads in Java.</p>
+<h3 id="Using&quot;Thread&quot;"><div class="header-num">1.1.</div>&nbsp;&nbsp;Using "Thread"</h3>
+<h4 id="ManagingThreads"><div class="header-num">1.1.1.</div>&nbsp;&nbsp;Managing Threads</h4>
+<p>Using the Thread class requires you to create and start each thread manually. You can then
+use methods like .start() and .join() to manage the flow of the thread. This technique 
+requires more resources per Thread as each one requires memory to be reserved.</p>
+<h4 id="ImplementingLogic"><div class="header-num">1.1.2.</div>&nbsp;&nbsp;Implementing Logic</h4>
+<p>There are two ways you can implement the logic when using the Thread class.</p>
+<p>The first way is to implement the Runnable interface. You can then create an instance of
+your new class and pass it to a Thread object. The benefit of this is that you can 
+separate your logic and the Thread class. You can also retrieve values from your Runnable
+instance after the thread has run.</p>
+<p>The second way is to extend the Thread class and override the run method. This makes
+creating the thread a little simpler, but under the hood the Thread class implements
+Runnable. So you're just needlessly tying your logic to the Thread class and might as well
+just implement Runnable yourself.</p>
+<pre><code class="hljs language-Java"><span class="hljs-comment">// The Thread class being extended and overriding run. Not recommended.</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FibonacciThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+        <span class="hljs-comment">// This just finds the 10_000_000th fibonacci number to simulate work being done</span>
+        Fibonacci.fibonacci();
+    }
+}
+
+<span class="hljs-comment">// The Runnable interface being implemented and overriding run</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FibonacciRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+        Fibonacci.fibonacci();
+    }
+}
+
+<span class="hljs-comment">// The threads have to be created and run manually</span>
+<span class="hljs-type">Thread</span> <span class="hljs-variable">threadExtended</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FibonacciThread</span>();
+threadExtended.start();
+<span class="hljs-type">Thread</span> <span class="hljs-variable">threadRunnable</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FibonacciRunnable</span>());
+threadRunnable.start();
+
+<span class="hljs-comment">// Calling join will wait until the thread is completed</span>
+threadExtended.join();
+threadRunnable.join();
+</code></pre><h3 id="Using&quot;ExecutorService&quot;"><div class="header-num">1.2.</div>&nbsp;&nbsp;Using "ExecutorService"</h3>
+<h4 id="ManagingThreads"><div class="header-num">1.2.1.</div>&nbsp;&nbsp;Managing Threads</h4>
+<p>Using the ExecutorService is easier and more reliable than using Thread and allows you to
+manage the Threads more effectively. It comes with useful methods for managing the threads
+such as shutdown and invokeAll.</p>
+<p>You can also create different types of ExecutorService depending on your use case. For 
+example, Executors.newFixedThreadPool(int n) created n threads that are reused to complete
+a queue of tasks. Executors.newCachedThreadPool() creates new threads when needed but 
+can reuse already created threads when they're available. There are others that you can 
+view on the <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/concurrent/Executors.html">Executors Javadoc</a>.</p>
+<p>Under the hood this class manages Thread objects and assigns them given tasks.</p>
+<h4 id="ImplementingLogic"><div class="header-num">1.2.2.</div>&nbsp;&nbsp;Implementing Logic</h4>
+<p>As with Thread you can create a class that implements Runnable and pass this to an 
+ExecutorService.</p>
+<p>In addition to this you can also implement the Callable interface. The difference from 
+Runnable is that the Callable interface allows you to return an object. This returned 
+object is wrapped in a Future. The future allows you to check if the contained object is
+present and ready to be returned with .isDone(). You can also call .get() that will wait
+until the object is ready and then return the result, or return the result immediately if 
+it is ready.</p>
+<pre><code class="hljs language-Java"><span class="hljs-comment">// The Callable class being implemented and overriding call</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FibonacciCallable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Callable</span>&lt;Integer&gt; {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">call</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> Fibonacci.fibonacci();
+    }
+}
+
+<span class="hljs-comment">// Create the ExecutorService with the given number of threads</span>
+<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executorService</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">2</span>);
+      
+<span class="hljs-comment">// Create the threads and retrieve the Futures containing the results</span>
+Future&lt;?&gt; runnableFuture = executorService.submit(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FibonacciRunnable</span>());
+Future&lt;Integer&gt; callableFuture = executorService.submit(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FibonacciCallable</span>());
+
+<span class="hljs-comment">// Calling get will wait until the value is ready</span>
+runnableFuture.get();
+callableFuture.get();
+</code></pre><h2 id="Example"><div class="header-num">2.</div>&nbsp;&nbsp;Example</h2>
+<p>In com.calebstride.analysis.multithread.threads.ExecutorServiceManager you can see 
+that I run an ExecutorService 
+given a number of tasks and a number of threads. The Executors class will create an
+ExecutorService with the given number of threads. It will then run each task using 
+the thread pool controlled by ExecutorService.</p>
+<p>To provide the threads with some work I added a task to calculate a fibonacci number. 
+This happens really quickly with lower
+numbers, so I calculate numbers above 100_000_000 to make the tasks run for a longer period.</p>
+<p>When the task runs really quickly then the ExecutorService spends a longer time creating
+the appropriate number of threads, and managing tasks than actually running the logic. 
+Therefore, if you only have a smaller number of quicker tasks then multithreading 
+tends to provide little benefit.</p>
+<pre><code class="hljs language-text">12137 ms // Two threads, 1000 tasks
+3151 ms // Eight threads, 1000 tasks
+</code></pre><p>The results above show that increasing the threads will reduce the time taken. This will 
+change when we reach the maximum threads the system can handle, at which point any more
+threads will be idle and unable to run in parallel.</p>
+<p>To expand upon these results I decided to run the same tasks but using a larger range of
+threads. I start from single threaded up to using 20 threads.</p>
+<pre><code class="hljs language-text"> Number of Threads |  Average time (ms) | 
+                 1 |              24051 | 
+                 2 |              12119 | 
+                 3 |               8118 | 
+                 4 |               6111 | 
+                 5 |               4922 | 
+                 6 |               4133 | 
+                 7 |               3590 | 
+                 8 |               3164 | 
+                 9 |               2847 | 
+                10 |               2586 | 
+                11 |               2376 | 
+                12 |               2213 | // The time from here no longer decreases
+                13 |               2213 | 
+                14 |               2209 | 
+                15 |               2213 | 
+                16 |               2213 | 
+                17 |               2210 | 
+                18 |               2206 | 
+                19 |               2213 | 
+                20 |               2215 | 
+</code></pre><p>The results line up nicely with the system I'm running on. I have a system with 12 logical
+processors, so the system shouldn't speed up when using any number of threads above that,
+which is what the results show.</p>
+<p>The results also show very nicely that when we double the threads the time taken is halved.
+You can also see how the overhead of managing the tasks on the threads is added to the 
+execution time. If you multiply the 12 threads time by 12 (the total time spent executing) 
+then you get 26556ms, which is 2 seconds longer than running all the tasks on one thread.</p>
+<h2 id="Summary"><div class="header-num">3.</div>&nbsp;&nbsp;Summary</h2>
+<p>This blog gave a good opportunity to look back at some of the fundamentals of 
+multithreading and refresh my memory on those. It also shows how the benefit of 
+multithreading can depend greatly on the system you're running the code on.</p>
+<p>There are many more features within Java concurrency, that are important when creating
+multithreaded applications, which are not explored in this blog. Such as synchronisation,
+atomic operations and handling concurrency exceptions.</p>
+</div>
+            </div>
+        </div>
+
+        <div id="page-right-hand"> </div>
+        <div class="page-buffer" id="right-buffer"></div>
+    </div>
+
+    <div id="burger-hug">
+        <div id="theme-wrap-mob" class="hidden-feature-mob hidden-feature-big">
+            <button class="theme-button" onclick="ContentTools.changeTheme()">Toggle Theme</button>
+        </div>
+        <div id="b-menu" class="hidden-feature-big" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+            <div class="b-men"></div>
+        </div>
+        <div id="close-container" class="hidden-feature-big hidden-feature-mob" onclick="ContentTools.hideOrShowList(['side-bar', 'close-container', 'b-menu', 'theme-wrap-mob'], true);">
+            ×
+        </div>
+    </div>
+
+</body></html>
