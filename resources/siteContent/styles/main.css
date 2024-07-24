@@ -386,3 +386,9 @@ pre code {
 .blog-summary {
     padding-top: 12px;
 }
+
+.compose-app-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
